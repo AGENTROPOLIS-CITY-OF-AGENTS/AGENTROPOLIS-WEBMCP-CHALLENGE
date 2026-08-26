@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.dev/schemas/webmcp-execution-receipt.json",
+  "title": "AGENTROPOLIS WebMCP Execution Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receipt_id",
+    "timestamp",
+    "actor",
+    "agent",
+    "tool",
+    "mandate",
+    "risk_class",
+    "policy",
+    "decision",
+    "execution"
+  ],
+  "properties": {
+    "receipt_id": { "type": "string", "minLength": 1 },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "actor": { "type": "string", "minLength": 1 },
+    "agent": { "type": "string", "minLength": 1 },
+    "tool": { "type": "string", "minLength": 1 },
+    "mandate": { "type": "string", "minLength": 1 },
+    "risk_class": { "enum": ["R0_READ", "R1_LOW_WRITE", "R2_SENSITIVE_WRITE", "R3_PROHIBITED"] },
+    "arguments": { "type": "object" },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "rule"],
+      "properties": {
+        "version": { "type": "string" },
+        "rule": { "type": "string" }
+      }
+    },
+    "decision": {
+      "enum": ["ALLOW", "DENY", "REQUIRE_APPROVAL"]
+    },
+    "approval": {
+      "type": ["object", "null"],
+      "properties": {
+        "approved": { "type": "boolean" },
+        "approved_by": { "type": "string" },
+        "approved_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["attempted", "status"],
+      "properties": {
+        "attempted": { "type": "boolean" },
+        "status": { "enum": ["NOT_ATTEMPTED", "SUCCESS", "FAILED"] },
+        "result_summary": { "type": "string" }
+      }
+    }
+  }
+}
