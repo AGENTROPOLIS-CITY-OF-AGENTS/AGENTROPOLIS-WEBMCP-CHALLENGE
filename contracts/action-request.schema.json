@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.dev/schemas/action-request.schema.json",
+  "title": "AGENTROPOLIS Action Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["requestId", "actor", "tool", "action", "arguments", "createdAt"],
+  "properties": {
+    "requestId": {"type": "string", "minLength": 8},
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "type": {"enum": ["human", "agent", "service"]}
+      }
+    },
+    "tool": {"type": "string", "minLength": 1},
+    "action": {"type": "string", "minLength": 1},
+    "arguments": {"type": "object"},
+    "mandate": {"type": ["string", "null"]},
+    "createdAt": {"type": "string", "format": "date-time"}
+  }
+}

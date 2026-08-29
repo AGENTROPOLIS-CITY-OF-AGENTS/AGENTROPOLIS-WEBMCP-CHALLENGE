@@ -1,79 +1,103 @@
 # TERMINAL HANDOFF — HERMES // WEBMCP WARDEN
 
-When returning to the terminal, give Hermes this repository and this instruction.
+## Mission
+Continue the WebMCP Challenge build from this repository without touching Higgsfield or production AGENTROPOLIS infrastructure.
 
-## Bootstrap
-
+## First commands
 ```bash
-git clone https://github.com/AGENTROPOLIS-CITY-OF-AGENTS/AGENTROPOLIS-WEBMCP-CHALLENGE.git
-cd AGENTROPOLIS-WEBMCP-CHALLENGE
 git pull origin main
+git status
+find . -maxdepth 3 -type f | sort
 ```
 
-Then start Hermes in this repository using your normal Hermes launcher.
+Read in this order:
+1. `agents/hermes-webmcp-warden/SYSTEM.md`
+2. `docs/OFFICIAL-CHALLENGE-NOTES.md`
+3. `docs/ARCHITECTURE.md`
+4. `docs/SECURITY.md`
+5. `docs/TEST-MATRIX.md`
+6. GitHub Issue #1
 
-## Mission prompt
+## Hard cutoff
+Treat September 3, 2026 at 1:00 PM Pacific as the submission deadline.
 
-```text
-You are HERMES // WEBMCP WARDEN.
+## Warden execution order
 
-Repository: AGENTROPOLIS-CITY-OF-AGENTS/AGENTROPOLIS-WEBMCP-CHALLENGE
+### Phase A — Verify runtime
+- Record Node/package manager versions.
+- Verify current WebMCP API syntax against official Chrome documentation/spec before writing API calls.
+- Confirm the selected browser test path.
+- Do not rely on stale remembered APIs.
 
-Read these before changing code:
-1. agents/hermes-webmcp-warden/SYSTEM.md
-2. agents/hermes-webmcp-warden/CHECKPOINT.md
-3. docs/CHALLENGE-BRIEF.md
-4. docs/ARCHITECTURE.md
-5. contracts/receipt.schema.json
-6. GitHub issue #1
+### Phase B — Bootstrap app
+Use the smallest web stack that can deploy quickly. Prefer an existing template only if it materially reduces setup time. Avoid framework churn.
 
-Operate only inside this challenge repository unless a task explicitly requires read-only reference to AGENTROPOLIS-UTILITY-GRID.
+Required surfaces:
+- WebMCP-enabled demo page
+- one registered governed tool
+- human approval UI
+- Mission Control receipt panel
 
-Goal: ship the smallest repeatable WebMCP demo proving:
-discover -> request -> govern -> approve/deny -> execute -> receipt -> audit -> Mission Control.
+### Phase C — Implement contracts
+Implement types/interfaces matching:
+- `contracts/action-request.schema.json`
+- `contracts/decision.schema.json`
+- `contracts/execution-receipt.schema.json`
 
-Before implementation, verify the current official WebMCP API against Chromium/OpenAI challenge documentation. Do not invent API names from memory.
-
-Use September 3, 2026 at 1:00 PM Pacific as the internal hard submission cutoff until the organizer deadline discrepancy is resolved.
-
-Do not touch Higgsfield or documentary work.
-Do not expose secrets.
-Do not represent mocks as live functionality.
-Do not bypass governance to improve the demo.
-
-For each work cycle:
-- inspect current repo state
-- choose the smallest next task
-- implement it
-- test it
-- update agents/hermes-webmcp-warden/CHECKPOINT.md
-- commit with a concise conventional commit message
-
-A component is VERIFIED only after successful execution in its target environment.
-
-Start now with WebMCP API verification and MVP workflow selection.
+Policy API should be deterministic:
+```ts
+type Effect = 'ALLOW' | 'DENY' | 'REQUIRE_APPROVAL';
+function evaluate(request: ActionRequest, context: PolicyContext): Decision;
 ```
 
-## Recommended branch discipline
+Executor must reject any request without a valid ALLOW decision or a consumed human approval bound to the exact request.
 
-```bash
-git checkout -b warden/mvp
-git push -u origin warden/mvp
-```
+### Phase D — WebMCP
+Register exactly one primary tool first. Give it:
+- precise name
+- short description
+- strict JSON schema
+- bounded arguments
+- useful structured return value
 
-Work there until the first verified vertical slice exists, then open a PR into `main`.
+Do not register a large tool catalog before the first tool passes the test matrix.
 
-## First vertical slice
+### Phase E — Tests
+Implement automated unit tests for policy and receipts before polishing UI.
+Run the manual WebMCP tests from `docs/TEST-MATRIX.md`.
 
-Do not build the whole UI first. Complete this sequence:
+### Phase F — Deploy
+Deploy live. Verify the deployed build, not only localhost.
 
-```text
-ONE WebMCP tool
-      -> normalized request
-      -> policy decision
-      -> execution or denial
-      -> receipt JSON
-      -> tiny human-readable receipt panel
-```
+### Phase G — Evidence
+Capture real evidence for each verified test. Never manufacture output.
 
-Only after that works should the Warden add the approval path and presentation polish.
+### Phase H — Submission
+Prepare:
+- final README
+- live URL
+- repository URL
+- project description
+- architecture image/screenshot if useful
+- <=3 minute demo video
+- Devpost submission fields
+
+## Default demo contract
+If no stronger workflow is discovered during implementation, use a generic governed operation with two modes:
+- low-risk action -> ALLOW
+- state-changing action -> REQUIRE_APPROVAL
+
+Add a prohibited argument/action path -> DENY.
+
+The point is the governance corridor, not the business-domain complexity.
+
+## Scope kill switch
+Before adding anything ask:
+1. Does it prove WebMCP works?
+2. Does it prove governance/approval/receipts?
+3. Does it improve judging evidence?
+
+If no: do not build it.
+
+## Completion declaration
+Warden may set `READY_FOR_DEMO` only after the live deployed application passes the required minimum tests. Warden may set `READY_TO_SUBMIT` only after all Devpost-required assets exist and have been manually reviewed.

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.dev/schemas/execution-receipt.schema.json",
+  "title": "AGENTROPOLIS Execution Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["receiptId", "requestId", "tool", "decision", "status", "createdAt"],
+  "properties": {
+    "receiptId": {"type": "string", "minLength": 8},
+    "requestId": {"type": "string", "minLength": 8},
+    "tool": {"type": "string"},
+    "decision": {"enum": ["ALLOW", "DENY", "REQUIRE_APPROVAL"]},
+    "approvedBy": {"type": ["string", "null"]},
+    "status": {"enum": ["DENIED", "AWAITING_APPROVAL", "EXECUTED", "FAILED"]},
+    "input": {"type": "object"},
+    "output": {"type": ["object", "null"]},
+    "policyReasons": {"type": "array", "items": {"type": "string"}},
+    "createdAt": {"type": "string", "format": "date-time"},
+    "executedAt": {"type": ["string", "null"], "format": "date-time"}
+  }
+}

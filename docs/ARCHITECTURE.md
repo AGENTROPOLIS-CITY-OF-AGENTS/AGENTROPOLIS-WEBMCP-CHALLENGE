@@ -1,89 +1,84 @@
-# Governed WebMCP Architecture
+# AGENTROPOLIS WebMCP Challenge Architecture
 
-## Layer placement
+## Thesis
 
-This repository is an **Application / proving ground** consuming AGENTROPOLIS Intelligence Grid primitives. It is not the canonical Utility Grid.
+**Discovery is not authority. Connectivity is not permission. Execution requires governance.**
 
-- Infrastructure: identity, mandates, policy, dispatch, receipts, audit
-- District / institution: Utility Grid governance contracts
-- Application: WebMCP Challenge gateway + Mission Control demo
+WebMCP solves a major interface problem: websites can expose structured tools to agents instead of forcing agents to infer intent from pixels and DOM structure.
+
+AGENTROPOLIS demonstrates the next control layer: what happens after a tool is discovered but before a consequential action is allowed to execute.
+
+## Vertical slice
+
+```text
+Human + Agent
+     |
+     v
+WebMCP-enabled page
+     |
+     v
+Registered site tool
+     |
+     v
+Normalized Action Request
+     |
+     v
+Identity -> Mandate -> Policy -> Tool Permission
+                 |
+       +---------+----------+
+       |         |          |
+      DENY      ALLOW   REQUIRE_APPROVAL
+       |         |          |
+       |         |      Human confirms
+       |         |          |
+       +---------+----------+
+                 |
+                 v
+              Executor
+                 |
+                 v
+         Execution Receipt
+                 |
+                 v
+         Mission Control UI
+```
+
+## Deliberate scope
+The hackathon repo is an application/proving ground, not a replacement for AGENTROPOLIS-UTILITY-GRID.
+
+Do not import the whole city. Implement only the contracts required to prove the corridor:
+
+`Identity -> Mandate -> Plan -> Execute -> Receipt -> Audit`
 
 ## Components
 
-### 1. WebMCP Surface
-Registers a deliberately small set of structured browser-facing tools.
+### 1. WebMCP adapter
+Registers the site tool and converts WebMCP input into a normalized `ActionRequest`.
 
-Responsibilities:
-- expose name, description, input schema
-- translate invocation into a normalized action request
-- never decide its own authority
+### 2. Governance gate
+Pure deterministic function. Input: actor + mandate + action + policy context. Output: `ALLOW`, `DENY`, or `REQUIRE_APPROVAL` plus reasons.
 
-### 2. Governance Gateway
-Receives normalized action requests.
-
-Decision inputs:
-- actor identity
-- agent identity
-- mandate
-- requested capability
-- resource
-- arguments
-- risk class
-- policy version
-
-Decision outputs:
-- ALLOW
-- DENY
-- REQUIRE_APPROVAL
-
-### 3. Approval Gate
-Human control plane for actions whose policy result is REQUIRE_APPROVAL.
-
-Approval is scoped to the exact normalized action and expires after use or timeout. Approval must not become blanket authority.
+### 3. Approval gate
+Human-visible checkpoint for a sensitive or state-changing action. An agent cannot approve its own request.
 
 ### 4. Executor
-Runs only an action carrying an ALLOW decision or a valid approval artifact.
+Performs only actions that carry a valid governance decision. For the hackathon MVP, use one bounded deterministic action with a clearly visible result.
 
-### 5. Receipt Engine
-Emits an immutable-shaped JSON record for every attempted action, including denials.
+### 5. Receipt emitter
+Produces a machine-readable receipt for every attempted action, including denied and approval-required requests.
 
 ### 6. Mission Control
-Human-readable visualization of:
-- discovered tool
-- requested action
-- actor / agent
-- mandate
-- policy decision
-- approval state
-- execution result
-- receipt ID
+Human-readable receipt and decision-path view. It must explain what the agent requested, what policy decided, whether a human approved, what executed, and the final status.
 
-## Trust boundaries
+## Security boundary
+Page content is untrusted input. Agent instructions derived from page content never become authority. Tool invocation does not bypass policy. Secrets are never included in tool schemas, page-visible logs, receipts, or screenshots.
 
-```text
-UNTRUSTED / REQUEST             GOVERNED CORE                  EFFECT
-
-Agent intent
-    |
-WebMCP invocation ---> Normalizer ---> Policy Engine ----X----> denied
-                                         |
-                                         +--> approval gate
-                                         |       |
-                                         +-------+--> Executor ---> external effect
-                                                        |
-                                                        v
-                                                     Receipt
-```
-
-WebMCP discovery itself grants **zero execution authority**.
-
-## Risk classes
-
-- R0 READ: non-sensitive read-only action; generally allow when mandate matches.
-- R1 LOW WRITE: reversible low-impact state change; policy dependent.
-- R2 SENSITIVE WRITE: external side effect, publication, purchase, deployment, account change; require approval by default.
-- R3 PROHIBITED: outside mandate, secret access, destructive or disallowed action; deny.
-
-## Non-negotiable invariant
-
-No executor may be reachable directly from the WebMCP registration handler. Every invocation must traverse the governance decision path.
+## Demo story
+1. Agent discovers the tool.
+2. Agent makes a low-risk request that is allowed and receipted.
+3. Agent makes a sensitive request.
+4. Governance returns `REQUIRE_APPROVAL`.
+5. Human approves it in the shared live page.
+6. Execution completes.
+7. Mission Control exposes the complete receipt chain.
+8. A prohibited request is denied to prove policy is real rather than decorative.
