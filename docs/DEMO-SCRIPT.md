@@ -1,26 +1,73 @@
-# 2-3 Minute Demo Script
+# WebMCP Challenge Demo Script — <= 3 Minutes
 
-## 0:00-0:20 — Problem
-Agents can discover WebMCP tools, but discovery alone should not grant authority. AGENTROPOLIS adds a governed execution corridor between tool discovery and consequential action.
+## Submission constraints
+- Public demo video.
+- Keep total runtime under 3 minutes.
+- Include audio narration explaining what was built and how WebMCP is used.
+- Show the working product in the first 10-15 seconds.
+- Do not lead with a slide deck.
+- Freeze the final video before the September 3, 2026 1:00 PM PT deadline.
 
-## 0:20-0:45 — Discovery
-Open the live app in ChatGPT's in-app browser or Chrome with WebMCP enabled. Show the registered site tool being discovered. Keep this visual and fast.
+## 0:00-0:15 — Working product immediately
+Open the deployed autonomous 3D AGENTROPOLIS world in the supported WebMCP environment.
 
-## 0:45-1:10 — Allowed action
-Ask the agent to perform the bounded low-risk action. Show:
-`WebMCP -> policy -> ALLOW -> execution -> receipt`.
-Open Mission Control and point to actor, tool, decision, and status.
+Camera enters the WebMCP Gateway. A real discovered tool powers on the Gateway and a request packet enters the city.
 
-## 1:10-1:50 — Approval action
-Ask the agent for the sensitive/state-changing variant. Governance returns `REQUIRE_APPROVAL`. Show that nothing executes yet. Human approves the exact request. Then execute and show the new receipt.
+Narration:
+"This is AGENTROPOLIS. WebMCP lets an agent discover what this site can do. AGENTROPOLIS determines what that agent is actually allowed to do."
 
-## 1:50-2:15 — Denied action
-Attempt a prohibited or out-of-mandate request. Show `DENY` and prove that the executor never runs.
+## 0:15-0:35 — Why the 3D world exists
+Follow the live request through Identity Plaza and Mandate Corridor.
 
-## 2:15-2:40 — Why this matters
-WebMCP makes websites agent-readable and agent-operable. AGENTROPOLIS demonstrates a control plane for accountable operation: authority is explicit, policy is deterministic, humans remain in the loop where needed, and every action leaves a receipt.
+Narration:
+"The world is the interface. Every visible transition corresponds to real application state: identity, delegated authority, policy, execution, and audit."
 
-## 2:40-3:00 — Close
-Display the architecture corridor and repository URL. End on:
+## 0:35-1:00 — ALLOW
+Invoke the bounded low-risk WebMCP action.
+
+Show:
+`WebMCP -> Identity -> Mandate -> Policy -> ALLOW -> Execution -> Receipt`
+
+The Policy Gate opens, Execution Forge runs, and the resulting receipt artifact enters the Receipt Vault.
+
+Call out actor, tool, decision, and execution status on the inspectable receipt.
+
+## 1:00-1:35 — REQUIRE_APPROVAL
+Invoke the sensitive/state-changing variant.
+
+Policy returns `REQUIRE_APPROVAL` and the request physically stops in the Approval Chamber.
+
+Narration:
+"Discovery is not permission. Sensitive actions stop here until a human approves this exact bounded request."
+
+Approve it in-world. Show the route unlock, execution occur, and receipt record the human approval.
+
+## 1:35-1:55 — DENY
+Attempt a prohibited or out-of-mandate action.
+
+Show the corridor block the request and prove the executor does not run. A denial receipt still enters the audit trail.
+
+## 1:55-2:20 — WebMCP leverage
+Briefly show the registered tool in ChatGPT or the compatible Chrome WebMCP tooling/inspector.
+
+Narration:
+"The agent is not clicking a simulated UI. The site exposes a structured WebMCP tool. That real tool lifecycle drives the world you just watched."
+
+## 2:20-2:40 — Impact
+Show the complete corridor from Gateway to Receipt Vault.
+
+Narration:
+"Any agent-operable website needs more than discovery. It needs bounded authority, deterministic policy, human approval for sensitive actions, and an audit trail. AGENTROPOLIS turns those controls into a legible environment humans can understand at a glance."
+
+## 2:40-2:55 — Challenge delta + close
+Briefly state that AGENTROPOLIS contributes pre-existing 3D/governance foundations while the WebMCP integration, governed tool lifecycle, challenge world bindings, and verification are the challenge-specific work.
+
+End on:
 
 **Discovery is not authority. Connectivity is not permission. Execution requires governance.**
+
+## Judging coverage
+- **WebMCP Leverage:** visible tool discovery/invocation and real lifecycle.
+- **Execution:** working deployed 3D experience, governance paths, receipts, browser evidence.
+- **Potential Impact:** reusable accountable-agent control pattern for the open web.
+- **Creativity & Ambition:** autonomous 3D city makes invisible agent authority and policy spatially understandable.
