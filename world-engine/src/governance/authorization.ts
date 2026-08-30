@@ -1,4 +1,4 @@
-import type { WorldCapability } from "../types";
+import type { WorldCapability } from "../types.js";
 
 export interface AgentMandate {
   agentId: string;

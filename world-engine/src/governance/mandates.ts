@@ -1,4 +1,4 @@
-import type { AgentMandate } from "./authorization";
+import type { AgentMandate } from "./authorization.js";
 
 export const DIRECTOR_MANDATE: AgentMandate = {
   agentId: "hermes-director",

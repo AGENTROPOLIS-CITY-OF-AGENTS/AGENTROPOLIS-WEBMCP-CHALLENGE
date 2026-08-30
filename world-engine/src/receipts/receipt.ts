@@ -1,4 +1,4 @@
-import type { WorldCapability, WorldProviderId } from "../types";
+import type { WorldCapability, WorldProviderId } from "../types.js";
 
 export interface WorldReceipt {
   receiptId: string;

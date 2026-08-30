@@ -1,4 +1,4 @@
-import type { CameraState, RenderState, WeatherState, WorldCapability, WorldProviderId, WorldState, WorldEvent } from "../types";
+import type { CameraState, RenderState, WeatherState, WorldCapability, WorldProviderId, WorldState, WorldEvent } from "../types.js";
 
 export interface SpawnEventInput {
   type: string;
