@@ -1,0 +1,29 @@
+{
+  "name": "@agentropolis/world-engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "AGENTROPOLIS WORLD ENGINE — a governed, provider-neutral world-service contract (Identity -> Mandate -> Capability -> Policy -> Provider -> Execution -> Receipt). ABYSSAL (Token-Gremlin/natural-disasters) is the first proving-ground provider.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "lint": "eslint src test --ext .ts",
+    "demo": "npm run build && node dist/demo/two-agent-demo.js"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.6.0",
+    "typescript-eslint": "^8.0.0",
+    "vitest": "^2.0.0"
+  }
+}
