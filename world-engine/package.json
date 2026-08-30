@@ -17,13 +17,19 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run",
     "lint": "eslint src test --ext .ts",
-    "demo": "npm run build && node dist/demo/two-agent-demo.js"
+    "demo": "npm run build && node dist/demo/two-agent-demo.js",
+    "demo:3d": "npm run demo && node tools/capture-3d.mjs",
+    "demo:live": "node tools/live-integration.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
     "eslint": "^9.0.0",
+    "puppeteer": "^25.8.0",
     "typescript": "^5.6.0",
     "typescript-eslint": "^8.0.0",
     "vitest": "^2.0.0"
+  },
+  "dependencies": {
+    "three": "^0.169.0"
   }
 }

@@ -116,8 +116,11 @@ async function main(): Promise<void> {
   const html = renderMissionControlHTML(snap);
   const out = join(process.cwd(), "mission-control.html");
   writeFileSync(out, html, "utf8");
+  // Emit the raw snapshot for the embedded 3D Mission Control world.
+  writeFileSync(join(process.cwd(), "mission-control-snapshot.json"), JSON.stringify(snap, null, 2), "utf8");
   log();
   log(`Mission Control panel written to: ${out}`);
+  log(`Mission Control snapshot (3D world input) written to: ${join(process.cwd(), "mission-control-snapshot.json")}`);
 
   // --- Assert the proof holds ----------------------------------
   const success = [dirRead, dirWeather, dirSpawn].every((r) => r.receipt.result === "success");
