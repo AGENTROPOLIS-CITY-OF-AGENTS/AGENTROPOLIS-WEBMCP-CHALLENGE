@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.dev/schemas/world-state.schema.json",
+  "title": "AGENTROPOLIS World State",
+  "type": "object",
+  "required": ["provider", "timestamp", "environment", "events"],
+  "properties": {
+    "provider": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "environment": {
+      "type": "object",
+      "required": ["type"],
+      "properties": { "type": { "type": "string" }, "seed": { "type": "integer" } },
+      "additionalProperties": true
+    },
+    "weather": { "type": "object" },
+    "camera": { "type": "object" },
+    "events": { "type": "array" },
+    "render": { "type": "object" }
+  },
+  "additionalProperties": true
+}
