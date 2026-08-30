@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>AGENTROPOLIS WORLD ENGINE · 3D Mission Control</title>
+<style>
+  :root { --bg:#05070a; --cy:#2fe0ff; --gr:#2bff7a; --rd:#ff3b4e; --pk:#ff6ad5; --tx:#d7e3ea; --dim:#6b7a85; }
+  * { box-sizing:border-box; }
+  html,body { margin:0; height:100%; background:var(--bg); color:var(--tx); font-family:"Inter","Segoe UI",system-ui,sans-serif; overflow:hidden; }
+  canvas { display:block; }
+  #hud { position:fixed; top:14px; left:14px; z-index:10; pointer-events:none; }
+  #hud h1 { margin:0; font-family:"Orbitron","Inter",sans-serif; font-size:17px; letter-spacing:.16em; color:var(--cy); text-transform:uppercase; text-shadow:0 0 12px rgba(47,224,255,.35); }
+  #hud .sub { color:var(--dim); font-size:11px; margin-top:3px; letter-spacing:.08em; }
+  #legend { position:fixed; top:14px; right:14px; z-index:10; background:rgba(11,15,20,.82); border:1px solid #16212b; border-radius:10px; padding:12px 14px; font-size:12px; pointer-events:none; }
+  #legend .row { display:flex; align-items:center; gap:8px; padding:2px 0; }
+  .dot { width:10px; height:10px; border-radius:50%; display:inline-block; }
+  .d-cy{background:var(--cy)} .d-gr{background:var(--gr)} .d-rd{background:var(--rd)} .d-pk{background:var(--pk)} .d-dim{background:var(--dim)}
+  #panel { position:fixed; bottom:14px; left:14px; z-index:10; width:300px; max-height:70vh; overflow:auto; background:rgba(11,15,20,.9); border:1px solid #16212b; border-radius:10px; padding:12px 14px; font-size:12px; }
+  #panel h2 { margin:0 0 8px; font-family:"Orbitron","Inter",sans-serif; font-size:11px; letter-spacing:.12em; color:var(--dim); text-transform:uppercase; }
+  #panel .rcpt { border:1px solid #16212b; border-left:3px solid var(--cy); border-radius:6px; padding:6px 8px; margin:4px 0; }
+  #panel .rcpt.r-success{border-left-color:var(--gr)} #panel .rcpt.r-denied,#panel .rcpt.r-failed{border-left-color:var(--rd)}
+  #panel code { color:var(--cy); font-family:"JetBrains Mono","Consolas",monospace; font-size:11px; }
+  #panel .meta { color:var(--dim); font-size:11px; margin-top:8px; }
+  #modebtn { position:fixed; bottom:14px; right:14px; z-index:10; background:rgba(11,15,20,.9); border:1px solid var(--cy); color:var(--cy); border-radius:8px; padding:8px 14px; cursor:pointer; font-family:"Orbitron",sans-serif; font-size:11px; letter-spacing:.08em; }
+  #modebtn:hover { background:rgba(47,224,255,.12); }
+</style>
+</head>
+<body>
+<div id="hud">
+  <h1>WORLD ENGINE</h1>
+  <div class="sub">Mission Control · governance corridor</div>
+</div>
+<div id="legend">
+  <div class="row"><span class="dot d-gr"></span> ALLOW</div>
+  <div class="row"><span class="dot d-rd"></span> DENY</div>
+  <div class="row"><span class="dot d-cy"></span> request packet</div>
+  <div class="row"><span class="dot d-pk"></span> receipt artifact</div>
+  <div class="row"><span class="dot d-dim"></span> corridor node</div>
+</div>
+<div id="panel">
+  <h2>World State</h2>
+  <div id="state">loading…</div>
+  <h2 style="margin-top:10px">Receipts</h2>
+  <div id="receipts"></div>
+  <div class="meta" id="meta"></div>
+</div>
+<button id="modebtn">AUTO</button>
+
+<script type="importmap">
+{ "imports": { "three": "./assets/three.module.min.js" } }
+</script>
+<script type="module">
+import * as THREE from "three";
+
+// ---- World fills the corridor; agents traverse left (Identity) to right (Receipt).
+const ZONES = [
+  { name: "IDENTITY",   x: -5.5, color: 0x2fe0ff },
+  { name: "MANDATE",    x: -2.8, color: 0x6b7a85 },
+  { name: "POLICY GATE",x:  0.0, color: 0x6b7a85 },
+  { name: "EXECUTION",  x:  2.8, color: 0xffb347 },
+  { name: "RECEIPT",    x:  5.5, color: 0xff6ad5 },
+];
+
+const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, 2));
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x05070a);
+scene.fog = new THREE.Fog(0x05070a, 12, 26);
+
+const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 100);
+camera.position.set(0, 7.5, 13);
+camera.lookAt(0, 0.6, 0);
+
+// lights
+scene.add(new THREE.HemisphereLight(0x9fd8ff, 0x05070a, 0.9));
+const dir = new THREE.DirectionalLight(0xffffff, 1.2); dir.position.set(3, 8, 4); scene.add(dir);
+
+// ---- ground
+const ground = new THREE.Mesh(
+  new THREE.PlaneGeometry(18, 9),
+  new THREE.MeshStandardMaterial({ color:0x0b0f14, roughness:0.9, metalness:0.1 })
+);
+ground.rotation.x = -Math.PI/2; ground.position.y = -0.02; scene.add(ground);
+
+// ---- corridor nodes + labels
+const nodeMeshes = [];
+const labelSprites = [];
+function makeLabel(text, color) {
+  const c = document.createElement("canvas"); c.width=512; c.height=128;
+  const ctx = c.getContext("2d");
+  ctx.font = "700 54px Orbitron, Inter, sans-serif"; ctx.fillStyle = "#000"; ctx.fillText(text,6,78);
+  ctx.fillStyle = color; ctx.fillText(text,4,76);
+  const tex = new THREE.CanvasTexture(c);
+  const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map:tex, transparent:true, depthWrite:false }));
+  sp.scale.set(2.6, 0.65, 1);
+  return sp;
+}
+for (const z of ZONES) {
+  const mat = new THREE.MeshStandardMaterial({ color:z.color, emissive:z.color, emissiveIntensity:0.25, metalness:0.4, roughness:0.4 });
+  const m = new THREE.Mesh(new THREE.OctahedronGeometry(0.55), mat);
+  m.position.set(z.x, 0.55, 0);
+  scene.add(m);
+  nodeMeshes.push(m);
+  const sp = makeLabel(z.name, '#'+z.color.toString(16).padStart(6,'0'));
+  sp.position.set(z.x, 1.8, 0);
+  scene.add(sp);
+}
+
+// ---- trace connectors (cyan energy lines)
+const traceMat = new THREE.LineBasicMaterial({ color:0x2fe0ff, transparent:true, opacity:0.35 });
+for (let i=0;i<ZONES.length-1;i++){
+  const g = new THREE.BufferGeometry().setFromPoints([
+    new THREE.Vector3(ZONES[i].x+0.7,0.55,0),
+    new THREE.Vector3(ZONES[i+1].x-0.7,0.55,0),
+  ]);
+  scene.add(new THREE.Line(g, traceMat));
+}
+
+// ---- data model
+let snapshot = null;
+let packets = [];
+let mode = "auto"; // auto | explore
+let time = 0;
+
+// Receipt packets derived from the snapshot's receiptLog.
+function rebuild() {
+  // clear old
+  for (const p of packets) scene.remove(p.group);
+  packets = [];
+  if (!snapshot) return;
+  const log = snapshot.receiptLog || [];
+  const N = log.length;
+  // distribute packets along corridor by recency; newest closest to right
+  log.forEach((r, i) => {
+    const t = N<=1 ? 0 : i/(N-1);
+    const x = -5.0 + t*10.0;
+    const color = r.result==="success" ? 0x2bff7a : r.result==="denied" ? 0xff3b4e : 0xff3b4e;
+    const grp = new THREE.Group();
+    const core = new THREE.Mesh(new THREE.OctahedronGeometry(0.22), new THREE.MeshStandardMaterial({ color, emissive:color, emissiveIntensity:0.6 }));
+    core.position.set(x, 0.55, 0.4);
+    const ring = new THREE.Mesh(new THREE.RingGeometry(0.34,0.42,32), new THREE.MeshBasicMaterial({ color, transparent:true, opacity:0.6, side:THREE.DoubleSide }));
+    ring.rotation.x = -Math.PI/2; ring.position.set(x,0.62,0.4);
+    grp.add(core); grp.add(ring);
+    grp.userData = { baseX:x, color, receipt:r };
+    scene.add(grp);
+    packets.push(grp);
+  });
+
+  // panel
+  const s = document.getElementById("state");
+  const w = snapshot.worldState?.weather || {};
+  s.innerHTML = `provider <code>${snapshot.provider?.id||"—"}</code> · ${snapshot.provider?.connected?"CONNECTED":"OFFLINE"}<br/>`+
+    `wind <code>${w.windSpeed??"—"}</code> · storm <code>${w.stormIntensity??"—"}</code><br/>`+
+    `events <code>${(snapshot.activeEvents||[]).map(e=>e.type).join(", ")||"none"}</code><br/>`+
+    `authority <code>${(snapshot.authority||[]).map(a=>a.agentId+"="+(a.readOnly?"R":"W")).join(" · ")||"—"}</code>`;
+
+  const rEl = document.getElementById("receipts");
+  rEl.innerHTML = (snapshot.receiptLog||[]).slice(-5).reverse().map(r=>
+    `<div class="rcpt r-${r.result}">${r.capability} · <b>${r.result}</b>${r.reason?" · "+r.reason:""}<br/><code>${r.receiptId.slice(0,8)}</code> · ${r.agentId}</div>`
+  ).join("") || "<div class='meta'>no receipts</div>";
+
+  document.getElementById("meta").textContent = `generated ${snapshot.generatedAt||"—"}`;
+}
+
+// Load real snapshot: try window.__SNAPSHOT, else fetch ./mission-control-snapshot.json
+function loadSnapshot() {
+  if (window.__SNAPSHOT) { snapshot = window.__SNAPSHOT; rebuild(); return; }
+  fetch("./mission-control-snapshot.json").then(r=>r.json()).then(s=>{ snapshot=s; rebuild(); })
+    .catch(()=>{ document.getElementById("state").textContent="no snapshot — set window.__SNAPSHOT or serve mission-control-snapshot.json"; });
+}
+
+// ---- mode toggle
+const btn = document.getElementById("modebtn");
+btn.addEventListener("click", ()=>{ mode = mode==="auto"?"explore":"auto"; btn.textContent = mode.toUpperCase(); });
+
+// ---- animation
+function animate() {
+  requestAnimationFrame(animate);
+  time += 0.016;
+
+  for (const p of packets) {
+    p.children[0].position.y = 0.55 + Math.sin(time*2 + p.userData.baseX)*0.12;
+    p.children[1].rotation.z += 0.02;
+    p.rotation.y += 0.01;
+  }
+
+  if (mode === "auto") {
+    // orbital reveal
+    const t = time*0.15;
+    camera.position.x = Math.sin(t)*3.0;
+    camera.position.z = 12.5 + Math.cos(t)*1.6;
+    camera.position.y = 6.0 + Math.sin(t*0.7)*0.8;
+    camera.lookAt(0,0.5,0);
+  }
+  // keep corridor nodes pulsing
+  nodeMeshes.forEach((m,i)=>{ m.scale.setScalar(1+Math.sin(time*2+i)*0.06); });
+
+  renderer.render(scene, camera);
+}
+
+window.addEventListener("resize", ()=>{
+  camera.aspect = window.innerWidth/window.innerHeight; camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+loadSnapshot();
+animate();
+</script>
+</body>
+</html>

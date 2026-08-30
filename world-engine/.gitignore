@@ -1,0 +1,15 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+
+# generated demo artifacts
+mission-control.html
+mission-control-snapshot.json
+
+# deterministic browser/e2e capture output
+tools/shots/
+
+# logs
+*.log

@@ -1,0 +1,48 @@
+name: World Engine CI
+
+# Runs the WORLD ENGINE package's deterministic verification lane:
+#   typecheck -> lint -> test -> build
+# Browser/GPU (WebGL2 ABYSSAL) proof is intentionally NOT part of CI — it
+# requires a real WebGL2 context and is exercised separately as a manual /
+# headed-browser gate.
+
+on:
+  pull_request:
+    paths:
+      - "world-engine/**"
+  push:
+    branches:
+      - feature/world-engine-abyssal
+    paths:
+      - "world-engine/**"
+
+jobs:
+  world-engine:
+    name: world-engine (typecheck, lint, test, build)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: world-engine
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: world-engine/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
