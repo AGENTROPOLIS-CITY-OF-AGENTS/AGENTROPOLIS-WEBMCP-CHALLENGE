@@ -61,3 +61,21 @@ WORLD ENGINE is infrastructure consumed by districts and applications, including
 ## Scope guard
 
 Do not block v0.1 on blockchain anchoring, full mobile rendering, WebGPU migration, or generalized game-economy causality. Ship the semantic bridge, capability gate, receipts, and visible world first.
+
+## Build & verify
+
+```bash
+cd world-engine
+npm install
+npm run typecheck   # TypeScript strict
+npm run lint        # ESLint
+npm test            # Vitest (37 tests: authorization, receipts, provider contract, governor, corridor eval)
+npm run build       # tsc -> dist/
+npm run demo        # Two-agent proof: Director WRITE vs Researcher READ + Mission Control HTML
+```
+
+The demo writes `mission-control.html` (self-contained, open in a browser) proving the corridor:
+Identity -> Mandate -> Capability -> Policy -> Provider -> Execution -> Receipt.
+
+### Provider note
+`AbyssalProvider` runs headless/deterministic out of the box (no GPU/browser needed for tests). When constructed with a live ABYSSAL `App` (`AbyssalHost`), the `AbyssalBridge` drives the real verified upstream classes. All upstream names stay inside `providers/abyssal/`.
