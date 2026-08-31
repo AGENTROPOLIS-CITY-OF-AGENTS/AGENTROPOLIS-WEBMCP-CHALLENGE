@@ -1,0 +1,16 @@
+export const WORLD_COLORS = {
+  obsidian: '#050709',
+  abyss: '#000000',
+  cyan: '#00e5ff',
+  cyanDim: '#0c3942',
+  cyanGlow: '#8df6ff',
+  red: '#ff3131',
+  redDim: '#3a0d11',
+  redGlow: '#ff7d7d',
+  approval: '#b65cff',
+  success: '#39ff14',
+  steel: '#11181c',
+  fog: '#020506',
+  text: '#eaffff',
+  muted: '#8da8aa',
+} as const
