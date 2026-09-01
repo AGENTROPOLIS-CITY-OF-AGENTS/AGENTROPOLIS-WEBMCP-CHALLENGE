@@ -13,6 +13,7 @@
     "test": "vitest run",
     "test:ui-vault": "vitest run --config packages/ui-vault/vitest.config.ts",
     "test:watch": "vitest",
+    "typecheck": "tsc -b",
     "typecheck:ui-vault": "tsc -p packages/ui-vault/tsconfig.json --noEmit",
     "validate:ui-vault-manifests": "node scripts/ui-vault/validate-manifests.mjs",
     "validate:ui-vault-provenance": "node scripts/ui-vault/validate-provenance.mjs",
