@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.example/contracts/intent.schema.json",
+  "title": "Agentropolis Intent Protocol Intent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "id", "verb", "actor", "target", "authority"],
+  "properties": {
+    "version": { "const": "0.1" },
+    "id": { "type": "string", "minLength": 1 },
+    "verb": {
+      "enum": ["inspect", "select", "delegate", "execute", "approve", "reject", "stop", "undo", "expand", "compress", "increase", "decrease", "alternate", "move", "bind"]
+    },
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identity", "inputMode"],
+      "properties": {
+        "identity": { "type": "string", "minLength": 1 },
+        "inputMode": { "enum": ["gesture", "touch", "pointer", "keyboard", "voice", "gamepad", "xr", "accessibility"] }
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "id"],
+      "properties": {
+        "type": { "enum": ["agent", "website", "capability", "object", "mission", "content"] },
+        "id": { "type": "string", "minLength": 1 }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "selection": { "type": "array", "items": { "type": "string" } },
+        "amount": { "type": "number" },
+        "intensity": { "type": "number" },
+        "direction": { "type": "string" }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requiresConfirmation", "riskClass"],
+      "properties": {
+        "requiresConfirmation": { "type": "boolean" },
+        "riskClass": { "enum": ["low", "medium", "high"] }
+      }
+    },
+    "context": { "type": "object" }
+  }
+}
