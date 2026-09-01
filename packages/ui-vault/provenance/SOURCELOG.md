@@ -1,8 +1,8 @@
 # AGENTROPOLIS UI Vault Source Log
 
-Updated: 2026-08-29
+Updated: 2026-09-01
 
-This vault currently ships reviewed local implementations with adapter boundaries for future upstream replacement. No upstream code was pulled into this repository during this session because 21st.dev authentication was unavailable and remote provenance could not be verified.
+This vault currently ships reviewed local implementations with adapter boundaries for future upstream replacement. Live 21st.dev authentication is optional; when unavailable, user-supplied recipes can be captured in `quarantine/` with unresolved provenance explicitly recorded.
 
 ## Current registry status
 
@@ -12,6 +12,7 @@ This vault currently ships reviewed local implementations with adapter boundarie
 | spatial.poem-cube | local fallback | upstream candidate unknown | not retrieved | unknown | source URL, author, license |
 | motion.perspective-marquee | local fallback | upstream candidate unknown | not retrieved | unknown | source URL, author, license |
 | shader.atc | local fallback | upstream candidate unknown | not retrieved | unknown | source URL, author, license |
+| shader.cybernetic-grid | quarantined user-supplied recipe | 21st.dev-style candidate | 2026-09-01 | unknown | source URL, original author, license, reduced-motion production fallback |
 | action.energy-cta | local adapter-backed | none required | 2026-08-29 | Apache-2.0 | none |
 | loader.assembly-cube | local fallback | upstream candidate unknown | not retrieved | unknown | source URL, author, license |
 | receipt.tool-calls | local adapter-backed | none required | 2026-08-29 | Apache-2.0 | none |
