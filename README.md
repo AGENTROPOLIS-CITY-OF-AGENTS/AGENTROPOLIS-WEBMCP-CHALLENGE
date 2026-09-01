@@ -2,18 +2,28 @@
 
 > **Discovery is not authority. Connectivity is not permission. Execution requires governance.**
 
-A governed WebMCP gateway for accountable autonomous agents, built on the AGENTROPOLIS Intelligence Grid for the WebMCP Challenge.
+A governed, spatial WebMCP gateway for accountable autonomous agents, built on the AGENTROPOLIS Intelligence Grid for the WebMCP Challenge.
 
 ## What we're proving
 
 WebMCP can make websites legible and actionable to agents. AGENTROPOLIS adds the missing control corridor between **discovering a capability** and **being authorized to execute it**.
 
-The challenge also tests **Context Dynamics**: after authority is established, a resource-aware scheduler decides whether an authorized action should execute now, cool/defer, or receive bounded exploration before mutation. Scheduling can reduce unnecessary agent and inference sprawl, but it can never override policy.
+The challenge also tests two complementary layers:
+
+1. **Agentropolis Intent Protocol (AIP):** gesture, touch, pointer, keyboard, voice, gamepad, XR, and accessibility inputs normalize into one governed intent model. Input expresses intent; it never grants authority.
+2. **Context Dynamics:** after authority is established, a resource-aware scheduler decides whether authorized work should execute now, cool/defer, or receive bounded exploration before mutation.
 
 ```text
-WebMCP discovery
-      |
-      v
+HUMAN INPUT
+ gesture | touch | pointer | keyboard | voice | XR
+                         |
+                         v
+             Agentropolis Intent Protocol
+                         |
+                         v
+                  WebMCP discovery
+                         |
+                         v
 Identity -> Mandate -> Policy -> Permission
                              |
               +--------------+--------------+
@@ -40,20 +50,40 @@ Identity -> Mandate -> Policy -> Permission
                                    Mission Control
 ```
 
+> **One intent. Many interfaces. One governed execution path.**
+
 ## Challenge MVP
 
 One repeatable governed WebMCP workflow demonstrating:
 
-- structured WebMCP tool discovery
-- normalized agent action requests
+- structured WebMCP capability discovery
+- spatially discoverable capability objects in the 3D experience
+- normalized multimodal intent through AIP
+- at least three input modes producing the same canonical intent shape
 - mandate and policy evaluation
 - allow / deny / require-approval decisions
 - explicit Context Envelopes for authorized work
 - resource-aware execute / cool / explore scheduling
 - optional, clearly labeled quantum-inspired strategy weighting using classical Shannon entropy
 - execution only after authority is established
-- machine-readable execution receipts with optional Context Dynamics telemetry
+- first-class `stop` semantics with truthful cancellation reporting
+- machine-readable execution receipts carrying intent provenance and optional Context Dynamics telemetry
+- visible, inspectable ReceiptObjects in the world
 - a human-readable Mission Control audit trail
+- an accessible conventional control path that does not depend on gestures or 3D interaction
+
+## 3D interaction thesis
+
+The user should not need to ask what a WebMCP-enabled environment can do. Sites expose capabilities as inspectable world objects. Users can select, assign, or manipulate those objects using different input modes, but every consequential action still crosses the same governance corridor.
+
+**Gesture is an adapter, not authority. Spatial spectacle is not proof of execution.**
+
+Start with:
+
+- `docs/AGENTROPOLIS-INTENT-PROTOCOL.md`
+- `docs/WEBMCP-3D-INTERACTION-SPEC.md`
+- `contracts/intent.schema.json`
+- `TERMINAL-HANDOFF-AIP.md`
 
 See `docs/CONTEXT-DYNAMICS.md` for the scheduling model, scientific boundaries, lifecycle events, receipt extension, and graduation path.
 
@@ -65,18 +95,21 @@ Reusable primitives that survive the challenge can graduate upstream after verif
 
 ## HERMES // WEBMCP WARDEN
 
-A dedicated Hermes agent owns this build lane so other AGENTROPOLIS and Higgsfield work can continue independently.
+A dedicated Hermes agent owns this build lane so other AGENTROPOLIS work can continue independently.
 
-Start here:
+Core references:
 
 - `agents/hermes-webmcp-warden/SYSTEM.md`
 - `agents/hermes-webmcp-warden/CHECKPOINT.md`
 - `docs/CHALLENGE-BRIEF.md`
 - `docs/ARCHITECTURE.md`
 - `docs/CONTEXT-DYNAMICS.md`
+- `docs/AGENTROPOLIS-INTENT-PROTOCOL.md`
+- `docs/WEBMCP-3D-INTERACTION-SPEC.md`
+- `contracts/intent.schema.json`
 - `contracts/receipt.schema.json`
 - `TERMINAL-HANDOFF.md`
-- GitHub issue #1
+- `TERMINAL-HANDOFF-AIP.md`
 
 ## Verification rule
 
@@ -84,7 +117,7 @@ Start here:
 
 Components are labeled verified only after successful execution in their target environment. Mocked, simulated, experimental, and verified behavior must remain distinguishable throughout the submission.
 
-Context Dynamics and the quantum-inspired frontier remain **experimental until exercised and measured in the challenge runtime**. No quantum hardware, quantum advantage, or physical thermodynamic computation is claimed.
+AIP gesture recognition, Context Dynamics, and the quantum-inspired frontier remain **experimental until exercised and measured in the challenge runtime**. No mind-reading, perfect gesture recognition, quantum hardware, quantum advantage, or physical thermodynamic computation is claimed.
 
 ## License
 
