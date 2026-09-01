@@ -1,0 +1,19 @@
+{
+  "id": "surface.dotted-wave",
+  "candidateSource": "21st-dev-user-supplied",
+  "sourceUrl": null,
+  "retrievedAt": "2026-09-01",
+  "originalAuthor": null,
+  "license": null,
+  "status": "quarantine",
+  "dedupeKey": "dotted-surface-three-wave",
+  "runtime": "Three.js/WebGL",
+  "gpuHeavy": true,
+  "codePath": "packages/ui-vault/quarantine/recipes/DottedSurface.tsx",
+  "notes": [
+    "User-supplied Three.js surface recipe captured into the GitHub-native UI Vault.",
+    "Do not export from the default UI Vault entrypoint while provenance/license metadata is unresolved.",
+    "Requires reduced-motion/static fallback and GPU budget review before promotion.",
+    "Depends on next-themes and project-local cn utility; adapter normalization required before promotion."
+  ]
+}
