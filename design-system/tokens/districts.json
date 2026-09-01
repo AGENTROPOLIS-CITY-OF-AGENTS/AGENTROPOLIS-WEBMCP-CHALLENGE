@@ -1,0 +1,29 @@
+{
+  "owner": "Creator / Construction",
+  "generatedAt": "2026-09-01",
+  "core": {
+    "foundation": "obsidian-signal",
+    "palette": {
+      "surface": "#050709",
+      "surfaceRaised": "#0d1216",
+      "surfacePanel": "#12191d",
+      "border": "rgba(0, 229, 255, 0.24)",
+      "text": "#f4ffff",
+      "textMuted": "#97aeb1",
+      "cyan": "#00e5ff",
+      "red": "#ff3131",
+      "white": "#ffffff"
+    }
+  },
+  "districts": {
+    "hermes-city": { "accent": "#b7ff45", "inheritsCore": true },
+    "asbe": { "accent": "#ff58a8", "inheritsCore": true },
+    "webmcp": { "accent": "#00e5ff", "inheritsCore": true },
+    "mission-control": { "accent": "#ff3131", "inheritsCore": true },
+    "fiscal-command": { "accent": "#855dff", "inheritsCore": true },
+    "789-studios": { "accent": "#ff58a8", "inheritsCore": true },
+    "ntru": { "accent": "#b7ff45", "inheritsCore": true },
+    "agentropolis-uni": { "accent": "#855dff", "inheritsCore": true },
+    "social-systems": { "accent": "#ff58a8", "inheritsCore": true }
+  }
+}

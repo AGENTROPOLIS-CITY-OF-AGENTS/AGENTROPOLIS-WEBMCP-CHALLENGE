@@ -1,0 +1,22 @@
+{
+  "district": "creator-construction",
+  "owner": "Creator / Construction",
+  "version": "0.1.0",
+  "authority": {
+    "tokens": "design-system/tokens",
+    "manifests": "design-system/manifests",
+    "templates": "design-system/templates",
+    "registry": "packages/ui-vault"
+  },
+  "consumers": [
+    "Hermes City",
+    "ASBE",
+    "Mission Control",
+    "Command Atrium",
+    "WebMCP",
+    "Fiscal Command",
+    "789 Studios",
+    "NTRU",
+    "future districts"
+  ]
+}

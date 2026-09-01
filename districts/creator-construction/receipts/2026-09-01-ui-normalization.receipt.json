@@ -1,0 +1,58 @@
+{
+  "receiptId": "creator-construction-ui-normalization-2026-09-01",
+  "status": "EXECUTED_WITH_GAPS",
+  "owner": "Creator / Construction",
+  "scope": "Obsidian Signal integration for UI Vault normalization",
+  "executedAt": "2026-09-01",
+  "inputs": {
+    "coreCanon": "Obsidian + Cyan + Red",
+    "districtExtensions": [
+      "hermes-city",
+      "asbe",
+      "webmcp",
+      "mission-control",
+      "fiscal-command",
+      "789-studios",
+      "ntru",
+      "agentropolis-uni",
+      "social-systems"
+    ],
+    "newProductionLayer": [
+      "UniversalDistrictShell",
+      "SystemNav",
+      "CommandHeader",
+      "SignalCard",
+      "OperationCard",
+      "StatusChip",
+      "DistrictBadge",
+      "SectionTitle",
+      "HUDDivider",
+      "SystemFooter"
+    ]
+  },
+  "results": {
+    "typecheckUiVault": "passed",
+    "buildUiVault": "passed",
+    "testUiVault": "passed (10 tests)",
+    "validateManifests": "passed (23 manifests)",
+    "validateProvenance": "passed with gaps (7 quarantined manifests missing upstream license metadata)",
+    "auditAccessibility": "passed",
+    "auditReducedMotion": "passed",
+    "detectDuplicates": "passed",
+    "reportExternalAssets": "passed (0 remote references)",
+    "reportIframes": "passed (0 iframe dependencies)",
+    "reportGpuHeavy": "reported (2 quarantined GPU-heavy components)",
+    "generateCatalog": "passed"
+  },
+  "gaps": [
+    "Canonical Creator Core paths src/construction/obsidian-signal/ and docs/construction/OBSIDIAN_SIGNAL_SYSTEM.md were not accessible in the local AGENTROPOLIS-CREATOR-CORE checkouts available in this environment; parity is adapter-aligned but not source-verified.",
+    "Quarantined upstream candidates still missing explicit license metadata: spatial.poem-cube, motion.perspective-marquee, shader.atc, loader.assembly-cube, gallery.stellar, gallery.folder, gallery.sphere."
+  ],
+  "artifacts": [
+    "design-system/catalog.json",
+    "design-system/component-index.json",
+    "design-system/district-capabilities.json",
+    "design-system/catalog/index.html",
+    "design-system/tokens/districts.json"
+  ]
+}

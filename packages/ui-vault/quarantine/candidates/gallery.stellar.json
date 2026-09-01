@@ -1,0 +1,13 @@
+{
+  "id": "gallery.stellar",
+  "candidateSource": "21st.dev",
+  "sourceUrl": null,
+  "retrievedAt": null,
+  "originalAuthor": null,
+  "license": null,
+  "status": "quarantine",
+  "dedupeKey": "gallery-stellar",
+  "notes": [
+    "Candidate isolated pending provenance review."
+  ]
+}

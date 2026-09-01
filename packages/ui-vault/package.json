@@ -1,0 +1,43 @@
+{
+  "name": "@agentropolis/ui-vault",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./reviewed": {
+      "types": "./dist/reviewed.d.ts",
+      "import": "./dist/reviewed.js"
+    },
+    "./stable": {
+      "types": "./dist/stable.d.ts",
+      "import": "./dist/stable.js"
+    },
+    "./quarantine": {
+      "types": "./dist/quarantine.d.ts",
+      "import": "./dist/quarantine.js"
+    },
+    "./experimental": {
+      "types": "./dist/experimental.d.ts",
+      "import": "./dist/experimental.js"
+    }
+  },
+  "peerDependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "optionalDependencies": {
+    "three": "^0.179.1"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "build": "tsc -p tsconfig.build.json"
+  }
+}

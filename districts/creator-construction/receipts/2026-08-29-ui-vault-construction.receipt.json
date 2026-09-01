@@ -1,0 +1,58 @@
+{
+  "receiptId": "creator-construction.receipt.2026-08-29.ui-vault-build",
+  "createdAt": "2026-08-29",
+  "owner": "Creator / Construction",
+  "scope": "UI Vault authority mirror and executable registry",
+  "status": "EXECUTED_WITH_GAPS",
+  "authorityRules": [
+    "SOURCE != AUTHORITY",
+    "GitHub is canonical",
+    "Figma is optional only",
+    "Quarantine candidates cannot advance directly to stable"
+  ],
+  "actions": [
+    "Created local design-system authority files",
+    "Extended packages/ui-vault into an executable registry",
+    "Added quarantine provenance records for upstream candidates",
+    "Added governed registry operations ui.search/ui.inspect/ui.install/ui.adapt/ui.compose/ui.preview/ui.audit",
+    "Added governed adapters ExecutionReceipt/AgentCredential/IntegrationConstellation",
+    "Added district ownership files and consumer templates",
+    "Added CI workflow and validation/audit scripts",
+    "Generated static and machine-readable catalog artifacts"
+  ],
+  "validation": {
+    "typecheckUiVault": "passed",
+    "buildUiVault": "passed",
+    "testUiVault": "passed",
+    "lintUiVault": "passed",
+    "manifestValidation": "passed",
+    "provenanceValidation": "passed_with_missing_licenses",
+    "duplicateDetection": "passed",
+    "accessibilityAudit": "passed",
+    "reducedMotionAudit": "passed",
+    "externalAssetReport": "none",
+    "iframeReport": "none",
+    "gpuHeavyReport": [
+      "spatial.poem-cube",
+      "shader.atc"
+    ]
+  },
+  "gaps": {
+    "missingLicenses": [
+      "spatial.poem-cube",
+      "motion.perspective-marquee",
+      "shader.atc",
+      "loader.assembly-cube",
+      "gallery.stellar",
+      "gallery.folder",
+      "gallery.sphere"
+    ],
+    "unreviewedCandidates": 7
+  },
+  "artifacts": [
+    "design-system/catalog.json",
+    "design-system/component-index.json",
+    "design-system/district-capabilities.json",
+    "design-system/catalog/index.html"
+  ]
+}

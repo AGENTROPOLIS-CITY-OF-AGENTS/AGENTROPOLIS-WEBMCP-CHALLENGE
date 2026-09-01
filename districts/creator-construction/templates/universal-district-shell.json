@@ -1,0 +1,10 @@
+{
+  "id": "template.universal-district-shell",
+  "name": "Universal District Shell",
+  "recommendedComponents": [
+    "orbit.integrations",
+    "action.energy-cta",
+    "agent.credential"
+  ],
+  "description": "Base shell for future districts consuming UI Vault primitives."
+}

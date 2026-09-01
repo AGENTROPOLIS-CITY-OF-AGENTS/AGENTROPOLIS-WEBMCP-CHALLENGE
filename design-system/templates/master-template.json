@@ -1,0 +1,35 @@
+{
+  "id": "agentropolis.master-template",
+  "owner": "Creator / Construction",
+  "version": "0.1.0",
+  "sections": [
+    "cover-start-here",
+    "foundations",
+    "core-components",
+    "construction-primitives",
+    "agent-ui",
+    "hermes-city",
+    "asbe",
+    "district-templates",
+    "mcp-connectors",
+    "motion-spatial",
+    "experimental-quarantine"
+  ],
+  "consumers": [
+    "Hermes City",
+    "ASBE",
+    "Mission Control",
+    "Command Atrium",
+    "WebMCP",
+    "Fiscal Command",
+    "789 Studios",
+    "NTRU",
+    "future districts"
+  ],
+  "rules": [
+    "SOURCE != AUTHORITY",
+    "GitHub tokens and manifests are canonical",
+    "Figma is an optional mirror only",
+    "Quarantine components cannot advance directly to stable"
+  ]
+}
