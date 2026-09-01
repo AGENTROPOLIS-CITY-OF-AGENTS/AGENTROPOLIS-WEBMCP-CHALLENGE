@@ -6,10 +6,27 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:ui-vault": "tsc -p packages/ui-vault/tsconfig.build.json",
+    "generate:ui-vault-catalog": "node scripts/ui-vault/generate-catalog.mjs",
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "lint:ui-vault": "node scripts/ui-vault/lint.mjs",
     "test": "vitest run",
+    "test:ui-vault": "vitest run --config packages/ui-vault/vitest.config.ts",
     "test:watch": "vitest",
+    "typecheck": "tsc -b",
+    "typecheck:ui-vault": "tsc -p packages/ui-vault/tsconfig.json --noEmit",
+    "validate:ui-vault-manifests": "node scripts/ui-vault/validate-manifests.mjs",
+    "validate:ui-vault-provenance": "node scripts/ui-vault/validate-provenance.mjs",
+    "detect:ui-vault-duplicates": "node scripts/ui-vault/detect-duplicates.mjs",
+    "audit:ui-vault-accessibility": "node scripts/ui-vault/audit-accessibility.mjs",
+    "audit:ui-vault-reduced-motion": "node scripts/ui-vault/audit-reduced-motion.mjs",
+    "report:ui-vault-external-assets": "node scripts/ui-vault/report-external-assets.mjs",
+    "report:ui-vault-iframes": "node scripts/ui-vault/report-iframes.mjs",
+    "report:ui-vault-gpu": "node scripts/ui-vault/report-gpu-heavy.mjs",
     "preview": "vite preview",
-    "review": "npx @21st-dev/cli review src"
+    "review": "npx @21st-dev/cli review src",
+    "validate:design-harness": "node scripts/design-harness/validate.mjs",
+    "quality:submission": "npm run validate:design-harness && npm run lint && npm run test && npm run build"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.6",
@@ -25,7 +42,10 @@
     "@types/react-dom": "^19.1.7",
     "@types/three": "^0.179.0",
     "@vitejs/plugin-react": "^5.0.2",
+    "eslint": "^10.9.1",
+    "eslint-plugin-react-hooks": "^7.1.1",
     "typescript": "^5.9.2",
+    "typescript-eslint": "^8.69.0",
     "vite": "^7.1.3",
     "vitest": "^3.2.4"
   }

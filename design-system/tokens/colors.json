@@ -1,0 +1,30 @@
+{
+  "owner": "Creator / Construction",
+  "generatedAt": "2026-08-29",
+  "palette": {
+    "obsidian": "#050709",
+    "nearBlack": "#000000",
+    "agentropolisRed": "#ff3131",
+    "cyan": "#00e5ff",
+    "white": "#ffffff"
+  },
+  "accents": {
+    "lime": "#b7ff45",
+    "hotPink": "#ff58a8",
+    "purple": "#855dff"
+  },
+  "surfaces": {
+    "surface": "#050709",
+    "surfaceRaised": "#0d1216",
+    "surfacePanel": "#12191d",
+    "border": "rgba(0, 229, 255, 0.24)",
+    "text": "#f4ffff",
+    "textMuted": "#97aeb1"
+  },
+  "semantic": {
+    "allow": "#39ff14",
+    "deny": "#ff3131",
+    "approval": "#855dff",
+    "warning": "#ff58a8"
+  }
+}

@@ -1,0 +1,27 @@
+export const componentSymbolById = {
+  'action.energy-cta': 'EnergyCta',
+  'spatial.poem-cube': 'SpatialPoemCube',
+  'motion.perspective-marquee': 'PerspectiveMarquee',
+  'shader.atc': 'AtcShaderPanel',
+  'loader.assembly-cube': 'AssemblyCubeLoader',
+  'receipt.tool-calls': 'ToolCallsSection',
+  'gallery.stellar': 'StellarGallery',
+  'gallery.folder': 'FolderGallery',
+  'gallery.sphere': 'SphereImageGrid',
+  'receipt.execution-receipt': 'ExecutionReceipt',
+  'agent.credential': 'AgentCredential',
+  'integration.constellation': 'IntegrationConstellation',
+  'orbit.integrations': 'OrbitIntegrations',
+  'system.universal-district-shell': 'UniversalDistrictShell',
+  'navigation.system-nav': 'SystemNav',
+  'system.command-header': 'CommandHeader',
+  'system.signal-card': 'SignalCard',
+  'system.operation-card': 'OperationCard',
+  'system.status-chip': 'StatusChip',
+  'system.district-badge': 'DistrictBadge',
+  'system.section-title': 'SectionTitle',
+  'system.hud-divider': 'HUDDivider',
+  'system.system-footer': 'SystemFooter',
+} as const
+
+export type VaultComponentSymbol = typeof componentSymbolById[keyof typeof componentSymbolById]

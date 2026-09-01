@@ -1,0 +1,70 @@
+{
+  "receiptId": "creator-construction-webmcp-consumer-integration-2026-09-01",
+  "status": "EXECUTED_WITH_GAPS",
+  "owner": "Creator / Construction",
+  "consumer": "WebMCP",
+  "executedAt": "2026-09-01",
+  "scope": "Wire Obsidian Signal UI Vault primitives into the running AGENTROPOLIS WebMCP world as operational HUD/spatial interface consumers.",
+  "surfacesChanged": [
+    "src/App.tsx",
+    "src/StaticWorldFallback.tsx",
+    "src/styles.css",
+    "src/world/WorldModeSelector.tsx",
+    "src/world/Zones.tsx",
+    "tsconfig.app.json"
+  ],
+  "primitivesConsumed": [
+    "UniversalDistrictShell",
+    "SystemNav",
+    "CommandHeader",
+    "SignalCard",
+    "OperationCard",
+    "StatusChip",
+    "DistrictBadge",
+    "SectionTitle",
+    "HUDDivider",
+    "SystemFooter",
+    "AgentCredential",
+    "ExecutionReceipt",
+    "ToolCallsSection"
+  ],
+  "preservedConstraints": {
+    "worldRemainsPrimaryInterface": true,
+    "noCompetingWebMcpDesignSystem": true,
+    "quarantinePreserved": [
+      "spatial.poem-cube",
+      "motion.perspective-marquee",
+      "shader.atc",
+      "loader.assembly-cube",
+      "gallery.stellar",
+      "gallery.folder",
+      "gallery.sphere"
+    ],
+    "productionDidNotConsumeQuarantinedGpuComponents": true,
+    "unrelatedEvidencePreserved": [
+      "evidence/wm-real/"
+    ]
+  },
+  "validation": {
+    "typecheckApp": "passed",
+    "lintAvailable": "passed via npm run lint:ui-vault",
+    "testsApp": "passed (10 tests)",
+    "buildApp": "passed",
+    "typecheckUiVault": "passed",
+    "testsUiVault": "passed (10 tests)",
+    "buildUiVault": "passed",
+    "validateManifests": "passed (23 manifests)",
+    "validateProvenance": "passed with recorded license gaps",
+    "detectDuplicates": "passed",
+    "auditAccessibility": "passed",
+    "auditReducedMotion": "passed",
+    "reportExternalAssets": "passed (0 remote references)",
+    "reportIframes": "passed (0 iframe dependencies)",
+    "reportGpuHeavy": "reported (2 quarantined GPU-heavy components)",
+    "generateCatalog": "passed"
+  },
+  "gaps": [
+    "No browser automation or screenshot capture was executed from this environment, so visual framing and runtime console cleanliness remain manual inspection items.",
+    "Vite production build emitted a chunk-size warning for the main client bundle; this is a warning, not a build failure."
+  ]
+}

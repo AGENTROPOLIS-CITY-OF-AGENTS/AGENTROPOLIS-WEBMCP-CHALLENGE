@@ -1,0 +1,104 @@
+{
+  "receiptId": "creator-construction-ui-vault-gap-a-export-boundary-2026-09-01",
+  "status": "EXECUTED_WITH_GAPS",
+  "owner": "Creator / Construction",
+  "executedAt": "2026-09-01",
+  "scope": "Resolve Warden GAP-A by enforcing a strict public export boundary for @agentropolis/ui-vault.",
+  "before": {
+    "defaultEntrypoint": "packages/ui-vault/src/index.ts -> export * from './components'",
+    "publicComponentExports": [
+      "EnergyCta",
+      "FolderGallery",
+      "SphereImageGrid",
+      "StellarGallery",
+      "AssemblyCubeLoader",
+      "PerspectiveMarquee",
+      "IntegrationConstellation",
+      "OrbitIntegrations",
+      "AtcShaderPanel",
+      "SpatialPoemCube",
+      "CommandHeader",
+      "DistrictBadge",
+      "HUDDivider",
+      "OperationCard",
+      "SectionTitle",
+      "SignalCard",
+      "StatusChip",
+      "SystemFooter",
+      "SystemNav",
+      "UniversalDistrictShell",
+      "AgentCredential",
+      "ExecutionReceipt",
+      "ToolCallsSection"
+    ],
+    "quarantineLeak": [
+      "FolderGallery",
+      "SphereImageGrid",
+      "StellarGallery",
+      "AssemblyCubeLoader",
+      "PerspectiveMarquee",
+      "AtcShaderPanel",
+      "SpatialPoemCube"
+    ]
+  },
+  "after": {
+    "defaultEntrypoint": "packages/ui-vault/src/index.ts -> reviewed + stable only",
+    "publicComponentExports": [
+      "EnergyCta",
+      "IntegrationConstellation",
+      "OrbitIntegrations",
+      "CommandHeader",
+      "DistrictBadge",
+      "HUDDivider",
+      "OperationCard",
+      "SectionTitle",
+      "SignalCard",
+      "StatusChip",
+      "SystemFooter",
+      "SystemNav",
+      "UniversalDistrictShell",
+      "AgentCredential",
+      "ExecutionReceipt",
+      "ToolCallsSection"
+    ],
+    "stableComponentExports": [],
+    "quarantineOnlyEntrypoints": [
+      "./quarantine",
+      "./experimental"
+    ]
+  },
+  "quarantineOnlyExports": [
+    "FolderGallery",
+    "SphereImageGrid",
+    "StellarGallery",
+    "AssemblyCubeLoader",
+    "PerspectiveMarquee",
+    "AtcShaderPanel",
+    "SpatialPoemCube"
+  ],
+  "packageExports": {
+    ".": "./dist/index.js",
+    "./reviewed": "./dist/reviewed.js",
+    "./stable": "./dist/stable.js",
+    "./quarantine": "./dist/quarantine.js",
+    "./experimental": "./dist/experimental.js"
+  },
+  "regressionTest": {
+    "file": "packages/ui-vault/tests/public-exports.test.ts",
+    "result": "passed",
+    "assertion": "Quarantine-status components from manifest metadata are absent from the default entrypoint and present in the quarantine entrypoint."
+  },
+  "validation": {
+    "lintUiVault": "passed",
+    "testUiVault": "passed (12 tests)",
+    "buildUiVault": "passed",
+    "typecheckUiVault": "passed",
+    "validateManifests": "passed (23 manifests)",
+    "validateProvenance": "passed with recorded license gaps",
+    "auditAccessibility": "passed",
+    "auditReducedMotion": "passed"
+  },
+  "remainingGaps": [
+    "Quarantined components still have unresolved provenance/license metadata and remain intentionally non-public: spatial.poem-cube, motion.perspective-marquee, shader.atc, loader.assembly-cube, gallery.stellar, gallery.folder, gallery.sphere."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "motion.perspective-marquee",
+  "candidateSource": "community",
+  "sourceUrl": null,
+  "retrievedAt": null,
+  "originalAuthor": null,
+  "license": null,
+  "status": "quarantine",
+  "dedupeKey": "motion-perspective-marquee",
+  "notes": [
+    "Candidate referenced for future upstream reconciliation.",
+    "No authenticated upstream retrieval was available in this environment."
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "owner": "Creator / Construction",
+  "generatedAt": "2026-08-29",
+  "scale": {
+    "0": 0,
+    "1": 4,
+    "2": 8,
+    "3": 12,
+    "4": 16,
+    "5": 20,
+    "6": 24,
+    "8": 32,
+    "10": 40,
+    "12": 48,
+    "16": 64
+  },
+  "layout": {
+    "panelPadding": 16,
+    "panelGap": 12,
+    "sectionGap": 24,
+    "catalogColumnMin": 240
+  }
+}

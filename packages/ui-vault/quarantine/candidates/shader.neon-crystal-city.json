@@ -1,0 +1,19 @@
+{
+  "id": "shader.neon-crystal-city",
+  "candidateSource": "21st-dev-user-supplied",
+  "sourceUrl": null,
+  "retrievedAt": "2026-09-01",
+  "originalAuthor": null,
+  "license": null,
+  "status": "quarantine",
+  "dedupeKey": "neon-crystal-city-raymarch-shader",
+  "runtime": "WebGL/WebGL2",
+  "gpuHeavy": true,
+  "codePath": "packages/ui-vault/quarantine/recipes/NeonCrystalCity.tsx",
+  "notes": [
+    "User-supplied shader recipe captured into the GitHub-native UI Vault.",
+    "Do not export from the default UI Vault entrypoint while provenance/license metadata is unresolved.",
+    "Requires reduced-motion/static fallback and GPU budget review before promotion.",
+    "Shader advertises WebGL fallback but uses GLSL ES 3.00 syntax; compatibility must be verified before production use."
+  ]
+}

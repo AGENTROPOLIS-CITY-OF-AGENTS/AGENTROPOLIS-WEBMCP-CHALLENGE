@@ -1,0 +1,19 @@
+{
+  "id": "shader.cybernetic-grid",
+  "candidateSource": "21st-dev-user-supplied",
+  "sourceUrl": null,
+  "retrievedAt": "2026-09-01",
+  "originalAuthor": null,
+  "license": null,
+  "status": "quarantine",
+  "dedupeKey": "cybernetic-grid-shader",
+  "runtime": "Three.js/WebGL",
+  "gpuHeavy": true,
+  "codePath": "packages/ui-vault/quarantine/recipes/CyberneticGridShader.tsx",
+  "notes": [
+    "User-supplied 21st.dev-style component recipe captured into the GitHub-native UI Vault so live 21st MCP authentication is not required.",
+    "Do not export from the default UI Vault entrypoint while provenance/license metadata is unresolved.",
+    "Requires explicit reduced-motion/static fallback before promotion.",
+    "Requires container-relative pointer normalization review before production use."
+  ]
+}

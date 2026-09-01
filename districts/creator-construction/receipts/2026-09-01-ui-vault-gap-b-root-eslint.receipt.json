@@ -1,0 +1,48 @@
+{
+  "receiptId": "creator-construction-ui-vault-gap-b-root-eslint-2026-09-01",
+  "status": "EXECUTED_WITH_GAPS",
+  "owner": "Creator / Construction",
+  "executedAt": "2026-09-01",
+  "scope": "Resolve Warden GAP-B by adding a root ESLint lane for the WebMCP application without altering the existing UI Vault lint lane.",
+  "changes": {
+    "rootLintConfig": "eslint.config.js",
+    "rootLintScript": "npm run lint",
+    "appLintScope": [
+      "src/**/*.ts",
+      "src/**/*.tsx"
+    ],
+    "ignoredArtifacts": [
+      "dist/**",
+      "node_modules/**",
+      ".vite/**",
+      "packages/ui-vault/dist/**",
+      "design-system/catalog/**",
+      "world-engine/**",
+      "evidence/**",
+      "coverage/**"
+    ],
+    "uiVaultLintPreserved": true
+  },
+  "validation": {
+    "lintRoot": "passed",
+    "lintUiVault": "passed",
+    "testUiVault": "passed (12 tests)",
+    "buildUiVault": "passed",
+    "typecheckUiVault": "passed",
+    "typecheckWebMcpApp": "passed",
+    "testWebMcpApp": "passed (10 tests)",
+    "buildWebMcpApp": "passed",
+    "validateManifests": "passed (23 manifests)",
+    "validateProvenance": "passed with recorded license gaps",
+    "auditAccessibility": "passed",
+    "auditReducedMotion": "passed",
+    "quarantinePublicExportRegression": "passed"
+  },
+  "gaps": [
+    "Quarantined components still retain unresolved provenance/license metadata and remain intentionally non-public.",
+    "WebMCP production build still emits a Vite chunk-size warning for the main client bundle; this is a warning, not a failure."
+  ],
+  "gapStatus": {
+    "gapB": "CLOSED"
+  }
+}

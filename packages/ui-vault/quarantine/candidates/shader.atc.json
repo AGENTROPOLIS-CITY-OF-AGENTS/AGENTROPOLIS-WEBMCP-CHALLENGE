@@ -1,0 +1,13 @@
+{
+  "id": "shader.atc",
+  "candidateSource": "ThreeUI",
+  "sourceUrl": null,
+  "retrievedAt": null,
+  "originalAuthor": null,
+  "license": null,
+  "status": "quarantine",
+  "dedupeKey": "shader-atc",
+  "notes": [
+    "GPU-heavy candidate isolated pending provenance and runtime review."
+  ]
+}
