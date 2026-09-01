@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import {
   AgentCredential,
   DistrictBadge,
@@ -16,8 +16,9 @@ import { governanceEngine } from './core/engine'
 import { registerWebMcpTool } from './core/webmcp'
 import { useReducedMotion } from './hooks/useReducedMotion'
 import { useWorldState } from './hooks/useWorldState'
-import { WorldScene } from './world/WorldScene'
 import type { WorldMode } from './world/WorldModeSelector'
+
+const WorldScene = lazy(() => import('./world/WorldScene').then((module) => ({ default: module.WorldScene })))
 
 function supportsWebGl(): boolean {
   try {
@@ -128,15 +129,17 @@ export function App() {
       <section className="world-viewport" aria-label="Interactive 3D governed execution world">
         {webgl ? (
           <SceneBoundary fallback={<StaticWorldFallback state={state} />} onError={() => setRendererMode('STATIC')}>
-            <WorldScene
-              state={state}
-              reducedMotion={reducedMotion}
-              mode={mode}
-              onModeChange={setMode}
-              onExplore={() => setMode('EXPLORE')}
-              onScenario={launchScenario}
-              onRenderer={setRendererMode}
-            />
+            <Suspense fallback={<StaticWorldFallback state={state} />}>
+              <WorldScene
+                state={state}
+                reducedMotion={reducedMotion}
+                mode={mode}
+                onModeChange={setMode}
+                onExplore={() => setMode('EXPLORE')}
+                onScenario={launchScenario}
+                onRenderer={setRendererMode}
+              />
+            </Suspense>
           </SceneBoundary>
         ) : <StaticWorldFallback state={state} />}
       </section>
