@@ -1,0 +1,19 @@
+{
+  "id": "shader.liquid-crystal",
+  "candidateSource": "21st-dev-user-supplied",
+  "sourceUrl": null,
+  "retrievedAt": "2026-09-01",
+  "originalAuthor": null,
+  "license": null,
+  "status": "quarantine",
+  "dedupeKey": "interactive-liquid-crystal-shader",
+  "runtime": "WebGL",
+  "gpuHeavy": true,
+  "codePath": "packages/ui-vault/quarantine/recipes/LiquidCrystalShader.tsx",
+  "notes": [
+    "User-supplied interactive shader recipe captured into the GitHub-native UI Vault.",
+    "Do not export from the default UI Vault entrypoint while provenance/license metadata is unresolved.",
+    "Includes interactive controls and pointer-driven uniforms; requires accessibility and reduced-motion adaptation before promotion.",
+    "Requires project-independent typing and cleanup review before production use."
+  ]
+}
