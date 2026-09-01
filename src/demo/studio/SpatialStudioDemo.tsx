@@ -1,12 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { runInterviewStudioDemo } from './run-interview-demo';
 import { STUDIO_SCENE } from './studio-scene';
-import { renderSceneSvg } from '../../spatial/svg-capture';
+import { captureSceneAsDataUri } from '../../spatial/svg-capture';
 import type { SpatialConstructionReceipt } from '../../spatial/receipt';
-
-function svgDataUri(svg: string) {
-  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
-}
 
 const panelStyle = {
   border: '1px solid rgba(25,230,230,.24)',
@@ -16,9 +12,19 @@ const panelStyle = {
 } as const;
 
 export function SpatialStudioDemo() {
-  const [captureRef, setCaptureRef] = useState(svgDataUri(renderSceneSvg(STUDIO_SCENE)));
+  const [captureRef, setCaptureRef] = useState('');
   const [receipt, setReceipt] = useState<SpatialConstructionReceipt | null>(null);
   const [running, setRunning] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    captureSceneAsDataUri(STUDIO_SCENE).then((uri) => {
+      if (active) setCaptureRef(uri);
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const run = async () => {
     setRunning(true);
@@ -39,7 +45,7 @@ export function SpatialStudioDemo() {
       <div style={{ ...panelStyle, overflow: 'hidden', background: '#020304' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16, padding: '12px 16px', borderBottom: '1px solid rgba(25,230,230,.18)', color: '#19e6e6', font: '12px ui-monospace, SFMono-Regular, Menlo, monospace', letterSpacing: '.14em' }}>
           <span>SPATIAL WEBMCP // STUDIO</span>
-          <span>{receipt ? `VERIFIED ${receipt.verification.score}` : 'UNVERIFIED'}</span>
+          <span>{receipt ? `${receipt.verification.status} ${receipt.verification.score}` : 'UNVERIFIED'}</span>
         </div>
         <img src={captureRef} alt="Structured interview studio scene capture" style={{ display: 'block', width: '100%', aspectRatio: '16 / 9', objectFit: 'cover' }} />
       </div>
@@ -61,9 +67,10 @@ export function SpatialStudioDemo() {
         {receipt ? (
           <div style={{ marginTop: 18, display: 'grid', gap: 10, font: '11px ui-monospace, SFMono-Regular, Menlo, monospace' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><span style={{ color: '#6f7c84' }}>RECEIPT</span><span>{receipt.receiptId}</span></div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><span style={{ color: '#6f7c84' }}>STATE</span><span style={{ color: receipt.verification.passed ? '#19e6e6' : '#ff2a48' }}>{receipt.verification.passed ? 'PASS' : 'CORRECT'}</span></div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><span style={{ color: '#6f7c84' }}>STATE</span><span style={{ color: receipt.verification.passed ? '#19e6e6' : '#ff2a48' }}>{receipt.verification.status}</span></div>
             <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><span style={{ color: '#6f7c84' }}>VERSION</span><span>{receipt.beforeVersion} → {receipt.afterVersion}</span></div>
             <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><span style={{ color: '#6f7c84' }}>MUTATIONS</span><span>{receipt.mutations.length}</span></div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><span style={{ color: '#6f7c84' }}>CAPTURE</span><span>{receipt.captureId}</span></div>
           </div>
         ) : (
           <div style={{ marginTop: 18, paddingLeft: 10, borderLeft: '2px solid rgba(255,42,72,.7)', color: '#8b969e', font: '11px ui-monospace, SFMono-Regular, Menlo, monospace' }}>Generated ≠ Verified</div>

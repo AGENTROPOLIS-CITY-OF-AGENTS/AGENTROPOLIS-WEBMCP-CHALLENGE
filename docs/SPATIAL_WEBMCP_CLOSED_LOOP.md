@@ -57,6 +57,8 @@ Every mutation must pass through the spatial permission boundary. The result is 
 
 The browser capture is evidence of scene state, while the deterministic verifier evaluates explicit interview-studio invariants. These are separate steps on purpose.
 
+Spatial WebMCP begins after core authorization. The core governance corridor owns identity, mandate and policy decisions; the spatial subsystem then handles inspect -> mutate -> capture -> verify -> receipt for the authorized capability surface.
+
 ## Hackathon scope
 
 Keep the first hero demo deliberately small:

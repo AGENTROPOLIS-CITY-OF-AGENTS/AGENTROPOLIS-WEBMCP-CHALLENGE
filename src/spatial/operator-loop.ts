@@ -1,5 +1,5 @@
 import { applySpatialMutation, type SpatialMutation } from './scene-state';
-import { createSpatialReceipt, type SpatialConstructionReceipt, type SpatialVerification } from './receipt';
+import { createSpatialReceipt, type SpatialCaptureArtifact, type SpatialConstructionReceipt, type SpatialVerification } from './receipt';
 import type { WorldGraph } from './world-graph';
 
 export interface ClosedLoopPlan {
@@ -10,9 +10,9 @@ export interface ClosedLoopPlan {
 export async function runClosedLoopConstruction(input: {
   graph: WorldGraph;
   plan: ClosedLoopPlan;
-  capture: (graph: WorldGraph) => Promise<string>;
-  verify: (graph: WorldGraph, captureRef: string, objective: string) => Promise<SpatialVerification>;
-}): Promise<{ graph: WorldGraph; receipt: SpatialConstructionReceipt; captureRef: string }> {
+  capture: (graph: WorldGraph) => Promise<SpatialCaptureArtifact>;
+  verify: (graph: WorldGraph, capture: SpatialCaptureArtifact, objective: string) => Promise<SpatialVerification>;
+}): Promise<{ graph: WorldGraph; receipt: SpatialConstructionReceipt; captureArtifact: SpatialCaptureArtifact; captureRef: string }> {
   const beforeVersion = input.graph.version;
   let graph = input.graph;
 
@@ -20,16 +20,19 @@ export async function runClosedLoopConstruction(input: {
     graph = applySpatialMutation(graph, mutation);
   }
 
-  const captureRef = await input.capture(graph);
-  const verification = await input.verify(graph, captureRef, input.plan.objective);
+  const captureArtifact = await input.capture(graph);
+  const verification = await input.verify(graph, captureArtifact, input.plan.objective);
   const receipt = createSpatialReceipt({
     sceneId: graph.sceneId,
     objective: input.plan.objective,
     beforeVersion,
     afterVersion: graph.version,
+    captureId: captureArtifact.captureId,
+    captureHash: captureArtifact.captureHash,
+    captureRef: captureArtifact.captureRef,
     mutations: input.plan.mutations,
     verification,
   });
 
-  return { graph, receipt, captureRef };
+  return { graph, receipt, captureArtifact, captureRef: captureArtifact.captureRef };
 }

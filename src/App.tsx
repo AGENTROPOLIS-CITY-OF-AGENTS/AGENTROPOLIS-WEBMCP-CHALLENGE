@@ -14,6 +14,9 @@ import { SceneBoundary } from './SceneBoundary'
 import { StaticWorldFallback } from './StaticWorldFallback'
 import { governanceEngine } from './core/engine'
 import { registerWebMcpTool } from './core/webmcp'
+import { registerSpatialWebMcpTool } from './webmcp/register-spatial-webmcp'
+import { STUDIO_SCENE } from './demo/studio/studio-scene'
+import { verifyInterviewStudio } from './spatial/deterministic-verifier'
 import { SpatialStudioDemo } from './demo/studio/SpatialStudioDemo'
 import { useReducedMotion } from './hooks/useReducedMotion'
 import { useWorldState } from './hooks/useWorldState'
@@ -48,14 +51,23 @@ export function App() {
   const [spatialDemoOpen, setSpatialDemoOpen] = useState(false)
   const demoStarted = useRef(false)
   const initialReducedMotion = useRef(reducedMotion)
+  const spatialGraphRef = useRef(STUDIO_SCENE)
   const webgl = rendererMode !== 'STATIC'
 
   useEffect(() => {
     const controller = new AbortController()
     let timer = 0
 
-    registerWebMcpTool(governanceEngine, controller.signal)
-      .catch((error) => console.warn('WebMCP registration unavailable.', error instanceof Error ? error.message : error))
+    Promise.all([
+      registerWebMcpTool(governanceEngine, controller.signal),
+      registerSpatialWebMcpTool(document.modelContext, {
+        graph: spatialGraphRef.current,
+        setGraph: (next) => {
+          spatialGraphRef.current = next
+        },
+        verifyScene: async (objective, capture) => verifyInterviewStudio(spatialGraphRef.current, capture, objective),
+      }, controller.signal),
+    ]).catch((error) => console.warn('WebMCP registration unavailable.', error instanceof Error ? error.message : error))
       .finally(() => {
         if (!demoStarted.current) {
           demoStarted.current = true

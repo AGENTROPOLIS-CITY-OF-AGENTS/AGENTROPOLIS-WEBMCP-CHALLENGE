@@ -1,3 +1,4 @@
+import type { SpatialCaptureArtifact } from './receipt';
 import type { SpatialObject, WorldGraph } from './world-graph';
 
 const esc = (value: string) => value.replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch] ?? ch));
@@ -20,7 +21,26 @@ export function renderSceneSvg(graph: WorldGraph, width = 800, height = 450): st
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"><rect width="100%" height="100%" fill="#020304"/><path d="M0 340 H800" stroke="#19e6e6" stroke-opacity=".25"/><text x="28" y="38" fill="#19e6e6" font-family="monospace" font-size="18">SPATIAL WEBMCP // ${esc(graph.sceneId)} // v${graph.version}</text>${objects}</svg>`;
 }
 
-export async function captureSceneAsDataUri(graph: WorldGraph): Promise<string> {
+async function hashText(value: string): Promise<string> {
+  const bytes = new TextEncoder().encode(value);
+  const hash = await globalThis.crypto.subtle.digest('SHA-256', bytes);
+  return Array.from(new Uint8Array(hash), (byte) => byte.toString(16).padStart(2, '0')).join('');
+}
+
+export async function captureSceneAsArtifact(graph: WorldGraph): Promise<SpatialCaptureArtifact> {
   const svg = renderSceneSvg(graph);
-  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+  const captureRef = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+  const captureHash = await hashText(captureRef);
+  return {
+    captureId: `sha256:${captureHash}`,
+    captureHash,
+    captureRef,
+    sceneId: graph.sceneId,
+    sceneVersion: graph.version,
+  };
+}
+
+export async function captureSceneAsDataUri(graph: WorldGraph): Promise<string> {
+  const artifact = await captureSceneAsArtifact(graph);
+  return artifact.captureRef;
 }

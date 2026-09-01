@@ -1,11 +1,12 @@
 import { applySpatialMutation, type SpatialMutation } from '../../spatial/scene-state';
+import type { SpatialCaptureArtifact, SpatialVerification } from '../../spatial/receipt';
 import { getSpatialObject, type WorldGraph } from '../../spatial/world-graph';
 
 export interface SpatialRuntime {
   getGraph(): WorldGraph;
   setGraph(next: WorldGraph): void;
-  captureView?(): Promise<string>;
-  verifyScene?(objective: string): Promise<{ passed: boolean; score: number; notes: string[] }>;
+  captureView?(): Promise<SpatialCaptureArtifact>;
+  verifyScene?(objective: string, capture: SpatialCaptureArtifact): Promise<SpatialVerification>;
 }
 
 export function createSpatialWebMCPTools(runtime: SpatialRuntime) {
@@ -31,9 +32,9 @@ export function createSpatialWebMCPTools(runtime: SpatialRuntime) {
       if (!runtime.captureView) throw new Error('CAPABILITY_UNAVAILABLE:captureView');
       return runtime.captureView();
     },
-    verifyScene: async (objective: string) => {
+    verifyScene: async (objective: string, capture: SpatialCaptureArtifact) => {
       if (!runtime.verifyScene) throw new Error('CAPABILITY_UNAVAILABLE:verifyScene');
-      return runtime.verifyScene(objective);
+      return runtime.verifyScene(objective, capture);
     },
   };
 }
