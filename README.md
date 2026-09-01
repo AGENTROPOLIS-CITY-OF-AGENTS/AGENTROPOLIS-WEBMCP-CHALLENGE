@@ -89,3 +89,15 @@ Context Dynamics and the quantum-inspired frontier remain **experimental until e
 ## License
 
 Apache-2.0
+
+## Governed Design Harness
+
+The submission UI is now governed by a repository-level [design contract](DESIGN.md). OpenDesign Design Harness may generate and compare candidates, while the local validator, UI-vault checks, accessibility and performance review, and human approval retain release authority.
+
+Run the contract gate:
+
+```bash
+npm run validate:design-harness
+```
+
+Use [the Design Harness runbook](docs/DESIGN-HARNESS.md) for the deadline-bound candidate pass and evidence receipt.
