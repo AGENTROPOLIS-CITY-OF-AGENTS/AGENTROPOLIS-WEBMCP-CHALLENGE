@@ -14,6 +14,7 @@ import { SceneBoundary } from './SceneBoundary'
 import { StaticWorldFallback } from './StaticWorldFallback'
 import { governanceEngine } from './core/engine'
 import { registerWebMcpTool } from './core/webmcp'
+import { SpatialStudioDemo } from './demo/studio/SpatialStudioDemo'
 import { useReducedMotion } from './hooks/useReducedMotion'
 import { useWorldState } from './hooks/useWorldState'
 import { WorldScene } from './world/WorldScene'
@@ -44,6 +45,7 @@ export function App() {
   const [reducedMotion, setReducedMotion] = useReducedMotion()
   const [rendererMode, setRendererMode] = useState(() => supportsWebGl() ? 'INITIALIZING' : 'STATIC')
   const [notice, setNotice] = useState('')
+  const [spatialDemoOpen, setSpatialDemoOpen] = useState(false)
   const demoStarted = useRef(false)
   const initialReducedMotion = useRef(reducedMotion)
   const webgl = rendererMode !== 'STATIC'
@@ -80,6 +82,7 @@ export function App() {
       if (event.key === '1') setMode('GUIDED')
       if (event.key === '2') setMode('EXPLORE')
       if (event.key === '3') setMode('INSPECT')
+      if (event.key === 'Escape') setSpatialDemoOpen(false)
     }
 
     window.addEventListener('keydown', onKey)
@@ -184,6 +187,9 @@ export function App() {
                 <button className="hud-action-button" aria-pressed={reducedMotion} onClick={() => setReducedMotion(!reducedMotion)}>
                   {reducedMotion ? 'Reduced Motion On' : 'Reduce Motion'}
                 </button>
+                <button className="hud-action-button" aria-haspopup="dialog" onClick={() => setSpatialDemoOpen(true)}>
+                  Run Spatial WebMCP Demo
+                </button>
               </div>
             </SignalCard>
             <OperationCard
@@ -222,6 +228,22 @@ export function App() {
       >
         <div className="hud-viewport-spacer" aria-hidden="true" />
       </UniversalDistrictShell>
+
+      {spatialDemoOpen ? (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Spatial WebMCP interview studio demo"
+          style={{ position: 'fixed', inset: 0, zIndex: 120, overflow: 'auto', background: 'rgba(2,3,4,.92)', backdropFilter: 'blur(12px)', padding: 'clamp(18px,4vw,48px)' }}
+        >
+          <div style={{ margin: '0 auto', maxWidth: 1180 }}>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 12 }}>
+              <button className="hud-action-button" onClick={() => setSpatialDemoOpen(false)}>Close Spatial Demo</button>
+            </div>
+            <SpatialStudioDemo />
+          </div>
+        </div>
+      ) : null}
 
       {notice && <div className="notice" role="alert">{notice}</div>}
       <ol className="sr-only" aria-live="polite" aria-label="Governance event log">
