@@ -23,7 +23,9 @@
     "report:ui-vault-iframes": "node scripts/ui-vault/report-iframes.mjs",
     "report:ui-vault-gpu": "node scripts/ui-vault/report-gpu-heavy.mjs",
     "preview": "vite preview",
-    "review": "npx @21st-dev/cli review src"
+    "review": "npx @21st-dev/cli review src",
+    "validate:design-harness": "node scripts/design-harness/validate.mjs",
+    "quality:submission": "npm run validate:design-harness && npm run lint && npm run test && npm run build"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.6",
