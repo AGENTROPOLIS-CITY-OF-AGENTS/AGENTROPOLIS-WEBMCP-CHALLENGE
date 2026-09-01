@@ -1,0 +1,10 @@
+{
+  "id": "template.asbe-production-surfaces",
+  "name": "ASBE Production Surfaces",
+  "recommendedComponents": [
+    "action.energy-cta",
+    "agent.credential",
+    "receipt.execution-receipt"
+  ],
+  "description": "Production-ready operator surfaces for ASBE applications."
+}

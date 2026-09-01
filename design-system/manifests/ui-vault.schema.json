@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.local/design-system/manifests/ui-vault.schema.json",
+  "title": "VaultComponentManifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "version",
+    "source",
+    "classification",
+    "dependencies",
+    "agentropolis",
+    "registry",
+    "localModifications",
+    "agentropolisVersion"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[.-][a-z0-9]+)*$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 2
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider",
+        "sourceUrl",
+        "retrievedAt",
+        "originalAuthor",
+        "license"
+      ],
+      "properties": {
+        "provider": { "type": "string" },
+        "sourceUrl": { "type": ["string", "null"] },
+        "retrievedAt": { "type": ["string", "null"] },
+        "originalAuthor": { "type": ["string", "null"] },
+        "license": { "type": ["string", "null"] }
+      }
+    },
+    "classification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "category",
+        "maturity",
+        "clientOnly",
+        "gpuRequired",
+        "mobileSafe",
+        "runtime"
+      ],
+      "properties": {
+        "category": {
+          "type": "string",
+          "enum": ["action", "galleries", "loaders", "motion", "navigation", "shaders", "spatial", "tool-ui"]
+        },
+        "maturity": {
+          "type": "string",
+          "enum": ["quarantine", "reviewed", "stable", "deprecated"]
+        },
+        "clientOnly": { "type": "boolean" },
+        "gpuRequired": { "type": "boolean" },
+        "mobileSafe": { "type": "boolean" },
+        "runtime": {
+          "type": "string",
+          "enum": ["DOM", "CSS", "Canvas", "WebGL/WebGL2", "Three.js", "Remotion"]
+        }
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "agentropolis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "systemWide",
+        "districts",
+        "applications",
+        "reducedMotionFallback"
+      ],
+      "properties": {
+        "systemWide": { "type": "boolean" },
+        "districts": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "applications": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "reducedMotionFallback": { "type": "string" }
+      }
+    },
+    "registry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["surfaces", "interactions", "gpuCost", "accessibility"],
+      "properties": {
+        "surfaces": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "district-shell",
+              "navigation",
+              "header",
+              "card",
+              "badge",
+              "section-title",
+              "divider",
+              "footer",
+              "gallery",
+              "loader",
+              "shader-panel",
+              "spatial-display",
+              "receipt",
+              "credential",
+              "cta"
+            ]
+          }
+        },
+        "interactions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["static", "activate", "navigate", "inspect", "select", "compose"]
+          }
+        },
+        "gpuCost": {
+          "type": "string",
+          "enum": ["none", "low", "medium", "high"]
+        },
+        "accessibility": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["keyboard", "alt-text", "aria-label", "aria-live", "focus-visible", "reduced-motion"]
+          }
+        }
+      }
+    },
+    "localModifications": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "agentropolisVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    }
+  }
+}

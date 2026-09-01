@@ -1,0 +1,30 @@
+name: ui-vault-construction
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck:ui-vault
+      - run: npm run lint:ui-vault
+      - run: npm run test:ui-vault
+      - run: npm run build:ui-vault
+      - run: npm run generate:ui-vault-catalog
+      - run: npm run validate:ui-vault-manifests
+      - run: npm run validate:ui-vault-provenance
+      - run: npm run detect:ui-vault-duplicates
+      - run: npm run audit:ui-vault-accessibility
+      - run: npm run audit:ui-vault-reduced-motion
+      - run: npm run report:ui-vault-external-assets
+      - run: npm run report:ui-vault-iframes
+      - run: npm run report:ui-vault-gpu

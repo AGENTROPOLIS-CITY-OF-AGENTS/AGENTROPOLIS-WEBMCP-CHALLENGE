@@ -2,7 +2,8 @@ import { Html, Line } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import { useRef, useState } from 'react'
 import * as THREE from 'three'
-import type { ExecutionReceipt } from '../core/contracts'
+import { ExecutionReceipt, OperationCard, SignalCard } from '../../packages/ui-vault/src'
+import type { ExecutionReceipt as ExecutionReceiptRecord } from '../core/contracts'
 import { governanceEngine } from '../core/engine'
 import type { WorldState } from '../core/engine'
 import { ZONES } from './layout'
@@ -44,10 +45,13 @@ export function Gateway({ state, onScenario }: { state: WorldState; onScenario: 
       <WorldLabel title="WEBMCP GATEWAY" role="Structured capability enters the district here." state={status} position={[0, 3.5, -1.7]} />
       <Html transform distanceFactor={8} position={[0, 0.9, 1.9]} rotation={[-Math.PI / 7, 0, 0]}>
         <div className="scenario-console" aria-label="Launch governed request from the Gateway">
-          <span>REQUEST PORTS</span>
-          <button disabled={state.busy || state.phase === 'AWAITING_APPROVAL'} onClick={() => onScenario('allow')}>INSPECT</button>
-          <button disabled={state.busy || state.phase === 'AWAITING_APPROVAL'} onClick={() => onScenario('approval')}>APPROVAL</button>
-          <button disabled={state.busy || state.phase === 'AWAITING_APPROVAL'} onClick={() => onScenario('deny')}>DENY</button>
+          <SignalCard district="webmcp" eyebrow="Gateway Ports" title="Launch Request Packet" status={status}>
+            <div className="hud-action-grid">
+              <button disabled={state.busy || state.phase === 'AWAITING_APPROVAL'} onClick={() => onScenario('allow')}>INSPECT</button>
+              <button disabled={state.busy || state.phase === 'AWAITING_APPROVAL'} onClick={() => onScenario('approval')}>APPROVAL</button>
+              <button disabled={state.busy || state.phase === 'AWAITING_APPROVAL'} onClick={() => onScenario('deny')}>DENY</button>
+            </div>
+          </SignalCard>
         </div>
       </Html>
     </group>
@@ -174,11 +178,20 @@ export function ApprovalChamber({ state }: { state: WorldState }) {
       {waiting && (
         <Html transform position={[0, 1.15, 1.45]} distanceFactor={7}>
           <div className="approval-console">
-            <strong>PAUSED REQUEST</strong>
-            <span>{state.request?.action}</span>
-            <button onClick={approve}>AUTHORIZE</button>
-            <button className="deny" onClick={deny}>DECLINE</button>
-            {error && <small>{error}</small>}
+            <OperationCard
+              district="webmcp"
+              stage="Human Approval"
+              title={state.request?.action.replaceAll('_', ' ') ?? 'Paused Request'}
+              summary="A separate human identity must release or terminate the paused packet before execution resumes."
+              status="REQUIRE_APPROVAL"
+              meta={[`actor:${state.request?.actor.id ?? 'unknown'}`, `mandate:${state.request?.mandate ?? 'none'}`]}
+            >
+              <div className="hud-action-grid hud-action-grid--stack">
+                <button onClick={approve}>AUTHORIZE</button>
+                <button className="deny" onClick={deny}>DECLINE</button>
+              </div>
+              {error && <small>{error}</small>}
+            </OperationCard>
           </div>
         </Html>
       )}
@@ -217,7 +230,7 @@ export function ExecutionForge({ state, reducedMotion }: { state: WorldState; re
   )
 }
 
-function ReceiptArtifact({ receipt, index, selected }: { receipt: ExecutionReceipt; index: number; selected: boolean }) {
+function ReceiptArtifact({ receipt, index, selected }: { receipt: ExecutionReceiptRecord; index: number; selected: boolean }) {
   const color = receipt.status === 'EXECUTED' ? WORLD_COLORS.success : receipt.status === 'DENIED' ? WORLD_COLORS.red : WORLD_COLORS.approval
   return (
     <mesh position={[(index % 3) * 0.9 - 0.9, 0.95 + Math.floor(index / 3) * 0.8, 0]} onClick={(event) => { event.stopPropagation(); governanceEngine.selectReceipt(selected ? null : receipt.receiptId) }}>
@@ -245,14 +258,18 @@ export function ReceiptVault({ state }: { state: WorldState }) {
         <Html transform position={[0, 2.1, 1.85]} distanceFactor={8}>
           <article className="receipt-inspector">
             <button aria-label="Close receipt" onClick={() => governanceEngine.selectReceipt(null)}>X</button>
-            <strong>AUDIT ARTIFACT</strong>
+            <ExecutionReceipt
+              receiptId={selected.receiptId}
+              decision={selected.decision}
+              status={selected.status}
+              actor={selected.approvedBy ?? state.request?.actor.id ?? 'system'}
+              summary={selected.policyReasons[0]}
+            />
             <dl>
-              <dt>Receipt</dt><dd>{selected.receiptId}</dd>
               <dt>Request</dt><dd>{selected.requestId}</dd>
-              <dt>Decision</dt><dd>{selected.decision}</dd>
-              <dt>Status</dt><dd>{selected.status}</dd>
+              <dt>Tool</dt><dd>{selected.tool}</dd>
               <dt>Approved by</dt><dd>{selected.approvedBy ?? 'None'}</dd>
-              <dt>Reason</dt><dd>{selected.policyReasons[0]}</dd>
+              <dt>Executed at</dt><dd>{selected.executedAt ?? 'Not executed'}</dd>
             </dl>
           </article>
         </Html>

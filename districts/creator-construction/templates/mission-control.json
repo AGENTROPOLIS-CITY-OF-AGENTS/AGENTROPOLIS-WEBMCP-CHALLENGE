@@ -1,0 +1,10 @@
+{
+  "id": "template.mission-control",
+  "name": "Mission Control",
+  "recommendedComponents": [
+    "receipt.execution-receipt",
+    "receipt.tool-calls",
+    "integration.constellation"
+  ],
+  "description": "Operational audit and system state composition."
+}

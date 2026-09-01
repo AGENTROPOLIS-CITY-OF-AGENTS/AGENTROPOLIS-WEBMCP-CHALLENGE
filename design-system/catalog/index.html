@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AGENTROPOLIS UI Vault Catalog</title>
+  <style>
+    :root {
+      --surface: #050709;
+      --raised: #0d1216;
+      --border: rgba(0, 229, 255, 0.24);
+      --text: #f4ffff;
+      --muted: #97aeb1;
+      --cyan: #00e5ff;
+      --red: #ff3131;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; background: var(--surface); color: var(--text); font-family: Inter, system-ui, sans-serif; }
+    h1, h2, strong, span { font-family: Orbitron, system-ui, sans-serif; letter-spacing: 0.08em; }
+    .hero { display: grid; gap: 12px; margin-bottom: 24px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+    .card { padding: 16px; border: 1px solid var(--border); background: var(--raised); box-shadow: 0 0 18px rgba(0,229,255,0.08); }
+    .card header { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+    .card p, .card dd { color: var(--muted); margin: 0; }
+    .card dl { display: grid; grid-template-columns: 110px 1fr; gap: 6px 8px; margin: 12px 0 0; }
+    a { color: var(--cyan); }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <h1>AGENTROPOLIS UI Vault</h1>
+    <p>GitHub-authoritative component catalog. Figma is optional only.</p>
+  </section>
+  <section>
+    <h2>Components</h2>
+    <div class="grid">
+    <article id="orbit.integrations" class="card">
+      <header>
+        <strong>Orbit Integrations</strong>
+        <span>REVIEWED</span>
+      </header>
+      <p>orbit.integrations</p>
+      <dl>
+        <dt>Category</dt><dd>navigation</dd>
+        <dt>Runtime</dt><dd>DOM</dd>
+        <dt>GPU</dt><dd>none</dd>
+        <dt>Surface</dt><dd>navigation</dd>
+        <dt>Interaction</dt><dd>navigate, inspect</dd>
+        <dt>Reduced Motion</dt><dd>Static keyboard-first segmented navigation.</dd>
+      </dl>
+    </article>
+
+    <article id="spatial.poem-cube" class="card">
+      <header>
+        <strong>Spatial Poem Cube</strong>
+        <span>QUARANTINE</span>
+      </header>
+      <p>spatial.poem-cube</p>
+      <dl>
+        <dt>Category</dt><dd>spatial</dd>
+        <dt>Runtime</dt><dd>Three.js</dd>
+        <dt>GPU</dt><dd>high</dd>
+        <dt>Surface</dt><dd>spatial-display</dd>
+        <dt>Interaction</dt><dd>inspect</dd>
+        <dt>Reduced Motion</dt><dd>Render static face copy with keyboard-advance controls.</dd>
+      </dl>
+    </article>
+
+    <article id="motion.perspective-marquee" class="card">
+      <header>
+        <strong>Perspective Marquee</strong>
+        <span>QUARANTINE</span>
+      </header>
+      <p>motion.perspective-marquee</p>
+      <dl>
+        <dt>Category</dt><dd>motion</dd>
+        <dt>Runtime</dt><dd>CSS</dd>
+        <dt>GPU</dt><dd>none</dd>
+        <dt>Surface</dt><dd>section-title</dd>
+        <dt>Interaction</dt><dd>static</dd>
+        <dt>Reduced Motion</dt><dd>Switch to a non-animated stacked list.</dd>
+      </dl>
+    </article>
+
+    <article id="shader.atc" class="card">
+      <header>
+        <strong>ATC Shader Panel</strong>
+        <span>QUARANTINE</span>
+      </header>
+      <p>shader.atc</p>
+      <dl>
+        <dt>Category</dt><dd>shaders</dd>
+        <dt>Runtime</dt><dd>WebGL/WebGL2</dd>
+        <dt>GPU</dt><dd>high</dd>
+        <dt>Surface</dt><dd>shader-panel</dd>
+        <dt>Interaction</dt><dd>inspect</dd>
+        <dt>Reduced Motion</dt><dd>Static gradient panel with no render loop.</dd>
+      </dl>
+    </article>
+
+    <article id="action.energy-cta" class="card">
+      <header>
+        <strong>Energy CTA</strong>
+        <span>REVIEWED</span>
+      </header>
+      <p>action.energy-cta</p>
+      <dl>
+        <dt>Category</dt><dd>action</dd>
+        <dt>Runtime</dt><dd>DOM</dd>
+        <dt>GPU</dt><dd>none</dd>
+        <dt>Surface</dt><dd>cta</dd>
+        <dt>Interaction</dt><dd>activate</dd>
+        <dt>Reduced Motion</dt><dd>No animation required.</dd>
+      </dl>
+    </article>
+
+    <article id="loader.assembly-cube" class="card">
+      <header>
+        <strong>Assembly Cube Loader</strong>
+        <span>QUARANTINE</span>
+      </header>
+      <p>loader.assembly-cube</p>
+      <dl>
+        <dt>Category</dt><dd>loaders</dd>
+        <dt>Runtime</dt><dd>CSS</dd>
+        <dt>GPU</dt><dd>low</dd>
+        <dt>Surface</dt><dd>loader</dd>
+        <dt>Interaction</dt><dd>static</dd>
+        <dt>Reduced Motion</dt><dd>Static assembly frame.</dd>
+      </dl>
+    </article>
+
+    <article id="receipt.tool-calls" class="card">
+      <header>
+        <strong>Tool Calls Section</strong>
+        <span>REVIEWED</span>
+      </header>
+      <p>receipt.tool-calls</p>
+      <dl>
+        <dt>Category</dt><dd>tool-ui</dd>
+        <dt>Runtime</dt><dd>DOM</dd>
+        <dt>GPU</dt><dd>none</dd>
+        <dt>Surface</dt><dd>receipt</dd>
+        <dt>Interaction</dt><dd>inspect</dd>
+        <dt>Reduced Motion</dt><dd>No motion required.</dd>
+      </dl>
+    </article>
+
+    <article id="gallery.stellar" class="card">
+      <header>
+        <strong>Stellar Gallery</strong>
+        <span>QUARANTINE</span>
+      </header>
+      <p>gallery.stellar</p>
+      <dl>
+        <dt>Category</dt><dd>galleries</dd>
+        <dt>Runtime</dt><dd>DOM</dd>
+        <dt>GPU</dt><dd>none</dd>
+        <dt>Surface</dt><dd>gallery</dd>
+        <dt>Interaction</dt><dd>inspect</dd>
+        <dt>Reduced Motion</dt><dd>Static responsive grid.</dd>
+      </dl>
+    </article>
+
+    <article id="gallery.folder" class="card">
+      <header>
+        <strong>Folder Gallery</strong>
+        <span>QUARANTINE</span>
+      </header>
+      <p>gallery.folder</p>
+      <dl>
+        <dt>Category</dt><dd>galleries</dd>
+        <dt>Runtime</dt><dd>DOM</dd>
+        <dt>GPU</dt><dd>none</dd>
+        <dt>Surface</dt><dd>gallery</dd>
+        <dt>Interaction</dt><dd>select, inspect</dd>
+        <dt>Reduced Motion</dt><dd>Static folder list with keyboard navigation.</dd>
+      </dl>
+    </article>
+
+    <article id="gallery.sphere" class="card">
+      <header>
+        <strong>Sphere Image Grid</strong>
+        <span>QUARANTINE</span>
+      </header>
+      <p>gallery.sphere</p>
+      <dl>
+        <dt>Category</dt><dd>galleries</dd>
+        <dt>Runtime</dt><dd>DOM</dd>
+        <dt>GPU</dt><dd>none</dd>
+        <dt>Surface</dt><dd>gallery</dd>
+        <dt>Interaction</dt><dd>inspect</dd>
+        <dt>Reduced Motion</dt><dd>Static rounded card grid.</dd>
+      </dl>
+    </article>
+
+    <article id="receipt.execution-receipt" class="card">
+      <header>
+        <strong>Execution Receipt</strong>
+        <span>REVIEWED</span>
+      </header>
+      <p>receipt.execution-receipt</p>
+      <dl>
+        <dt>Category</dt><dd>tool-ui</dd>
+        <dt>Runtime</dt><dd>DOM</dd>
+        <dt>GPU</dt><dd>none</dd>
+        <dt>Surface</dt><dd>receipt</dd>
+        <dt>Interaction</dt><dd>inspect</dd>
+        <dt>Reduced Motion</dt><dd>No motion required.</dd>
+      </dl>
+    </article>
+
+    <article id="agent.credential" class="card">
+      <header>
+        <strong>Agent Credential</strong>
+        <span>REVIEWED</span>
+      </header>
+      <p>agent.credential</p>
+      <dl>
+        <dt>Category</dt><dd>tool-ui</dd>
+        <dt>Runtime</dt><dd>DOM</dd>
+        <dt>GPU</dt><dd>none</dd>
+        <dt>Surface</dt><dd>credential</dd>
+        <dt>Interaction</dt><dd>inspect</dd>
+        <dt>Reduced Motion</dt><dd>No motion required.</dd>
+      </dl>
+    </article>
+
+    <article id="integration.constellation" class="card">
+      <header>
+        <strong>Integration Constellation</strong>
+        <span>REVIEWED</span>
+      </header>
+      <p>integration.constellation</p>
+      <dl>
+        <dt>Category</dt><dd>navigation</dd>
+        <dt>Runtime</dt><dd>DOM</dd>
+        <dt>GPU</dt><dd>none</dd>
+        <dt>Surface</dt><dd>navigation</dd>
+        <dt>Interaction</dt><dd>navigate, inspect</dd>
+        <dt>Reduced Motion</dt><dd>Static node list with badges.</dd>
+      </dl>
+    </article>
+
+    <article id="system.universal-district-shell" class="card">
+      <header>
+        <strong>Universal District Shell</strong>
+        <span>REVIEWED</span>
+      </header>
+      <p>system.universal-district-shell</p>
+      <dl>
+        <dt>Category</dt><dd>navigation</dd>
+        <dt>Runtime</dt><dd>DOM</dd>
+        <dt>GPU</dt><dd>none</dd>
+        <dt>Surface</dt><dd>district-shell</dd>
+        <dt>Interaction</dt><dd>compose, navigate</dd>
+        <dt>Reduced Motion</dt><dd>Static shell with no autonomous motion requirements.</dd>
+      </dl>
+    </article>
+
+    <article id="navigation.system-nav" class="card">
+      <header>
+        <strong>System Nav</strong>
+        <span>REVIEWED</span>
+      </header>
+      <p>navigation.system-nav</p>
+      <dl>
+        <dt>Category</dt><dd>navigation</dd>
+        <dt>Runtime</dt><dd>DOM</dd>
+        <dt>GPU</dt><dd>none</dd>
+        <dt>Surface</dt><dd>navigation</dd>
+        <dt>Interaction</dt><dd>navigate, select</dd>
+        <dt>Reduced Motion</dt><dd>Static segmented navigation with keyboard activation.</dd>
+      </dl>
+    </article>
+
+    <article id="system.command-header" class="card">
+      <header>
+        <strong>Command Header</strong>
+        <span>REVIEWED</span>
+      </header>
+      <p>system.command-header</p>
+      <dl>
+        <dt>Category</dt><dd>tool-ui</dd>
+        <dt>Runtime</dt><dd>DOM</dd>
+        <dt>GPU</dt><dd>none</dd>
+        <dt>Surface</dt><dd>header</dd>
+        <dt>Interaction</dt><dd>inspect</dd>
+        <dt>Reduced Motion</dt><dd>Static heading with no required animation.</dd>
+      </dl>
+    </article>
+
+    <article id="system.signal-card" class="card">
+      <header>
+        <strong>Signal Card</strong>
+        <span>REVIEWED</span>
+      </header>
+      <p>system.signal-card</p>
+      <dl>
+        <dt>Category</dt><dd>tool-ui</dd>
+        <dt>Runtime</dt><dd>DOM</dd>
+        <dt>GPU</dt><dd>none</dd>
+        <dt>Surface</dt><dd>card</dd>
+        <dt>Interaction</dt><dd>inspect</dd>
+        <dt>Reduced Motion</dt><dd>Static card with semantic status color only.</dd>
+      </dl>
+    </article>
+
+    <article id="system.operation-card" class="card">
+      <header>
+        <strong>Operation Card</strong>
+        <span>REVIEWED</span>
+      </header>
+      <p>system.operation-card</p>
+      <dl>
+        <dt>Category</dt><dd>tool-ui</dd>
+        <dt>Runtime</dt><dd>DOM</dd>
+        <dt>GPU</dt><dd>none</dd>
+        <dt>Surface</dt><dd>card</dd>
+        <dt>Interaction</dt><dd>inspect</dd>
+        <dt>Reduced Motion</dt><dd>Static operation summary and metadata chips.</dd>
+      </dl>
+    </article>
+
+    <article id="system.status-chip" class="card">
+      <header>
+        <strong>Status Chip</strong>
+        <span>REVIEWED</span>
+      </header>
+      <p>system.status-chip</p>
+      <dl>
+        <dt>Category</dt><dd>tool-ui</dd>
+        <dt>Runtime</dt><dd>DOM</dd>
+        <dt>GPU</dt><dd>none</dd>
+        <dt>Surface</dt><dd>badge</dd>
+        <dt>Interaction</dt><dd>inspect</dd>
+        <dt>Reduced Motion</dt><dd>Static chip with semantic color only.</dd>
+      </dl>
+    </article>
+
+    <article id="system.district-badge" class="card">
+      <header>
+        <strong>District Badge</strong>
+        <span>REVIEWED</span>
+      </header>
+      <p>system.district-badge</p>
+      <dl>
+        <dt>Category</dt><dd>tool-ui</dd>
+        <dt>Runtime</dt><dd>DOM</dd>
+        <dt>GPU</dt><dd>none</dd>
+        <dt>Surface</dt><dd>badge</dd>
+        <dt>Interaction</dt><dd>inspect</dd>
+        <dt>Reduced Motion</dt><dd>Static district marker using inherited core tokens plus accent extension.</dd>
+      </dl>
+    </article>
+
+    <article id="system.section-title" class="card">
+      <header>
+        <strong>Section Title</strong>
+        <span>REVIEWED</span>
+      </header>
+      <p>system.section-title</p>
+      <dl>
+        <dt>Category</dt><dd>tool-ui</dd>
+        <dt>Runtime</dt><dd>DOM</dd>
+        <dt>GPU</dt><dd>none</dd>
+        <dt>Surface</dt><dd>section-title</dd>
+        <dt>Interaction</dt><dd>inspect</dd>
+        <dt>Reduced Motion</dt><dd>Static title with accent kicker only.</dd>
+      </dl>
+    </article>
+
+    <article id="system.hud-divider" class="card">
+      <header>
+        <strong>HUD Divider</strong>
+        <span>REVIEWED</span>
+      </header>
+      <p>system.hud-divider</p>
+      <dl>
+        <dt>Category</dt><dd>tool-ui</dd>
+        <dt>Runtime</dt><dd>DOM</dd>
+        <dt>GPU</dt><dd>none</dd>
+        <dt>Surface</dt><dd>divider</dd>
+        <dt>Interaction</dt><dd>static</dd>
+        <dt>Reduced Motion</dt><dd>Static divider line with no animation.</dd>
+      </dl>
+    </article>
+
+    <article id="system.system-footer" class="card">
+      <header>
+        <strong>System Footer</strong>
+        <span>REVIEWED</span>
+      </header>
+      <p>system.system-footer</p>
+      <dl>
+        <dt>Category</dt><dd>navigation</dd>
+        <dt>Runtime</dt><dd>DOM</dd>
+        <dt>GPU</dt><dd>none</dd>
+        <dt>Surface</dt><dd>footer</dd>
+        <dt>Interaction</dt><dd>inspect</dd>
+        <dt>Reduced Motion</dt><dd>Static footer metadata cluster.</dd>
+      </dl>
+    </article></div>
+  </section>
+  <section>
+    <h2>Templates</h2>
+    <div class="grid">
+    <article class="card">
+      <header>
+        <strong>Hermes City Construction Mode</strong>
+        <span>TEMPLATE</span>
+      </header>
+      <p>template.hermes-city-construction-mode</p>
+      <p>Construction surface for Hermes City with governed integration visibility.</p>
+    </article>
+
+    <article class="card">
+      <header>
+        <strong>ASBE Production Surfaces</strong>
+        <span>TEMPLATE</span>
+      </header>
+      <p>template.asbe-production-surfaces</p>
+      <p>Production-ready operator surfaces for ASBE applications.</p>
+    </article>
+
+    <article class="card">
+      <header>
+        <strong>Mission Control</strong>
+        <span>TEMPLATE</span>
+      </header>
+      <p>template.mission-control</p>
+      <p>Operational audit and system state composition.</p>
+    </article>
+
+    <article class="card">
+      <header>
+        <strong>Universal District Shell</strong>
+        <span>TEMPLATE</span>
+      </header>
+      <p>template.universal-district-shell</p>
+      <p>Base shell for future districts consuming UI Vault primitives.</p>
+    </article></div>
+  </section>
+  <section>
+    <h2>District Themes</h2>
+    <div class="grid">
+    <article class="card">
+      <header>
+        <strong>hermes-city</strong>
+        <span>INHERITS CORE</span>
+      </header>
+      <p>Accent: #b7ff45</p>
+    </article>
+
+    <article class="card">
+      <header>
+        <strong>asbe</strong>
+        <span>INHERITS CORE</span>
+      </header>
+      <p>Accent: #ff58a8</p>
+    </article>
+
+    <article class="card">
+      <header>
+        <strong>webmcp</strong>
+        <span>INHERITS CORE</span>
+      </header>
+      <p>Accent: #00e5ff</p>
+    </article>
+
+    <article class="card">
+      <header>
+        <strong>mission-control</strong>
+        <span>INHERITS CORE</span>
+      </header>
+      <p>Accent: #ff3131</p>
+    </article>
+
+    <article class="card">
+      <header>
+        <strong>fiscal-command</strong>
+        <span>INHERITS CORE</span>
+      </header>
+      <p>Accent: #855dff</p>
+    </article>
+
+    <article class="card">
+      <header>
+        <strong>789-studios</strong>
+        <span>INHERITS CORE</span>
+      </header>
+      <p>Accent: #ff58a8</p>
+    </article>
+
+    <article class="card">
+      <header>
+        <strong>ntru</strong>
+        <span>INHERITS CORE</span>
+      </header>
+      <p>Accent: #b7ff45</p>
+    </article>
+
+    <article class="card">
+      <header>
+        <strong>agentropolis-uni</strong>
+        <span>INHERITS CORE</span>
+      </header>
+      <p>Accent: #855dff</p>
+    </article>
+
+    <article class="card">
+      <header>
+        <strong>social-systems</strong>
+        <span>INHERITS CORE</span>
+      </header>
+      <p>Accent: #ff58a8</p>
+    </article></div>
+  </section>
+</body>
+</html>

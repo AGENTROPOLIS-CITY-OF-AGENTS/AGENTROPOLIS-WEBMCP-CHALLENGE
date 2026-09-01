@@ -1,0 +1,13 @@
+{
+  "id": "loader.assembly-cube",
+  "candidateSource": "21st.dev",
+  "sourceUrl": null,
+  "retrievedAt": null,
+  "originalAuthor": null,
+  "license": null,
+  "status": "quarantine",
+  "dedupeKey": "loader-assembly-cube",
+  "notes": [
+    "Candidate isolated before any upstream code import."
+  ]
+}

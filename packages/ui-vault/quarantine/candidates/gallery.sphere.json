@@ -1,0 +1,13 @@
+{
+  "id": "gallery.sphere",
+  "candidateSource": "community",
+  "sourceUrl": null,
+  "retrievedAt": null,
+  "originalAuthor": null,
+  "license": null,
+  "status": "quarantine",
+  "dedupeKey": "gallery-sphere",
+  "notes": [
+    "Candidate isolated pending provenance review."
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "generatedAt": "2026-09-01",
+  "owner": "Creator / Construction",
+  "districts": {
+    "all": [
+      "orbit.integrations",
+      "motion.perspective-marquee",
+      "loader.assembly-cube",
+      "system.universal-district-shell",
+      "navigation.system-nav",
+      "system.command-header",
+      "system.signal-card",
+      "system.operation-card",
+      "system.status-chip",
+      "system.district-badge",
+      "system.section-title",
+      "system.hud-divider",
+      "system.system-footer"
+    ],
+    "hermes-city": [
+      "spatial.poem-cube",
+      "gallery.sphere",
+      "agent.credential",
+      "integration.constellation"
+    ],
+    "district-scenes": [
+      "spatial.poem-cube"
+    ],
+    "atc": [
+      "shader.atc"
+    ],
+    "world-scenes": [
+      "shader.atc"
+    ],
+    "webmcp": [
+      "action.energy-cta",
+      "receipt.tool-calls",
+      "gallery.stellar",
+      "gallery.folder",
+      "receipt.execution-receipt",
+      "agent.credential",
+      "integration.constellation"
+    ],
+    "mission-control": [
+      "action.energy-cta",
+      "receipt.tool-calls",
+      "receipt.execution-receipt",
+      "integration.constellation"
+    ],
+    "789-studios": [
+      "gallery.stellar",
+      "gallery.sphere"
+    ],
+    "archives": [
+      "gallery.folder"
+    ]
+  },
+  "themes": {
+    "hermes-city": {
+      "accent": "#b7ff45",
+      "inheritsCore": true
+    },
+    "asbe": {
+      "accent": "#ff58a8",
+      "inheritsCore": true
+    },
+    "webmcp": {
+      "accent": "#00e5ff",
+      "inheritsCore": true
+    },
+    "mission-control": {
+      "accent": "#ff3131",
+      "inheritsCore": true
+    },
+    "fiscal-command": {
+      "accent": "#855dff",
+      "inheritsCore": true
+    },
+    "789-studios": {
+      "accent": "#ff58a8",
+      "inheritsCore": true
+    },
+    "ntru": {
+      "accent": "#b7ff45",
+      "inheritsCore": true
+    },
+    "agentropolis-uni": {
+      "accent": "#855dff",
+      "inheritsCore": true
+    },
+    "social-systems": {
+      "accent": "#ff58a8",
+      "inheritsCore": true
+    }
+  }
+}

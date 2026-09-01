@@ -1,0 +1,11 @@
+{
+  "id": "template.hermes-city-construction-mode",
+  "name": "Hermes City Construction Mode",
+  "recommendedComponents": [
+    "orbit.integrations",
+    "agent.credential",
+    "integration.constellation",
+    "receipt.execution-receipt"
+  ],
+  "description": "Construction surface for Hermes City with governed integration visibility."
+}
