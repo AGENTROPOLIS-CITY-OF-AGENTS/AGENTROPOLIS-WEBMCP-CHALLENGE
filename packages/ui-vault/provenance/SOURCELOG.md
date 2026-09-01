@@ -13,6 +13,10 @@ This vault currently ships reviewed local implementations with adapter boundarie
 | motion.perspective-marquee | local fallback | upstream candidate unknown | not retrieved | unknown | source URL, author, license |
 | shader.atc | local fallback | upstream candidate unknown | not retrieved | unknown | source URL, author, license |
 | shader.cybernetic-grid | quarantined user-supplied recipe | 21st.dev-style candidate | 2026-09-01 | unknown | source URL, original author, license, reduced-motion production fallback |
+| shader.infinite-plane | quarantined user-supplied recipe | 21st.dev-style candidate | 2026-09-01 | unknown | source URL, original author, license, reduced-motion fallback, GPU/mobile validation |
+| shader.neon-crystal-city | quarantined user-supplied recipe | 21st.dev-style candidate | 2026-09-01 | unknown | source URL, original author, license, reduced-motion fallback, WebGL2 compatibility review |
+| surface.dotted-wave | quarantined user-supplied recipe | 21st.dev-style candidate | 2026-09-01 | unknown | source URL, original author, license, reduced-motion fallback, dependency normalization |
+| shader.liquid-crystal | quarantined user-supplied recipe | 21st.dev-style candidate | 2026-09-01 | unknown | source URL, original author, license, reduced-motion/accessibility fallback, typing cleanup |
 | action.energy-cta | local adapter-backed | none required | 2026-08-29 | Apache-2.0 | none |
 | loader.assembly-cube | local fallback | upstream candidate unknown | not retrieved | unknown | source URL, author, license |
 | receipt.tool-calls | local adapter-backed | none required | 2026-08-29 | Apache-2.0 | none |
