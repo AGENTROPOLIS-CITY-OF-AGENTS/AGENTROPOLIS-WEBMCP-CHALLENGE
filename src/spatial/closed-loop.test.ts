@@ -26,6 +26,15 @@ describe('Spatial WebMCP closed-loop construction', () => {
     expect(result.status).toBe('CORRECTION_NEEDED');
   });
 
+  it('rejects a non-studio objective even on a fully configured studio (GAP-D)', async () => {
+    const configured = await runInterviewStudioDemo();
+    const capture = await captureSceneAsArtifact(configured.graph);
+    const result = await verifyInterviewStudio(configured.graph, capture, 'Bake a three-tier wedding cake.');
+    expect(result.passed).toBe(false);
+    expect(result.status).toBe('FAIL');
+    expect(result.notes.some((note) => note.includes('interview/filming studio objective'))).toBe(true);
+  });
+
   it('rejects tampered capture evidence', async () => {
     const capture = await captureSceneAsArtifact(STUDIO_SCENE);
     const tampered = { ...capture, captureRef: `${capture.captureRef}&tampered=true` };
@@ -69,5 +78,24 @@ describe('Spatial WebMCP closed-loop construction', () => {
     expect(result.receipt.afterVersion).toBe(result.graph.version);
     expect(result.receipt.captureId).toBe(result.receipt.verification.captureId);
     expect(result.receipt.captureHash).toBe(result.receipt.verification.captureHash);
+  });
+
+  it('links the exact verification capture into the receipt (capture-bound receipts)', async () => {
+    const result = await runInterviewStudioDemo();
+    expect(result.receipt.captureRef).toBe(result.captureRef);
+    expect(result.receipt.captureId).toBe(result.captureArtifact.captureId);
+    expect(result.receipt.captureHash).toBe(result.captureArtifact.captureHash);
+    expect(result.receipt.verification.captureId).toBe(result.captureArtifact.captureId);
+  });
+
+  it('cannot mint a receipt when verification throws (receipt follows verification)', async () => {
+    await expect(runClosedLoopConstruction({
+      graph: STUDIO_SCENE,
+      plan: INTERVIEW_PLAN,
+      capture: async (graph) => captureSceneAsArtifact(graph),
+      verify: async () => {
+        throw new Error('VERIFIER_DOWN');
+      },
+    })).rejects.toThrow(/VERIFIER_DOWN/);
   });
 });

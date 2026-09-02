@@ -28,8 +28,11 @@ Prove that a browser-hosted interactive scene can expose structured spatial capa
 ## Required negative tests
 
 - unauthorized material change on `key-light-01` throws `CAPABILITY_DENIED`
+- denied mutation through the registered WebMCP tool leaves the scene byte-identical
 - initial scene does not pass interview verification
 - unknown/non-studio objective must not be silently reported as verified
+- forged object ids and malformed tool input are rejected before scene state changes
+- tampered capture evidence fails verification (hash binding)
 
 ## Governance assertions
 
