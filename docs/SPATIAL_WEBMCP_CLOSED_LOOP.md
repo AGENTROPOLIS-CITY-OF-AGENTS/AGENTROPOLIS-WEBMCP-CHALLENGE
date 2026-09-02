@@ -23,7 +23,9 @@ USER INTENT
   -> construction receipt
 ```
 
-## Initial capability surface
+## Capability surface
+
+Factory primitives in `src/webmcp/tools/spatial-tools.ts` (consumed through the registered tool):
 
 - `getScene()`
 - `getObject(id)`
@@ -31,9 +33,11 @@ USER INTENT
 - `setMaterial(id, material)`
 - `setLight(id, intensity)`
 - `captureView()`
-- `verifyScene(objective)`
+- `verifyScene(objective, capture)`
 
-Capabilities are object-scoped. A structured object exposes explicit permissions rather than inviting brittle DOM or pixel automation.
+Through WebMCP these are exposed as ONE registered tool, `agentropolis_spatial_closed_loop`, whose bounded `operation` enum is `inspect | translate | rotate | material | intensity | capture | verify`. Registration happens via `document.modelContext.registerTool` in `src/webmcp/register-spatial-webmcp.ts`, invoked from the app shell in `src/App.tsx`. When `document.modelContext` is unavailable, registration honestly reports `unsupported` and the visible demo continues in local governed mode; no exposure is claimed.
+
+Capabilities are object-scoped. A structured object exposes explicit permissions rather than inviting brittle DOM or pixel automation. Every mutating operation passes `requireSpatialCapability` (src/webmcp/permissions.ts) before `applySpatialMutation`, and `applySpatialMutation` re-asserts the grant as a second gate. Read-only operations (inspect, scene capture, verify) are not authority-gated: they observe state and cannot change it.
 
 ## Hero demo implementation
 
@@ -58,6 +62,12 @@ Every mutation must pass through the spatial permission boundary. The result is 
 The browser capture is evidence of scene state, while the deterministic verifier evaluates explicit interview-studio invariants. These are separate steps on purpose.
 
 Spatial WebMCP begins after core authorization. The core governance corridor owns identity, mandate and policy decisions; the spatial subsystem then handles inspect -> mutate -> capture -> verify -> receipt for the authorized capability surface.
+
+## Scope boundary (GAP-E, explicit)
+
+The spatial hero demonstrates the bounded spatial construction lane: WebMCP tool registration, object-scoped capability enforcement, content-addressed capture, deterministic verification, and a capture-bound construction receipt.
+
+It does NOT independently claim the complete AGENTROPOLIS Identity -> Mandate -> Policy -> Execution -> Receipt -> Audit corridor. Spatial tool executions are not yet routed through the core governance engine's identity, mandate, and human-approval stages. That routing is a follow-up, not a present capability, and no part of this demo should be read as proving it.
 
 ## Hackathon scope
 
