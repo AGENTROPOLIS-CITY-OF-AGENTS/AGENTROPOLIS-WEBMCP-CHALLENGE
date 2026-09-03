@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WORLDQ × PARALLAX Challenge Capability Contract",
+  "version": "0.1.0",
+  "authority": {
+    "principle": "Decoded world data never grants mutation authority.",
+    "corridor": ["identity", "mandate", "policy", "capability", "operation", "capture", "verify", "receipt"]
+  },
+  "tools": [
+    {"name":"world.inspect","owner":"parallax","mutates":false},
+    {"name":"world.encode","owner":"worldq","mutates":false},
+    {"name":"world.quantize","owner":"worldq","mutates":false},
+    {"name":"world.stream","owner":"worldq","mutates":false},
+    {"name":"world.decode","owner":"worldq","mutates":false},
+    {"name":"world.enter","owner":"parallax","mutates":false},
+    {"name":"world.modify","owner":"parallax","mutates":true,"requires":["mandate","policy","capability"]},
+    {"name":"world.commit","owner":"parallax","mutates":true,"requires":["verified_capture"]},
+    {"name":"world.verify","owner":"joint","mutates":false}
+  ],
+  "fidelityLevels": {
+    "Q0":"manifest",
+    "Q1":"regions",
+    "Q2":"structures",
+    "Q3":"cells",
+    "Q4":"entities",
+    "Q5":"local-high-fidelity"
+  }
+}
