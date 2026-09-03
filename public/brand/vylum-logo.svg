@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="128" viewBox="0 0 320 128" role="img" aria-label="VYLUM MCP by AGENTROPOLIS">
+  <title>VYLUM MCP</title>
+  <desc>VYLUM aperture-loop emblem above a geometric wordmark. Cyan denotes observable spatial state; the red node denotes verification.</desc>
+  <g fill="none" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M138 16h44l22 22-22 22h-44l-22-22z" stroke="#19e6e6" stroke-width="4"/>
+    <path d="M147 28h26l13 13-13 13h-26l-13-13z" stroke="#19e6e6" stroke-width="2" opacity="0.72"/>
+    <path d="M196 31l13 10-13 10" stroke="#ff304f" stroke-width="4"/>
+    <circle cx="203" cy="41" r="4.5" fill="#ff304f" stroke="none"/>
+  </g>
+  <g fill="#f2f0ea" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-weight="800" letter-spacing="9">
+    <text x="160" y="92" text-anchor="middle" font-size="32">VYLUM</text>
+  </g>
+  <rect x="84" y="102" width="152" height="3" fill="#ff304f"/>
+  <text x="160" y="120" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="8" letter-spacing="6" fill="#19e6e6">MCP // SYSTEMS</text>
+</svg>
