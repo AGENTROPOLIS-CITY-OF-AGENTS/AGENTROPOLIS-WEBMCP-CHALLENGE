@@ -26,6 +26,7 @@
     "preview": "vite preview",
     "review": "npx @21st-dev/cli review src",
     "validate:design-harness": "node scripts/design-harness/validate.mjs",
+    "validate:parallax": "node scripts/design-harness/validate-parallax.mjs",
     "quality:submission": "npm run validate:design-harness && npm run lint && npm run test && npm run build"
   },
   "dependencies": {

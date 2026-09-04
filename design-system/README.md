@@ -12,7 +12,6 @@ Figma is optional only and is never authority.
 - `SOURCE != AUTHORITY`
 - Source can inspire, seed, or supply candidate material.
 - Authority is the governed local record of tokens, manifests, components, templates, and distribution rules.
-- AGENTROPOLIS Creator Core's Obsidian Signal system is the shared visual canon; this repo mirrors it through governed adapters rather than redefining it.
 - Architecture limits exposure.
 - Governance limits failure.
 - Authority is not a prompt. It is a runtime constraint.
@@ -36,7 +35,6 @@ Meaning:
 ## Canonical local files
 
 - `tokens/colors.json`
-- `tokens/districts.json`
 - `tokens/spacing.json`
 - `manifests/ui-vault.schema.json`
 - `mcp/ui-construction-contracts.md`

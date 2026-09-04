@@ -5,25 +5,7 @@
     "category": "navigation",
     "maturity": "reviewed",
     "runtime": "DOM",
-    "gpuRequired": false,
-    "districts": [
-      "all"
-    ],
-    "surfaces": [
-      "navigation"
-    ],
-    "interactions": [
-      "navigate",
-      "inspect"
-    ],
-    "gpuCost": "none",
-    "accessibility": [
-      "keyboard",
-      "focus-visible",
-      "reduced-motion"
-    ],
-    "reducedMotion": true,
-    "status": "reviewed"
+    "gpuRequired": false
   },
   {
     "id": "spatial.poem-cube",
@@ -31,24 +13,7 @@
     "category": "spatial",
     "maturity": "quarantine",
     "runtime": "Three.js",
-    "gpuRequired": true,
-    "districts": [
-      "hermes-city",
-      "district-scenes"
-    ],
-    "surfaces": [
-      "spatial-display"
-    ],
-    "interactions": [
-      "inspect"
-    ],
-    "gpuCost": "high",
-    "accessibility": [
-      "keyboard",
-      "reduced-motion"
-    ],
-    "reducedMotion": true,
-    "status": "quarantine"
+    "gpuRequired": true
   },
   {
     "id": "motion.perspective-marquee",
@@ -56,22 +21,7 @@
     "category": "motion",
     "maturity": "quarantine",
     "runtime": "CSS",
-    "gpuRequired": false,
-    "districts": [
-      "all"
-    ],
-    "surfaces": [
-      "section-title"
-    ],
-    "interactions": [
-      "static"
-    ],
-    "gpuCost": "none",
-    "accessibility": [
-      "reduced-motion"
-    ],
-    "reducedMotion": true,
-    "status": "quarantine"
+    "gpuRequired": false
   },
   {
     "id": "shader.atc",
@@ -79,23 +29,7 @@
     "category": "shaders",
     "maturity": "quarantine",
     "runtime": "WebGL/WebGL2",
-    "gpuRequired": true,
-    "districts": [
-      "atc",
-      "world-scenes"
-    ],
-    "surfaces": [
-      "shader-panel"
-    ],
-    "interactions": [
-      "inspect"
-    ],
-    "gpuCost": "high",
-    "accessibility": [
-      "reduced-motion"
-    ],
-    "reducedMotion": true,
-    "status": "quarantine"
+    "gpuRequired": true
   },
   {
     "id": "action.energy-cta",
@@ -103,25 +37,7 @@
     "category": "action",
     "maturity": "reviewed",
     "runtime": "DOM",
-    "gpuRequired": false,
-    "districts": [
-      "webmcp",
-      "mission-control"
-    ],
-    "surfaces": [
-      "cta"
-    ],
-    "interactions": [
-      "activate"
-    ],
-    "gpuCost": "none",
-    "accessibility": [
-      "keyboard",
-      "focus-visible",
-      "reduced-motion"
-    ],
-    "reducedMotion": true,
-    "status": "reviewed"
+    "gpuRequired": false
   },
   {
     "id": "loader.assembly-cube",
@@ -129,22 +45,7 @@
     "category": "loaders",
     "maturity": "quarantine",
     "runtime": "CSS",
-    "gpuRequired": false,
-    "districts": [
-      "all"
-    ],
-    "surfaces": [
-      "loader"
-    ],
-    "interactions": [
-      "static"
-    ],
-    "gpuCost": "low",
-    "accessibility": [
-      "reduced-motion"
-    ],
-    "reducedMotion": true,
-    "status": "quarantine"
+    "gpuRequired": false
   },
   {
     "id": "receipt.tool-calls",
@@ -152,25 +53,7 @@
     "category": "tool-ui",
     "maturity": "reviewed",
     "runtime": "DOM",
-    "gpuRequired": false,
-    "districts": [
-      "webmcp",
-      "mission-control"
-    ],
-    "surfaces": [
-      "receipt"
-    ],
-    "interactions": [
-      "inspect"
-    ],
-    "gpuCost": "none",
-    "accessibility": [
-      "keyboard",
-      "aria-label",
-      "reduced-motion"
-    ],
-    "reducedMotion": true,
-    "status": "reviewed"
+    "gpuRequired": false
   },
   {
     "id": "gallery.stellar",
@@ -178,25 +61,7 @@
     "category": "galleries",
     "maturity": "quarantine",
     "runtime": "DOM",
-    "gpuRequired": false,
-    "districts": [
-      "789-studios",
-      "webmcp"
-    ],
-    "surfaces": [
-      "gallery"
-    ],
-    "interactions": [
-      "inspect"
-    ],
-    "gpuCost": "none",
-    "accessibility": [
-      "alt-text",
-      "keyboard",
-      "reduced-motion"
-    ],
-    "reducedMotion": true,
-    "status": "quarantine"
+    "gpuRequired": false
   },
   {
     "id": "gallery.folder",
@@ -204,26 +69,7 @@
     "category": "galleries",
     "maturity": "quarantine",
     "runtime": "DOM",
-    "gpuRequired": false,
-    "districts": [
-      "webmcp",
-      "archives"
-    ],
-    "surfaces": [
-      "gallery"
-    ],
-    "interactions": [
-      "select",
-      "inspect"
-    ],
-    "gpuCost": "none",
-    "accessibility": [
-      "keyboard",
-      "focus-visible",
-      "reduced-motion"
-    ],
-    "reducedMotion": true,
-    "status": "quarantine"
+    "gpuRequired": false
   },
   {
     "id": "gallery.sphere",
@@ -231,24 +77,7 @@
     "category": "galleries",
     "maturity": "quarantine",
     "runtime": "DOM",
-    "gpuRequired": false,
-    "districts": [
-      "789-studios",
-      "hermes-city"
-    ],
-    "surfaces": [
-      "gallery"
-    ],
-    "interactions": [
-      "inspect"
-    ],
-    "gpuCost": "none",
-    "accessibility": [
-      "alt-text",
-      "reduced-motion"
-    ],
-    "reducedMotion": true,
-    "status": "quarantine"
+    "gpuRequired": false
   },
   {
     "id": "receipt.execution-receipt",
@@ -256,25 +85,7 @@
     "category": "tool-ui",
     "maturity": "reviewed",
     "runtime": "DOM",
-    "gpuRequired": false,
-    "districts": [
-      "webmcp",
-      "mission-control"
-    ],
-    "surfaces": [
-      "receipt"
-    ],
-    "interactions": [
-      "inspect"
-    ],
-    "gpuCost": "none",
-    "accessibility": [
-      "keyboard",
-      "aria-label",
-      "reduced-motion"
-    ],
-    "reducedMotion": true,
-    "status": "reviewed"
+    "gpuRequired": false
   },
   {
     "id": "agent.credential",
@@ -282,24 +93,7 @@
     "category": "tool-ui",
     "maturity": "reviewed",
     "runtime": "DOM",
-    "gpuRequired": false,
-    "districts": [
-      "hermes-city",
-      "webmcp"
-    ],
-    "surfaces": [
-      "credential"
-    ],
-    "interactions": [
-      "inspect"
-    ],
-    "gpuCost": "none",
-    "accessibility": [
-      "aria-label",
-      "reduced-motion"
-    ],
-    "reducedMotion": true,
-    "status": "reviewed"
+    "gpuRequired": false
   },
   {
     "id": "integration.constellation",
@@ -307,268 +101,6 @@
     "category": "navigation",
     "maturity": "reviewed",
     "runtime": "DOM",
-    "gpuRequired": false,
-    "districts": [
-      "webmcp",
-      "mission-control",
-      "hermes-city"
-    ],
-    "surfaces": [
-      "navigation"
-    ],
-    "interactions": [
-      "navigate",
-      "inspect"
-    ],
-    "gpuCost": "none",
-    "accessibility": [
-      "keyboard",
-      "reduced-motion"
-    ],
-    "reducedMotion": true,
-    "status": "reviewed"
-  },
-  {
-    "id": "system.universal-district-shell",
-    "name": "Universal District Shell",
-    "category": "navigation",
-    "maturity": "reviewed",
-    "runtime": "DOM",
-    "gpuRequired": false,
-    "districts": [
-      "all"
-    ],
-    "surfaces": [
-      "district-shell"
-    ],
-    "interactions": [
-      "compose",
-      "navigate"
-    ],
-    "gpuCost": "none",
-    "accessibility": [
-      "keyboard",
-      "focus-visible",
-      "reduced-motion"
-    ],
-    "reducedMotion": true,
-    "status": "reviewed"
-  },
-  {
-    "id": "navigation.system-nav",
-    "name": "System Nav",
-    "category": "navigation",
-    "maturity": "reviewed",
-    "runtime": "DOM",
-    "gpuRequired": false,
-    "districts": [
-      "all"
-    ],
-    "surfaces": [
-      "navigation"
-    ],
-    "interactions": [
-      "navigate",
-      "select"
-    ],
-    "gpuCost": "none",
-    "accessibility": [
-      "keyboard",
-      "focus-visible",
-      "reduced-motion"
-    ],
-    "reducedMotion": true,
-    "status": "reviewed"
-  },
-  {
-    "id": "system.command-header",
-    "name": "Command Header",
-    "category": "tool-ui",
-    "maturity": "reviewed",
-    "runtime": "DOM",
-    "gpuRequired": false,
-    "districts": [
-      "all"
-    ],
-    "surfaces": [
-      "header"
-    ],
-    "interactions": [
-      "inspect"
-    ],
-    "gpuCost": "none",
-    "accessibility": [
-      "aria-label",
-      "reduced-motion"
-    ],
-    "reducedMotion": true,
-    "status": "reviewed"
-  },
-  {
-    "id": "system.signal-card",
-    "name": "Signal Card",
-    "category": "tool-ui",
-    "maturity": "reviewed",
-    "runtime": "DOM",
-    "gpuRequired": false,
-    "districts": [
-      "all"
-    ],
-    "surfaces": [
-      "card"
-    ],
-    "interactions": [
-      "inspect"
-    ],
-    "gpuCost": "none",
-    "accessibility": [
-      "aria-label",
-      "reduced-motion"
-    ],
-    "reducedMotion": true,
-    "status": "reviewed"
-  },
-  {
-    "id": "system.operation-card",
-    "name": "Operation Card",
-    "category": "tool-ui",
-    "maturity": "reviewed",
-    "runtime": "DOM",
-    "gpuRequired": false,
-    "districts": [
-      "all"
-    ],
-    "surfaces": [
-      "card"
-    ],
-    "interactions": [
-      "inspect"
-    ],
-    "gpuCost": "none",
-    "accessibility": [
-      "aria-label",
-      "reduced-motion"
-    ],
-    "reducedMotion": true,
-    "status": "reviewed"
-  },
-  {
-    "id": "system.status-chip",
-    "name": "Status Chip",
-    "category": "tool-ui",
-    "maturity": "reviewed",
-    "runtime": "DOM",
-    "gpuRequired": false,
-    "districts": [
-      "all"
-    ],
-    "surfaces": [
-      "badge"
-    ],
-    "interactions": [
-      "inspect"
-    ],
-    "gpuCost": "none",
-    "accessibility": [
-      "aria-label",
-      "reduced-motion"
-    ],
-    "reducedMotion": true,
-    "status": "reviewed"
-  },
-  {
-    "id": "system.district-badge",
-    "name": "District Badge",
-    "category": "tool-ui",
-    "maturity": "reviewed",
-    "runtime": "DOM",
-    "gpuRequired": false,
-    "districts": [
-      "all"
-    ],
-    "surfaces": [
-      "badge"
-    ],
-    "interactions": [
-      "inspect"
-    ],
-    "gpuCost": "none",
-    "accessibility": [
-      "aria-label",
-      "reduced-motion"
-    ],
-    "reducedMotion": true,
-    "status": "reviewed"
-  },
-  {
-    "id": "system.section-title",
-    "name": "Section Title",
-    "category": "tool-ui",
-    "maturity": "reviewed",
-    "runtime": "DOM",
-    "gpuRequired": false,
-    "districts": [
-      "all"
-    ],
-    "surfaces": [
-      "section-title"
-    ],
-    "interactions": [
-      "inspect"
-    ],
-    "gpuCost": "none",
-    "accessibility": [
-      "aria-label",
-      "reduced-motion"
-    ],
-    "reducedMotion": true,
-    "status": "reviewed"
-  },
-  {
-    "id": "system.hud-divider",
-    "name": "HUD Divider",
-    "category": "tool-ui",
-    "maturity": "reviewed",
-    "runtime": "DOM",
-    "gpuRequired": false,
-    "districts": [
-      "all"
-    ],
-    "surfaces": [
-      "divider"
-    ],
-    "interactions": [
-      "static"
-    ],
-    "gpuCost": "none",
-    "accessibility": [
-      "reduced-motion"
-    ],
-    "reducedMotion": true,
-    "status": "reviewed"
-  },
-  {
-    "id": "system.system-footer",
-    "name": "System Footer",
-    "category": "navigation",
-    "maturity": "reviewed",
-    "runtime": "DOM",
-    "gpuRequired": false,
-    "districts": [
-      "all"
-    ],
-    "surfaces": [
-      "footer"
-    ],
-    "interactions": [
-      "inspect"
-    ],
-    "gpuCost": "none",
-    "accessibility": [
-      "aria-label",
-      "reduced-motion"
-    ],
-    "reducedMotion": true,
-    "status": "reviewed"
+    "gpuRequired": false
   }
 ]

@@ -18,16 +18,19 @@
 }
 
 * { box-sizing: border-box; }
-html, body, #root { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+html, body, #root { width: 100%; min-height: 100%; margin: 0; }
+html, body { overflow-x: hidden; overflow-y: auto; }
 body { min-width: 320px; background: var(--black); }
 button { font: inherit; }
 button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 
 .app-shell {
   position: relative;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 100%;
-  overflow: hidden;
+  min-height: 100%;
+  overflow: clip;
   background:
     radial-gradient(circle at top, rgba(0, 229, 255, .06), transparent 32%),
     linear-gradient(180deg, #030608 0%, #000 52%, #030608 100%);
@@ -54,8 +57,169 @@ button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
   background: repeating-linear-gradient(0deg, transparent 0 5px, rgba(0, 229, 255, .12) 6px);
 }
 
-.world-viewport, .world-viewport canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.world-viewport { position: relative; width: 100%; height: min(78vh, 820px); min-height: 620px; isolation: isolate; }
+.world-viewport canvas { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; }
+.parallax-environment { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; background: var(--obsidian); }
+.parallax-environment > img, .parallax-environment > video { position: absolute; inset: -2%; width: 104%; height: 104%; object-fit: cover; }
+.parallax-environment-veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(2,3,4,var(--parallax-dim)), rgba(2,3,4,calc(var(--parallax-dim) + .04))); }
 .world-viewport canvas { touch-action: none; }
+
+.parallax-hero { position: relative; min-height: min(860px, 92vh); display: grid; align-items: end; isolation: isolate; overflow: hidden; background: var(--obsidian); }
+.hero-environment { z-index: -2; }
+.parallax-hero-scrim { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(0,0,0,.56) 0%, rgba(0,0,0,.24) 48%, rgba(0,0,0,.04) 100%), linear-gradient(0deg, rgba(0,0,0,.42), transparent 58%); }
+.parallax-hero-content { width: min(64vw, 860px); max-width: calc(100% - 44px); margin: clamp(28px, 6vw, 72px); padding: clamp(28px, 4vw, 44px); border: 1px solid rgba(94,233,240,.12); border-radius: 28px; background: rgba(3,8,12,.22); backdrop-filter: blur(10px) saturate(110%); box-shadow: 0 16px 50px rgba(0,0,0,.12); transition: transform .35s ease-out; will-change: transform; }
+.parallax-eyebrow, .section-kicker { margin: 0 0 18px; color: var(--cyan); font: 600 11px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .2em; }
+.parallax-hero h1 { margin: 0; color: #050709; font: 800 clamp(46px, 9vw, 142px)/.86 Orbitron, sans-serif; letter-spacing: clamp(-.095em, -0.72vw, -.045em); overflow-wrap: anywhere; }
+.parallax-wordmark { position: relative; display: inline-block; isolation: isolate; }
+.parallax-wordmark-layer { display: block; white-space: nowrap; pointer-events: none; }
+.parallax-wordmark-layer:not(.parallax-wordmark-face) { position: absolute; inset: 0 auto auto 0; }
+.parallax-wordmark-extrusion { z-index: 0; color: #020304; text-shadow: 1px 1px 0 #171c23, 2px 2px 0 #131820, 3px 3px 0 #10141b, 4px 4px 0 #0d1117, 5px 5px 0 #0a0e13, 6px 6px 0 #080b10, 7px 7px 0 #06090d, 8px 8px 0 #04070a, 10px 10px 0 #020304, 12px 12px 20px rgba(0,0,0,.86); }
+.parallax-wordmark-cyan { z-index: 1; color: transparent; -webkit-text-stroke: 2px rgba(94,233,240,.9); transform: translate(-2px, -2px); text-shadow: -3px -2px 12px rgba(94,233,240,.5); }
+.parallax-wordmark-red { z-index: 2; color: transparent; -webkit-text-stroke: 2px rgba(238,27,46,.78); transform: translate(2px, 2px); text-shadow: 3px 3px 12px rgba(238,27,46,.42); }
+.parallax-wordmark-face { position: relative; z-index: 3; color: #080b10; background: linear-gradient(105deg, #05070a 0%, #11151b 34%, #070a0f 58%, #10141a 78%, #05070a 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; -webkit-text-stroke: 1px rgba(5,7,10,.96); text-shadow: 0 2px 0 rgba(0,0,0,.9), 0 7px 16px rgba(0,0,0,.72); }
+.parallax-subtitle { margin: 22px 0 0; color: var(--cyan); font: 600 clamp(18px, 2.4vw, 30px)/1 Orbitron, sans-serif; letter-spacing: .2em; }
+.parallax-lede { max-width: 440px; margin: 18px 0 0; color: #fff7e8; font-size: clamp(17px, 2vw, 24px); }
+.parallax-protocol { margin: 28px 0 0; color: #b8cacc; font: 600 11px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .15em; }
+.parallax-protocol span { color: var(--red); padding: 0 8px; }
+.parallax-hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+.parallax-primary-cta, .parallax-secondary-cta { display: inline-flex; align-items: center; min-height: 48px; padding: 0 20px; border: 1px solid var(--cyan); font: 700 11px/1 Orbitron, sans-serif; letter-spacing: .1em; text-decoration: none; cursor: pointer; }
+.parallax-primary-cta { background: var(--cyan); color: #020304; }
+.parallax-secondary-cta { background: rgba(0,0,0,.22); color: #fff7e8; border-color: rgba(255,247,232,.5); }
+.parallax-primary-cta:focus-visible, .parallax-secondary-cta:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+.hero-capability-stack { position: absolute; right: clamp(18px, 3.2vw, 52px); bottom: clamp(30px, 6vw, 78px); z-index: 2; display: grid; gap: 8px; width: min(224px, 20vw); }
+.hero-capability { display: grid; gap: 5px; padding: 13px 15px; border: 1px solid rgba(255,247,232,.12); border-left: 2px solid var(--cyan); border-radius: 14px; background: rgba(3,8,12,.23); backdrop-filter: blur(8px) saturate(110%); box-shadow: 0 10px 28px rgba(0,0,0,.16); }
+.hero-capability-red { border-left-color: var(--red); }
+.hero-capability strong { color: #fff7e8; font: 700 11px/1 Orbitron, sans-serif; letter-spacing: .12em; }
+.hero-capability span { color: #b8cacc; font-size: 12px; line-height: 1.3; }
+.runtime-strip { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 20px; padding: 10px 18px; border-top: 1px solid rgba(0,229,255,.12); border-bottom: 1px solid rgba(0,229,255,.12); background: rgba(3,8,12,.28); backdrop-filter: blur(10px); color: #9fb5b8; font: 600 9px/1.35 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; }
+.runtime-strip b { color: var(--cyan); }
+.runtime-strip a { color: #fff7e8; text-decoration: none; }
+.runtime-strip a:hover { color: var(--cyan); }
+.parallax-media-diagnostic { position: fixed; right: 12px; bottom: 12px; z-index: 20; display: grid; gap: 3px; max-width: 310px; padding: 9px 11px; border: 1px solid rgba(94,233,240,.25); border-radius: 10px; background: rgba(3,8,12,.78); color: #b8cacc; font: 600 9px/1.3 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .05em; pointer-events: none; }
+.parallax-media-diagnostic strong { color: var(--cyan); letter-spacing: .14em; }
+.capability-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; width: min(1180px, 100%); margin: 0 auto; background: rgba(0,229,255,.12); }
+.capability-strip > div { display: grid; gap: 6px; padding: 17px 20px; background: rgba(5,7,9,.48); }
+.capability-strip strong { color: var(--cyan); font: 700 11px/1.2 Orbitron, sans-serif; letter-spacing: .1em; }
+.capability-strip span { color: #b8cacc; font-size: 13px; line-height: 1.35; }
+.parallax-loop, .parallax-demo-section, .parallax-governance, .parallax-proof { width: min(1180px, 100%); margin: 0 auto; padding: clamp(70px, 9vw, 120px) clamp(22px, 5vw, 72px); }
+.parallax-loop-story { position: relative; width: min(1180px, 100%); margin: 0 auto; padding: clamp(70px, 9vw, 120px) clamp(22px, 5vw, 72px); }
+.parallax-loop-story-header { position: relative; z-index: 2; }
+.parallax-explainer-label { display: inline-block; margin-top: 8px; color: var(--red); font: 600 9px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .14em; }
+.story-controls { display: flex; gap: 8px; margin-top: 20px; }
+.story-controls button, .parallax-story-handoff button { border: 1px solid rgba(94,233,240,.35); border-radius: 999px; padding: 8px 12px; background: rgba(3,8,12,.3); color: #b8cacc; font: 700 9px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; cursor: pointer; }
+.parallax-story-feed { height: min(86vh, 820px); overflow-y: auto; scroll-snap-type: y mandatory; border-radius: 24px; scrollbar-width: thin; }
+.parallax-story-stage { position: relative; min-height: 100%; scroll-snap-align: start; isolation: isolate; overflow: hidden; }
+.parallax-story-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.parallax-story-veil { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(2,3,4,.48), rgba(2,3,4,.06) 72%); }
+.parallax-story-copy { position: absolute; left: clamp(24px, 6vw, 72px); bottom: clamp(28px, 7vw, 86px); max-width: 580px; padding: 24px 28px; border-left: 2px solid var(--cyan); border-radius: 16px; background: rgba(3,8,12,.22); backdrop-filter: blur(10px); }
+.parallax-story-copy > span, .parallax-story-copy small { color: var(--cyan); font: 700 10px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .12em; }
+.parallax-story-copy strong { display: block; margin-top: 12px; color: #fff7e8; font: 700 clamp(32px, 6vw, 72px)/.95 Orbitron, sans-serif; }
+.parallax-story-copy p { margin: 14px 0; color: #fff7e8; font-size: clamp(16px, 2vw, 23px); line-height: 1.4; }
+.parallax-guide { position: absolute; z-index: 4; right: clamp(26px, 6vw, 78px); bottom: clamp(28px, 7vw, 86px); display: flex; gap: 10px; align-items: center; max-width: 300px; padding: 12px 14px; border: 1px solid rgba(94,233,240,.24); border-radius: 16px; background: rgba(3,8,12,.32); backdrop-filter: blur(10px); }
+.parallax-guide-avatar { display: grid; place-items: center; width: 36px; height: 36px; flex: 0 0 auto; border: 1px solid var(--cyan); border-radius: 50%; color: var(--cyan); font: 700 16px Orbitron, sans-serif; }
+.parallax-guide strong { display: block; color: #fff7e8; font: 700 10px Orbitron, sans-serif; letter-spacing: .08em; }
+.parallax-guide span { display: block; margin-top: 3px; color: var(--cyan); font: 600 9px ui-monospace, SFMono-Regular, Menlo, monospace; }
+.parallax-guide p { margin: 6px 0 0; color: #b8cacc; font-size: 11px; line-height: 1.35; }
+.parallax-story-dots { display: flex; justify-content: center; gap: 7px; margin-top: 14px; }
+.parallax-story-dots button { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%; background: rgba(255,255,255,.3); cursor: pointer; }
+.parallax-story-dots button.is-active { background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+.parallax-story-handoff { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 18px; padding: 14px 0; color: #b8cacc; font: 700 10px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .1em; }
+.parallax-loop, .parallax-governance, .parallax-proof { position: relative; isolation: isolate; overflow: hidden; }
+.loop-video-carousel { position: absolute; inset: 0; z-index: -1; overflow: hidden; background: var(--obsidian); }
+.loop-video-carousel video, .loop-video-carousel img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; transition: opacity .56s ease; }
+.loop-video-carousel .loop-video-next { opacity: 0; }
+.loop-video-carousel.is-crossfading .loop-video-active { opacity: .02; }
+.loop-video-carousel.is-crossfading .loop-video-next { opacity: 1; }
+.loop-video-veil { position: absolute; inset: 0; background: rgba(0,0,0,.08); pointer-events: none; }
+.loop-media-diagnostic { position: fixed; right: 12px; bottom: 12px; z-index: 20; display: grid; gap: 2px; padding: 8px 10px; border: 1px solid rgba(94,233,240,.24); border-radius: 9px; background: rgba(3,8,12,.82); color: #b8cacc; font: 600 8px/1.3 ui-monospace, SFMono-Regular, Menlo, monospace; pointer-events: none; }
+.loop-media-diagnostic strong { color: var(--cyan); letter-spacing: .12em; }
+.parallax-loop > :not(.parallax-environment), .parallax-governance > :not(.parallax-environment), .parallax-proof > :not(.parallax-environment) { position: relative; z-index: 1; }
+.parallax-loop { border-top: 1px solid rgba(0,229,255,.16); }
+.section-intro { max-width: 720px; }
+.section-intro h2 { margin: 0; color: #fff7e8; font: 600 clamp(28px, 4vw, 52px)/1.05 Orbitron, sans-serif; letter-spacing: -.03em; }
+.section-intro > p:not(.section-kicker) { color: var(--muted); line-height: 1.6; }
+.loop-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; margin-top: 54px; background: rgba(0,229,255,.16); }
+.loop-step { min-height: 150px; padding: 20px; background: #050709; }
+.loop-step > span { color: var(--red); font: 600 11px ui-monospace, SFMono-Regular, Menlo, monospace; }
+.loop-step strong { display: block; margin-top: 20px; color: var(--cyan); font: 600 14px Orbitron, sans-serif; letter-spacing: .08em; }
+.loop-step p { margin: 10px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
+.parallax-demo-section { max-width: 1240px; }
+.parallax-demo-section > .section-intro { margin-bottom: 32px; }
+.parallax-governance { border-top: 1px solid rgba(0,229,255,.16); }
+.governance-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: 38px; background: rgba(0,229,255,.16); }
+.governance-item { padding: 24px; background: #050709; }
+.governance-item strong { color: var(--cyan); font: 600 13px Orbitron, sans-serif; letter-spacing: .12em; }
+.governance-item p { margin: 10px 0 0; color: var(--muted); font-size: 13px; }
+.technical-link { display: inline-block; margin-top: 28px; color: #fff7e8; font: 600 11px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .12em; }
+.technical-link span { color: var(--red); }
+.parallax-proof { padding-top: 50px; padding-bottom: 90px; }
+.proof-strip { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 30px; color: var(--cyan); font: 600 10px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .12em; }
+.spatial-demo { display: grid; grid-template-columns: minmax(0, 3fr) minmax(240px, 1fr); min-height: 560px; border: 1px solid rgba(0,229,255,.18); background: rgba(3,6,7,.12); }
+.spatial-demo-stage { position: relative; min-height: 560px; overflow: hidden; }
+.spatial-demo-stage canvas { position: absolute !important; inset: 0; z-index: 1; }
+.spatial-scene-overlay { position: absolute; z-index: 2; left: 22px; top: 20px; bottom: auto; display: grid; gap: 5px; pointer-events: none; text-shadow: 0 2px 14px #000; }
+.spatial-scene-overlay span { color: var(--red); font: 600 10px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .16em; }
+.spatial-scene-overlay strong { color: #fff7e8; font: 600 14px Orbitron, sans-serif; letter-spacing: .06em; }
+.before-state-legend { position: absolute; z-index: 3; top: 74px; left: 22px; display: grid; gap: 5px; padding: 10px 12px; border-left: 1px solid var(--cyan); background: rgba(3,8,12,.28); color: #b8cacc; font: 600 9px/1.3 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; pointer-events: none; }
+.before-state-legend strong { color: var(--cyan); }
+.after-state-legend { position: absolute; z-index: 3; top: 74px; left: 22px; display: grid; gap: 5px; padding: 10px 12px; border-left: 1px solid #39ff14; background: rgba(3,8,12,.28); color: #b8cacc; font: 600 9px/1.3 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; pointer-events: none; }
+.after-state-legend strong { color: #39ff14; }
+.after-state-legend small { margin-top: 4px; color: var(--cyan); }
+.before-after-compare { position: absolute; z-index: 3; left: 22px; right: 22px; bottom: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; pointer-events: none; }
+.before-after-compare > div, .denial-proof { display: grid; gap: 4px; padding: 10px 12px; border: 1px solid rgba(94,233,240,.2); border-radius: 12px; background: rgba(3,8,12,.3); color: #d6e4e4; font: 600 9px/1.3 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .05em; }
+.before-after-compare strong { color: var(--cyan); font-size: 10px; }
+.before-after-compare > div:last-child { border-color: rgba(57,255,20,.35); }
+.before-after-compare > div:last-child strong { color: #39ff14; }
+.denial-proof { position: absolute; z-index: 3; left: 22px; bottom: 22px; border-color: rgba(255,49,49,.45); }
+.denial-proof strong { color: #ff3131; }
+.spatial-guide-proof { margin: 0; color: #b8cacc; font: 500 11px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.target-marker { pointer-events: none; white-space: nowrap; color: rgba(94,233,240,.78); font: 600 8px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; text-shadow: 0 1px 8px #000; }
+.inline-corridor { position: absolute; z-index: 3; left: 22px; right: 22px; bottom: 20px; padding: 12px 14px; border: 1px solid rgba(94,233,240,.18); border-radius: 14px; background: rgba(3,8,12,.34); backdrop-filter: blur(9px) saturate(115%); pointer-events: none; }
+.inline-corridor p { margin: 0 0 8px; color: var(--cyan); font: 700 9px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .16em; }
+.inline-corridor-rail { display: flex; align-items: center; gap: 7px; overflow-x: auto; }
+.inline-corridor-rail span { color: rgba(255,247,232,.5); font: 700 9px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; white-space: nowrap; }
+.inline-corridor-rail span + span::before { content: '→'; margin-right: 7px; color: rgba(255,247,232,.25); }
+.inline-corridor-rail span.is-complete { color: rgba(94,233,240,.68); }
+.inline-corridor-rail span.is-active { color: #fff7e8; text-shadow: 0 0 10px rgba(94,233,240,.7); }
+.inline-corridor small { display: block; margin-top: 8px; color: #b8cacc; font: 600 9px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; }
+.scene-label { pointer-events: none; white-space: nowrap; padding: 4px 7px; border-left: 1px solid rgba(255,247,232,.45); background: rgba(2,3,4,.72); color: #fff7e8; font: 600 9px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .1em; text-shadow: 0 1px 8px #000; }
+.scene-label small { display: block; margin-top: 3px; color: var(--muted); font-size: 8px; letter-spacing: .06em; }
+.scene-label-cyan { border-color: var(--cyan); color: var(--cyan); }
+.scene-label-magenta { border-color: #ff4dce; color: #ff9ae6; }
+.scene-label-green { border-color: #39ff14; color: #aaff9a; }
+.scene-label-red { border-color: var(--red); color: #ff9b9b; }
+.scene-label-active { box-shadow: 0 0 14px rgba(0,229,255,.2); }
+.scene-action-signal { pointer-events: none; white-space: nowrap; padding: 4px 8px; border: 1px solid rgba(94,233,240,.65); border-radius: 999px; background: rgba(3,8,12,.42); color: var(--cyan); font: 700 9px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .12em; box-shadow: 0 0 18px rgba(94,233,240,.3); }
+.spatial-demo-panel { display: flex; flex-direction: column; gap: 18px; padding: 28px 24px; background: rgba(3,8,12,.20); backdrop-filter: blur(12px) saturate(110%); border-left: 1px solid rgba(94,233,240,.14); }
+.technical-corridor-shell { position: relative; width: min(1240px, 100%); margin: 0 auto; padding: 30px clamp(22px, 5vw, 72px); }
+.spatial-demo-panel h2 { margin: 0; color: #fff7e8; font: 600 26px/1.1 Orbitron, sans-serif; }
+.spatial-demo-complete { display: grid; gap: 6px; margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(94,233,240,.16); color: #b8cacc; font: 600 10px/1.35 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; }
+.spatial-demo-complete strong { color: var(--cyan); font: 700 12px/1.2 Orbitron, sans-serif; letter-spacing: .1em; }
+.spatial-demo-status { display: grid; gap: 16px; margin: 8px 0 0; }
+.spatial-demo-status div { display: grid; gap: 5px; }
+.spatial-demo-status dt { color: var(--cyan); font: 600 9px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .14em; }
+.spatial-demo-status dd { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.4; }
+.spatial-demo-actions { display: grid; gap: 10px; margin-top: auto; }
+.spatial-demo-actions button { justify-content: center; text-align: center; }
+.spatial-truth { margin: 0; color: var(--red); font: 600 10px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .1em; }
+.spatial-receipt { display: grid; gap: 5px; padding-top: 14px; border-top: 1px solid rgba(0,229,255,.15); color: var(--cyan); font: 600 10px ui-monospace, SFMono-Regular, Menlo, monospace; }
+.spatial-receipt span { color: var(--muted); }
+.temporal-timeline { display: flex; flex-wrap: wrap; gap: 6px 10px; padding-top: 14px; border-top: 1px solid rgba(0,229,255,.12); color: #637477; font: 600 8px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; }
+.temporal-timeline span.is-active { color: var(--cyan); }
+.parallax-explainer { margin-top: 72px; }
+.parallax-player { position: relative; isolation: isolate; overflow: hidden; margin-top: 30px; aspect-ratio: 16 / 8; min-height: 360px; border: 1px solid rgba(0,229,255,.24); border-radius: 20px; background: #020304; box-shadow: 0 24px 70px rgba(0,0,0,.35); }
+.parallax-player-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.parallax-player-scrim { position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(0,0,0,.72), transparent 64%), linear-gradient(0deg, rgba(0,0,0,.72), transparent 54%); }
+.parallax-player-overlay { position: absolute; z-index: 2; left: clamp(20px, 5vw, 64px); bottom: clamp(22px, 5vw, 56px); max-width: 450px; color: #fff7e8; }
+.parallax-player-step { color: var(--red); font: 600 11px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .16em; }
+.parallax-player-overlay strong { display: block; margin-top: 10px; color: var(--cyan); font: 600 clamp(24px, 4vw, 48px)/1 Orbitron, sans-serif; letter-spacing: .06em; }
+.parallax-player-overlay p { margin: 12px 0 0; font-size: clamp(15px, 1.7vw, 20px); line-height: 1.4; }
+.parallax-step-rail { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px; margin-top: 12px; background: rgba(0,229,255,.16); }
+.parallax-step-rail button { min-height: 54px; border: 0; background: #050709; color: var(--muted); cursor: pointer; font: 600 10px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; }
+.parallax-step-rail button span { display: block; margin-bottom: 5px; color: var(--red); font-size: 9px; }
+.parallax-step-rail button.is-active { background: rgba(0,229,255,.12); color: #fff7e8; box-shadow: inset 0 -2px var(--cyan); }
+.parallax-step-rail button:focus-visible { outline: 2px solid #fff; outline-offset: -3px; }
+.parallax-live-cta { display: flex; justify-content: center; margin-top: 34px; }
 
 .hud-controls button,
 .world-mode-selector button,
@@ -300,13 +464,67 @@ button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 
 .sr-only { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
 
+.parallax-studio-visual {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(130px, .55fr);
+  gap: 8px;
+  padding: 8px;
+  background: #020304;
+}
+
+.app-shell > .parallax-hero { order: 1; }
+.app-shell > #the-loop { order: 2; }
+.app-shell > .world-viewport { order: 3; }
+.app-shell > .parallax-demo-section { order: 4; }
+.app-shell > .technical-corridor-shell { order: 5; }
+.app-shell > .parallax-governance { order: 6; }
+.app-shell > .parallax-proof { order: 7; }
+
+.parallax-studio-visual img { display: block; width: 100%; object-fit: cover; border: 1px solid rgba(25, 230, 230, .16); }
+.parallax-studio-hero { grid-row: span 2; aspect-ratio: 4 / 3; }
+.parallax-studio-establishing,
+.parallax-studio-capture { aspect-ratio: 16 / 9; }
+.parallax-studio-capture { border-color: rgba(255, 42, 72, .42) !important; }
+
+@media (max-width: 720px), (prefers-reduced-motion: reduce) {
+  .parallax-studio-visual { display: block; }
+  .parallax-studio-hero { aspect-ratio: 4 / 3; }
+  .parallax-studio-establishing { margin-top: 8px; }
+  .parallax-studio-capture { display: none !important; }
+}
+
 @media (max-width: 900px) {
+  .loop-steps { grid-template-columns: repeat(2, 1fr); }
+  .governance-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-capability-stack { right: 22px; width: min(220px, 28vw); }
+  .capability-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .hud-status-stack { justify-content: flex-start; }
   .hud-rail { width: min(280px, 72vw); }
   .world-label { width: 170px; }
 }
 
 @media (max-width: 540px) {
+  .parallax-hero { min-height: 720px; }
+  .parallax-hero-content { width: calc(100% - 32px); max-width: none; margin: 16px; padding: 26px 22px; }
+  .parallax-hero h1 { font-size: clamp(44px, 18vw, 84px); }
+  .hero-capability-stack { position: relative; right: auto; bottom: auto; width: auto; margin: 0 16px 22px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero-capability:last-child { grid-column: 1 / -1; }
+  .capability-strip { grid-template-columns: 1fr; }
+  .parallax-protocol { letter-spacing: .08em; }
+  .loop-steps, .governance-grid { grid-template-columns: 1fr; }
+  .parallax-player { min-height: 300px; aspect-ratio: 4 / 3; border-radius: 14px; }
+  .parallax-story-feed { height: 86svh; border-radius: 16px; }
+  .parallax-story-copy { left: 16px; right: 16px; bottom: 22px; padding: 18px 20px; }
+  .parallax-story-copy strong { font-size: clamp(28px, 11vw, 52px); }
+  .parallax-guide { left: 16px; right: auto; bottom: 92px; max-width: calc(100% - 32px); }
+  .parallax-story-handoff { flex-direction: column; align-items: flex-start; }
+  .parallax-step-rail { grid-template-columns: repeat(3, 1fr); }
+  .parallax-step-rail button { min-height: 62px; }
+  .world-viewport { height: 680px; min-height: 560px; }
+  .spatial-demo { grid-template-columns: 1fr; }
+  .spatial-demo-stage { min-height: 420px; }
+  .spatial-demo-panel { padding: 22px 18px; }
   .hud-action-grid { grid-template-columns: 1fr; }
   .hud-rail { width: min(240px, 78vw); }
   .warden-beacon { width: 126px; }
@@ -317,5 +535,6 @@ button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+  .parallax-hero-content { transform: none !important; }
   .app-shell::after { display: none; }
 }

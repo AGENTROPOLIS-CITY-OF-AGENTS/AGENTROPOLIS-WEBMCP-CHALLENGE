@@ -14,7 +14,6 @@ This district owns:
 
 - Source is not authority.
 - Canonical tokens live in GitHub.
-- Obsidian Signal core is inherited, not redefined.
 - Quarantine protects the system from unreviewed imports.
 - Districts consume primitives; they do not own them.
 
@@ -28,6 +27,4 @@ This district owns:
 - Fiscal Command
 - 789 Studios
 - NTRU
-- AGENTROPOLIS UNI
-- Social Systems
 - future districts
