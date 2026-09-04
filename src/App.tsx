@@ -24,6 +24,7 @@ import { useReducedMotion } from './hooks/useReducedMotion'
 import { parallaxMedia } from './media/parallaxMedia'
 import { LoopVideoCarousel } from './media/LoopVideoCarousel'
 import { useWorldState } from './hooks/useWorldState'
+import { EnvironmentIntake } from './demo/import/EnvironmentIntake'
 import type { WorldMode } from './world/WorldModeSelector'
 
 const WorldScene = lazy(() => import('./world/WorldScene').then((module) => ({ default: module.WorldScene })))
@@ -107,6 +108,15 @@ export function App() {
     return () => window.removeEventListener('keydown', onKey)
   }, [])
 
+  useEffect(() => {
+    const previousRestoration = window.history.scrollRestoration
+    window.history.scrollRestoration = 'manual'
+    if (!window.location.hash) window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    return () => {
+      window.history.scrollRestoration = previousRestoration
+    }
+  }, [])
+
   const launchScenario = useCallback(async (kind: 'allow' | 'approval' | 'deny') => {
     setNotice('')
     setMode('GUIDED')
@@ -147,6 +157,9 @@ export function App() {
   const openDemoSection = () => {
     document.getElementById('interactive-demo')?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth' })
   }
+  const openEnvironmentEntry = () => {
+    document.getElementById('environment')?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth' })
+  }
 
   return (
     <main className="app-shell">
@@ -162,66 +175,17 @@ export function App() {
             <span className="parallax-wordmark-layer parallax-wordmark-face" aria-hidden="true">PARALLAX</span>
           </h1>
           <p className="parallax-subtitle">Spatial MCP for autonomous agents</p>
-          <p className="parallax-lede">Select a 3D object. PARALLAX exposes only the agent capabilities allowed for that object, then verifies the result.</p>
+          <p className="parallax-lede">Pick an object. Choose an action. PARALLAX executes only what the agent is allowed to do, re-observes the world, verifies the result, and leaves a receipt.</p>
           <p className="parallax-protocol">SELECT <span>→</span> REQUEST <span>→</span> AUTHORIZE <span>→</span> ACT <span>→</span> SEE AGAIN <span>→</span> VERIFY <span>→</span> RECEIPT</p>
           <div className="parallax-hero-actions">
-            <button className="parallax-primary-cta" type="button" onClick={openDemoSection}>RUN LIVE DEMO</button>
-            <a className="parallax-secondary-cta" href="#the-loop">HOW PARALLAX WORKS</a>
+            <button className="parallax-primary-cta" type="button" onClick={openEnvironmentEntry}>START INTERACTIVE DEMO</button>
+            <a className="parallax-secondary-cta" href="#the-loop">HOW IT WORKS</a>
           </div>
         </div>
         <div className="hero-capability-stack" aria-label="PARALLAX capabilities">
           {[['OBSERVE', 'Scan environment'], ['ACT', 'Make authorized changes'], ['SEE AGAIN', 'Re-observe results'], ['VERIFY', 'Check against objective'], ['RECEIPT', 'Immutable audit trail']].map(([title, copy], index) => <div className={`hero-capability hero-capability-${index % 2 ? 'red' : 'cyan'}`} key={title}><strong>{title}</strong><span>{copy}</span></div>)}
         </div>
       </section>
-
-      <section className="runtime-strip" aria-label="Live PARALLAX runtime status">
-        <span>WEBMCP STATUS <b>{state.toolStatus === 'registered' ? 'CONNECTED' : 'DISCONNECTED'}</b></span>
-        <span>RUNTIME MODE <b>GOVERNED</b></span>
-        <span>POLICY <b>{state.decision?.effect ?? 'PENDING'}</b></span>
-        <span>LAST RECEIPT <b>{state.activeReceipt?.receiptId ?? 'NONE'}</b></span>
-        <a href="#technical-architecture">INSPECT RECEIPTS →</a>
-      </section>
-      {import.meta.env.DEV ? <aside className="parallax-media-diagnostic" aria-label="Development media diagnostic"><strong>DEV MEDIA</strong><span>CURRENT_SECTION hero</span><span>CURRENT_MEDIA_PURPOSE hero</span><span>CURRENT_ASSET parallax-world-motion-01.mp4</span><span>PLAYING {reducedMotion ? 'NO' : 'AUTO'}</span><span>FALLBACK_ACTIVE {reducedMotion ? 'YES' : 'NO'}</span></aside> : null}
-
-      <section className="capability-strip" aria-label="PARALLAX capabilities overview">
-        {[['3D SPATIAL AWARENESS', 'Understand complex environments'], ['GOVERNED ACTIONS', 'Only authorized changes are allowed'], ['VERIFIABLE OUTCOMES', 'Every change is verified and provable'], ['AUDITABLE RECEIPTS', 'Immutable receipts for accountability']].map(([title, copy]) => <div key={title}><strong>{title}</strong><span>{copy}</span></div>)}
-      </section>
-
-      <section id="the-loop" className="parallax-loop" aria-labelledby="loop-title">
-        <LoopVideoCarousel reducedMotion={reducedMotion} />
-        <div className="section-intro"><p className="section-kicker">WHAT PARALLAX DOES</p><h2 id="loop-title">Observe. Act. See again. Prove it.</h2><p>PARALLAX gives autonomous agents governed spatial agency: the ability to observe, change, re-observe, verify, and prove what happened inside a 3D environment.</p><p>AI agents can change worlds. PARALLAX makes those changes bounded, visible, and verifiable.</p></div>
-        <div className="loop-steps">
-          {[
-            ['01', 'OBSERVE', 'Agent reads scene state.'],
-            ['02', 'ACT', 'Authorized spatial mutation.'],
-            ['03', 'SEE AGAIN', 'Agent re-observes changed state.'],
-            ['04', 'VERIFY', 'Result compared against objective.'],
-            ['05', 'RECEIPT', 'Auditable proof is issued.'],
-          ].map(([number, title, copy]) => <div className="loop-step" key={number}><span>{number}</span><strong>{title}</strong><p>{copy}</p></div>)}
-        </div>
-        <ParallaxExplainer reducedMotion={reducedMotion} />
-        <div className="parallax-live-cta"><button className="parallax-primary-cta" type="button" onClick={openDemoSection}>RUN THE LIVE PARALLAX DEMO</button></div>
-      </section>
-
-      <section className="world-viewport" aria-label="Interactive 3D governed execution world">
-        <ParallaxEnvironment className="world-environment" videoSrc={parallaxMedia.systemView} posterSrc={parallaxMedia.establishingImage} opacity={.34} blur={1.5} dim={.12} reducedMotion={reducedMotion} />
-        {webgl ? (
-          <SceneBoundary fallback={<StaticWorldFallback state={state} />} onError={() => setRendererMode('STATIC')}>
-            <Suspense fallback={<StaticWorldFallback state={state} />}>
-              <WorldScene
-                state={state}
-                reducedMotion={reducedMotion}
-                mode={mode}
-                onModeChange={setMode}
-                onExplore={() => setMode('EXPLORE')}
-                onScenario={launchScenario}
-                onRenderer={setRendererMode}
-              />
-            </Suspense>
-          </SceneBoundary>
-        ) : <StaticWorldFallback state={state} />}
-      </section>
-
       <section id="technical-architecture" className="technical-corridor-shell" aria-label="Technical architecture">
       <UniversalDistrictShell
         layout="standard"
@@ -307,6 +271,59 @@ export function App() {
       >
         <div className="hud-viewport-spacer" aria-hidden="true" />
       </UniversalDistrictShell>
+      </section>
+      <section className="runtime-strip" aria-label="Live PARALLAX runtime status">
+        <span>WEBMCP STATUS <b>{state.toolStatus === 'registered' ? 'CONNECTED' : 'DISCONNECTED'}</b></span>
+        <span>RUNTIME MODE <b>GOVERNED</b></span>
+        <span>POLICY <b>{state.decision?.effect ?? 'PENDING'}</b></span>
+        <span>LAST RECEIPT <b>{state.activeReceipt?.receiptId ?? 'NONE'}</b></span>
+        <a href="#technical-architecture">INSPECT RECEIPTS →</a>
+      </section>
+      {import.meta.env.DEV ? <details className="parallax-media-diagnostic"><summary>DEV INFO</summary><aside aria-label="Development media diagnostic"><strong>DEV MEDIA</strong><span>CURRENT_SECTION hero</span><span>CURRENT_MEDIA_PURPOSE hero</span><span>CURRENT_ASSET parallax-world-motion-01.mp4</span><span>PLAYING {reducedMotion ? 'NO' : 'AUTO'}</span><span>FALLBACK_ACTIVE {reducedMotion ? 'YES' : 'NO'}</span></aside></details> : null}
+
+      <section className="capability-strip" aria-label="PARALLAX capabilities overview">
+        {[['3D SPATIAL AWARENESS', 'Understand complex environments'], ['GOVERNED ACTIONS', 'Only authorized changes are allowed'], ['VERIFIABLE OUTCOMES', 'Every change is verified and provable'], ['AUDITABLE RECEIPTS', 'Inspectable execution records']].map(([title, copy]) => <div key={title}><strong>{title}</strong><span>{copy}</span></div>)}
+      </section>
+
+      <section id="the-loop" className="parallax-loop" aria-labelledby="loop-title">
+        <LoopVideoCarousel reducedMotion={reducedMotion} />
+        <div className="section-intro"><p className="section-kicker">WHAT PARALLAX DOES</p><h2 id="loop-title">Observe. Act. See again. Prove it.</h2><p>PARALLAX gives autonomous agents governed spatial agency: the ability to observe, change, re-observe, verify, and prove what happened inside a 3D environment.</p><p>AI agents can change worlds. PARALLAX makes those changes bounded, visible, and verifiable.</p></div>
+        <div className="loop-steps">
+          {[
+            ['01', 'OBSERVE', 'Agent reads scene state.'],
+            ['02', 'ACT', 'Authorized spatial mutation.'],
+            ['03', 'SEE AGAIN', 'Agent re-observes changed state.'],
+            ['04', 'VERIFY', 'Result compared against objective.'],
+            ['05', 'RECEIPT', 'Auditable proof is issued.'],
+          ].map(([number, title, copy]) => <div className="loop-step" key={number}><span>{number}</span><strong>{title}</strong><p>{copy}</p></div>)}
+        </div>
+        <ParallaxExplainer reducedMotion={reducedMotion} />
+        <div className="parallax-live-cta"><button className="parallax-primary-cta" type="button" onClick={openDemoSection}>RUN THE LIVE PARALLAX DEMO</button></div>
+      </section>
+
+      <section className="world-viewport" aria-label="Interactive 3D governed execution world">
+        <ParallaxEnvironment className="world-environment" videoSrc={parallaxMedia.systemView} posterSrc={parallaxMedia.establishingImage} opacity={.34} blur={1.5} dim={.12} reducedMotion={reducedMotion} />
+        {webgl ? (
+          <SceneBoundary fallback={<StaticWorldFallback state={state} />} onError={() => setRendererMode('STATIC')}>
+            <Suspense fallback={<StaticWorldFallback state={state} />}>
+              <WorldScene
+                state={state}
+                reducedMotion={reducedMotion}
+                mode={mode}
+                onModeChange={setMode}
+                onExplore={() => setMode('EXPLORE')}
+                onScenario={launchScenario}
+                onRenderer={setRendererMode}
+              />
+            </Suspense>
+          </SceneBoundary>
+        ) : <StaticWorldFallback state={state} />}
+      </section>
+
+
+      <section id="environment" className="environment-entry" aria-label="Start with an environment">
+        <div className="start-with"><span>START WITH</span><strong>Choose your working world.</strong></div>
+        <EnvironmentIntake onSample={openDemoSection} />
       </section>
 
       <section id="interactive-demo" className="parallax-demo-section" aria-labelledby="demo-title">
