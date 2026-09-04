@@ -12,6 +12,7 @@
     "classification",
     "dependencies",
     "agentropolis",
+    "registry",
     "localModifications",
     "agentropolisVersion"
   ],
@@ -99,6 +100,54 @@
           "items": { "type": "string" }
         },
         "reducedMotionFallback": { "type": "string" }
+      }
+    },
+    "registry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["surfaces", "interactions", "gpuCost", "accessibility"],
+      "properties": {
+        "surfaces": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "district-shell",
+              "navigation",
+              "header",
+              "card",
+              "badge",
+              "section-title",
+              "divider",
+              "footer",
+              "gallery",
+              "loader",
+              "shader-panel",
+              "spatial-display",
+              "receipt",
+              "credential",
+              "cta"
+            ]
+          }
+        },
+        "interactions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["static", "activate", "navigate", "inspect", "select", "compose"]
+          }
+        },
+        "gpuCost": {
+          "type": "string",
+          "enum": ["none", "low", "medium", "high"]
+        },
+        "accessibility": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["keyboard", "alt-text", "aria-label", "aria-live", "focus-visible", "reduced-motion"]
+          }
+        }
       }
     },
     "localModifications": {
