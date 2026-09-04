@@ -1,27 +1,14 @@
 {
-  "generatedAt": "2026-09-01",
+  "generatedAt": "2026-08-29",
   "owner": "Creator / Construction",
   "districts": {
     "all": [
       "orbit.integrations",
       "motion.perspective-marquee",
-      "loader.assembly-cube",
-      "system.universal-district-shell",
-      "navigation.system-nav",
-      "system.command-header",
-      "system.signal-card",
-      "system.operation-card",
-      "system.status-chip",
-      "system.district-badge",
-      "system.section-title",
-      "system.hud-divider",
-      "system.system-footer"
+      "loader.assembly-cube"
     ],
-    "hermes-city": [
-      "spatial.poem-cube",
-      "gallery.sphere",
-      "agent.credential",
-      "integration.constellation"
+    "hermes": [
+      "spatial.poem-cube"
     ],
     "district-scenes": [
       "spatial.poem-cube"
@@ -32,65 +19,37 @@
     "world-scenes": [
       "shader.atc"
     ],
-    "webmcp": [
+    "forge": [
+      "action.energy-cta"
+    ],
+    "gateway": [
       "action.energy-cta",
+      "integration.constellation"
+    ],
+    "vault": [
       "receipt.tool-calls",
       "gallery.stellar",
       "gallery.folder",
-      "receipt.execution-receipt",
-      "agent.credential",
-      "integration.constellation"
+      "receipt.execution-receipt"
     ],
-    "mission-control": [
-      "action.energy-cta",
-      "receipt.tool-calls",
-      "receipt.execution-receipt",
-      "integration.constellation"
-    ],
-    "789-studios": [
+    "media": [
       "gallery.stellar",
       "gallery.sphere"
     ],
     "archives": [
       "gallery.folder"
+    ],
+    "identity": [
+      "gallery.sphere",
+      "agent.credential"
+    ],
+    "mission-control": [
+      "receipt.execution-receipt",
+      "integration.constellation"
+    ],
+    "hermes-city": [
+      "agent.credential",
+      "integration.constellation"
     ]
-  },
-  "themes": {
-    "hermes-city": {
-      "accent": "#b7ff45",
-      "inheritsCore": true
-    },
-    "asbe": {
-      "accent": "#ff58a8",
-      "inheritsCore": true
-    },
-    "webmcp": {
-      "accent": "#00e5ff",
-      "inheritsCore": true
-    },
-    "mission-control": {
-      "accent": "#ff3131",
-      "inheritsCore": true
-    },
-    "fiscal-command": {
-      "accent": "#855dff",
-      "inheritsCore": true
-    },
-    "789-studios": {
-      "accent": "#ff58a8",
-      "inheritsCore": true
-    },
-    "ntru": {
-      "accent": "#b7ff45",
-      "inheritsCore": true
-    },
-    "agentropolis-uni": {
-      "accent": "#855dff",
-      "inheritsCore": true
-    },
-    "social-systems": {
-      "accent": "#ff58a8",
-      "inheritsCore": true
-    }
   }
 }

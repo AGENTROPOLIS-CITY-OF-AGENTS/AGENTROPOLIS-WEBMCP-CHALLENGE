@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-01",
+  "generatedAt": "2026-08-29",
   "owner": "Creator / Construction",
   "lifecycle": [
     "SOURCE",
@@ -20,7 +20,7 @@
       "source": {
         "provider": "local-adapter",
         "sourceUrl": null,
-        "retrievedAt": "2026-09-01",
+        "retrievedAt": "2026-08-29",
         "originalAuthor": null,
         "license": "Apache-2.0"
       },
@@ -44,21 +44,6 @@
           "all"
         ],
         "reducedMotionFallback": "Static keyboard-first segmented navigation."
-      },
-      "registry": {
-        "surfaces": [
-          "navigation"
-        ],
-        "interactions": [
-          "navigate",
-          "inspect"
-        ],
-        "gpuCost": "none",
-        "accessibility": [
-          "keyboard",
-          "focus-visible",
-          "reduced-motion"
-        ]
       },
       "localModifications": [
         "Local API stabilized for AGENTROPOLIS route and district navigation contexts."
@@ -91,26 +76,13 @@
       "agentropolis": {
         "systemWide": true,
         "districts": [
-          "hermes-city",
+          "hermes",
           "district-scenes"
         ],
         "applications": [
           "story surfaces"
         ],
         "reducedMotionFallback": "Render static face copy with keyboard-advance controls."
-      },
-      "registry": {
-        "surfaces": [
-          "spatial-display"
-        ],
-        "interactions": [
-          "inspect"
-        ],
-        "gpuCost": "high",
-        "accessibility": [
-          "keyboard",
-          "reduced-motion"
-        ]
       },
       "localModifications": [
         "Adapter-backed local fallback implementation used until upstream source retrieval is complete."
@@ -149,18 +121,6 @@
           "district labels"
         ],
         "reducedMotionFallback": "Switch to a non-animated stacked list."
-      },
-      "registry": {
-        "surfaces": [
-          "section-title"
-        ],
-        "interactions": [
-          "static"
-        ],
-        "gpuCost": "none",
-        "accessibility": [
-          "reduced-motion"
-        ]
       },
       "localModifications": [
         "Uses CSS animation with prefers-reduced-motion fallback and AGENTROPOLIS tokens."
@@ -201,18 +161,6 @@
         ],
         "reducedMotionFallback": "Static gradient panel with no render loop."
       },
-      "registry": {
-        "surfaces": [
-          "shader-panel"
-        ],
-        "interactions": [
-          "inspect"
-        ],
-        "gpuCost": "high",
-        "accessibility": [
-          "reduced-motion"
-        ]
-      },
       "localModifications": [
         "Exposed as an adapter-backed panel, not a mandatory scene runtime."
       ],
@@ -225,7 +173,7 @@
       "source": {
         "provider": "local-adapter",
         "sourceUrl": null,
-        "retrievedAt": "2026-09-01",
+        "retrievedAt": "2026-08-29",
         "originalAuthor": null,
         "license": "Apache-2.0"
       },
@@ -243,27 +191,13 @@
       "agentropolis": {
         "systemWide": true,
         "districts": [
-          "webmcp",
-          "mission-control"
+          "forge",
+          "gateway"
         ],
         "applications": [
           "all"
         ],
         "reducedMotionFallback": "No animation required."
-      },
-      "registry": {
-        "surfaces": [
-          "cta"
-        ],
-        "interactions": [
-          "activate"
-        ],
-        "gpuCost": "none",
-        "accessibility": [
-          "keyboard",
-          "focus-visible",
-          "reduced-motion"
-        ]
       },
       "localModifications": [
         "Normalized CTA layout and semantic props for AGENTROPOLIS call-to-action surfaces."
@@ -302,18 +236,6 @@
         ],
         "reducedMotionFallback": "Static assembly frame."
       },
-      "registry": {
-        "surfaces": [
-          "loader"
-        ],
-        "interactions": [
-          "static"
-        ],
-        "gpuCost": "low",
-        "accessibility": [
-          "reduced-motion"
-        ]
-      },
       "localModifications": [
         "Local CSS fallback avoids mandatory WebGL for loading states."
       ],
@@ -326,7 +248,7 @@
       "source": {
         "provider": "local-adapter",
         "sourceUrl": null,
-        "retrievedAt": "2026-09-01",
+        "retrievedAt": "2026-08-29",
         "originalAuthor": null,
         "license": "Apache-2.0"
       },
@@ -344,28 +266,13 @@
       "agentropolis": {
         "systemWide": true,
         "districts": [
-          "webmcp",
-          "mission-control"
+          "vault"
         ],
         "applications": [
           "audit",
           "ops"
         ],
         "reducedMotionFallback": "No motion required."
-      },
-      "registry": {
-        "surfaces": [
-          "receipt"
-        ],
-        "interactions": [
-          "inspect"
-        ],
-        "gpuCost": "none",
-        "accessibility": [
-          "keyboard",
-          "aria-label",
-          "reduced-motion"
-        ]
       },
       "localModifications": [
         "Local schema accepts governed tool lifecycle records and receipt output."
@@ -397,28 +304,14 @@
       "agentropolis": {
         "systemWide": true,
         "districts": [
-          "789-studios",
-          "webmcp"
+          "media",
+          "vault"
         ],
         "applications": [
           "portfolio",
           "showcase"
         ],
         "reducedMotionFallback": "Static responsive grid."
-      },
-      "registry": {
-        "surfaces": [
-          "gallery"
-        ],
-        "interactions": [
-          "inspect"
-        ],
-        "gpuCost": "none",
-        "accessibility": [
-          "alt-text",
-          "keyboard",
-          "reduced-motion"
-        ]
       },
       "localModifications": [
         "Local theme tokens applied; no remote assets required."
@@ -450,28 +343,13 @@
       "agentropolis": {
         "systemWide": true,
         "districts": [
-          "webmcp",
+          "vault",
           "archives"
         ],
         "applications": [
           "asset browsers"
         ],
         "reducedMotionFallback": "Static folder list with keyboard navigation."
-      },
-      "registry": {
-        "surfaces": [
-          "gallery"
-        ],
-        "interactions": [
-          "select",
-          "inspect"
-        ],
-        "gpuCost": "none",
-        "accessibility": [
-          "keyboard",
-          "focus-visible",
-          "reduced-motion"
-        ]
       },
       "localModifications": [
         "Folder state normalized for keyboard and alt text support."
@@ -503,27 +381,14 @@
       "agentropolis": {
         "systemWide": true,
         "districts": [
-          "789-studios",
-          "hermes-city"
+          "media",
+          "identity"
         ],
         "applications": [
           "showcases",
           "agent profiles"
         ],
         "reducedMotionFallback": "Static rounded card grid."
-      },
-      "registry": {
-        "surfaces": [
-          "gallery"
-        ],
-        "interactions": [
-          "inspect"
-        ],
-        "gpuCost": "none",
-        "accessibility": [
-          "alt-text",
-          "reduced-motion"
-        ]
       },
       "localModifications": [
         "Local DOM fallback retains alt text and avoids parallel GPU loops."
@@ -537,7 +402,7 @@
       "source": {
         "provider": "local-adapter",
         "sourceUrl": null,
-        "retrievedAt": "2026-09-01",
+        "retrievedAt": "2026-08-29",
         "originalAuthor": null,
         "license": "Apache-2.0"
       },
@@ -555,7 +420,7 @@
       "agentropolis": {
         "systemWide": true,
         "districts": [
-          "webmcp",
+          "vault",
           "mission-control"
         ],
         "applications": [
@@ -563,20 +428,6 @@
           "governance"
         ],
         "reducedMotionFallback": "No motion required."
-      },
-      "registry": {
-        "surfaces": [
-          "receipt"
-        ],
-        "interactions": [
-          "inspect"
-        ],
-        "gpuCost": "none",
-        "accessibility": [
-          "keyboard",
-          "aria-label",
-          "reduced-motion"
-        ]
       },
       "localModifications": [
         "Local governed adapter for AGENTROPOLIS execution receipts."
@@ -590,7 +441,7 @@
       "source": {
         "provider": "local-adapter",
         "sourceUrl": null,
-        "retrievedAt": "2026-09-01",
+        "retrievedAt": "2026-08-29",
         "originalAuthor": null,
         "license": "Apache-2.0"
       },
@@ -608,27 +459,14 @@
       "agentropolis": {
         "systemWide": true,
         "districts": [
-          "hermes-city",
-          "webmcp"
+          "identity",
+          "hermes-city"
         ],
         "applications": [
           "agents",
           "district shells"
         ],
         "reducedMotionFallback": "No motion required."
-      },
-      "registry": {
-        "surfaces": [
-          "credential"
-        ],
-        "interactions": [
-          "inspect"
-        ],
-        "gpuCost": "none",
-        "accessibility": [
-          "aria-label",
-          "reduced-motion"
-        ]
       },
       "localModifications": [
         "Local governed adapter for actor credential display and mandate signaling."
@@ -642,7 +480,7 @@
       "source": {
         "provider": "local-adapter",
         "sourceUrl": null,
-        "retrievedAt": "2026-09-01",
+        "retrievedAt": "2026-08-29",
         "originalAuthor": null,
         "license": "Apache-2.0"
       },
@@ -660,7 +498,7 @@
       "agentropolis": {
         "systemWide": true,
         "districts": [
-          "webmcp",
+          "gateway",
           "mission-control",
           "hermes-city"
         ],
@@ -670,534 +508,8 @@
         ],
         "reducedMotionFallback": "Static node list with badges."
       },
-      "registry": {
-        "surfaces": [
-          "navigation"
-        ],
-        "interactions": [
-          "navigate",
-          "inspect"
-        ],
-        "gpuCost": "none",
-        "accessibility": [
-          "keyboard",
-          "reduced-motion"
-        ]
-      },
       "localModifications": [
         "Local governed adapter for integration status maps without mandatory WebGL."
-      ],
-      "agentropolisVersion": "0.1.0"
-    },
-    {
-      "id": "system.universal-district-shell",
-      "name": "Universal District Shell",
-      "version": "0.1.0",
-      "source": {
-        "provider": "local-adapter",
-        "sourceUrl": null,
-        "retrievedAt": "2026-09-01",
-        "originalAuthor": null,
-        "license": "Apache-2.0"
-      },
-      "classification": {
-        "category": "navigation",
-        "maturity": "reviewed",
-        "clientOnly": false,
-        "gpuRequired": false,
-        "mobileSafe": true,
-        "runtime": "DOM"
-      },
-      "dependencies": [
-        "react"
-      ],
-      "agentropolis": {
-        "systemWide": true,
-        "districts": [
-          "all"
-        ],
-        "applications": [
-          "district shells",
-          "ops"
-        ],
-        "reducedMotionFallback": "Static shell with no autonomous motion requirements."
-      },
-      "registry": {
-        "surfaces": [
-          "district-shell"
-        ],
-        "interactions": [
-          "compose",
-          "navigate"
-        ],
-        "gpuCost": "none",
-        "accessibility": [
-          "keyboard",
-          "focus-visible",
-          "reduced-motion"
-        ]
-      },
-      "localModifications": [
-        "Obsidian Signal shell layer added for district-scale composition without replacing the shared core foundation."
-      ],
-      "agentropolisVersion": "0.1.0"
-    },
-    {
-      "id": "navigation.system-nav",
-      "name": "System Nav",
-      "version": "0.1.0",
-      "source": {
-        "provider": "local-adapter",
-        "sourceUrl": null,
-        "retrievedAt": "2026-09-01",
-        "originalAuthor": null,
-        "license": "Apache-2.0"
-      },
-      "classification": {
-        "category": "navigation",
-        "maturity": "reviewed",
-        "clientOnly": false,
-        "gpuRequired": false,
-        "mobileSafe": true,
-        "runtime": "DOM"
-      },
-      "dependencies": [
-        "react"
-      ],
-      "agentropolis": {
-        "systemWide": true,
-        "districts": [
-          "all"
-        ],
-        "applications": [
-          "district shells",
-          "ops"
-        ],
-        "reducedMotionFallback": "Static segmented navigation with keyboard activation."
-      },
-      "registry": {
-        "surfaces": [
-          "navigation"
-        ],
-        "interactions": [
-          "navigate",
-          "select"
-        ],
-        "gpuCost": "none",
-        "accessibility": [
-          "keyboard",
-          "focus-visible",
-          "reduced-motion"
-        ]
-      },
-      "localModifications": [
-        "District-aware accent routing inherits Obsidian Signal core tokens rather than replacing them."
-      ],
-      "agentropolisVersion": "0.1.0"
-    },
-    {
-      "id": "system.command-header",
-      "name": "Command Header",
-      "version": "0.1.0",
-      "source": {
-        "provider": "local-adapter",
-        "sourceUrl": null,
-        "retrievedAt": "2026-09-01",
-        "originalAuthor": null,
-        "license": "Apache-2.0"
-      },
-      "classification": {
-        "category": "tool-ui",
-        "maturity": "reviewed",
-        "clientOnly": false,
-        "gpuRequired": false,
-        "mobileSafe": true,
-        "runtime": "DOM"
-      },
-      "dependencies": [
-        "react"
-      ],
-      "agentropolis": {
-        "systemWide": true,
-        "districts": [
-          "all"
-        ],
-        "applications": [
-          "district shells",
-          "ops"
-        ],
-        "reducedMotionFallback": "Static heading with no required animation."
-      },
-      "registry": {
-        "surfaces": [
-          "header"
-        ],
-        "interactions": [
-          "inspect"
-        ],
-        "gpuCost": "none",
-        "accessibility": [
-          "aria-label",
-          "reduced-motion"
-        ]
-      },
-      "localModifications": [
-        "Institutional header pattern grounded in Obsidian Signal shell language."
-      ],
-      "agentropolisVersion": "0.1.0"
-    },
-    {
-      "id": "system.signal-card",
-      "name": "Signal Card",
-      "version": "0.1.0",
-      "source": {
-        "provider": "local-adapter",
-        "sourceUrl": null,
-        "retrievedAt": "2026-09-01",
-        "originalAuthor": null,
-        "license": "Apache-2.0"
-      },
-      "classification": {
-        "category": "tool-ui",
-        "maturity": "reviewed",
-        "clientOnly": false,
-        "gpuRequired": false,
-        "mobileSafe": true,
-        "runtime": "DOM"
-      },
-      "dependencies": [
-        "react"
-      ],
-      "agentropolis": {
-        "systemWide": true,
-        "districts": [
-          "all"
-        ],
-        "applications": [
-          "district shells",
-          "ops"
-        ],
-        "reducedMotionFallback": "Static card with semantic status color only."
-      },
-      "registry": {
-        "surfaces": [
-          "card"
-        ],
-        "interactions": [
-          "inspect"
-        ],
-        "gpuCost": "none",
-        "accessibility": [
-          "aria-label",
-          "reduced-motion"
-        ]
-      },
-      "localModifications": [
-        "Core card primitive preserves the shared foundation and uses accent only as a district extension."
-      ],
-      "agentropolisVersion": "0.1.0"
-    },
-    {
-      "id": "system.operation-card",
-      "name": "Operation Card",
-      "version": "0.1.0",
-      "source": {
-        "provider": "local-adapter",
-        "sourceUrl": null,
-        "retrievedAt": "2026-09-01",
-        "originalAuthor": null,
-        "license": "Apache-2.0"
-      },
-      "classification": {
-        "category": "tool-ui",
-        "maturity": "reviewed",
-        "clientOnly": false,
-        "gpuRequired": false,
-        "mobileSafe": true,
-        "runtime": "DOM"
-      },
-      "dependencies": [
-        "react"
-      ],
-      "agentropolis": {
-        "systemWide": true,
-        "districts": [
-          "all"
-        ],
-        "applications": [
-          "ops",
-          "governance"
-        ],
-        "reducedMotionFallback": "Static operation summary and metadata chips."
-      },
-      "registry": {
-        "surfaces": [
-          "card"
-        ],
-        "interactions": [
-          "inspect"
-        ],
-        "gpuCost": "none",
-        "accessibility": [
-          "aria-label",
-          "reduced-motion"
-        ]
-      },
-      "localModifications": [
-        "Operation framing added for governance and receipt surfaces."
-      ],
-      "agentropolisVersion": "0.1.0"
-    },
-    {
-      "id": "system.status-chip",
-      "name": "Status Chip",
-      "version": "0.1.0",
-      "source": {
-        "provider": "local-adapter",
-        "sourceUrl": null,
-        "retrievedAt": "2026-09-01",
-        "originalAuthor": null,
-        "license": "Apache-2.0"
-      },
-      "classification": {
-        "category": "tool-ui",
-        "maturity": "reviewed",
-        "clientOnly": false,
-        "gpuRequired": false,
-        "mobileSafe": true,
-        "runtime": "DOM"
-      },
-      "dependencies": [
-        "react"
-      ],
-      "agentropolis": {
-        "systemWide": true,
-        "districts": [
-          "all"
-        ],
-        "applications": [
-          "all"
-        ],
-        "reducedMotionFallback": "Static chip with semantic color only."
-      },
-      "registry": {
-        "surfaces": [
-          "badge"
-        ],
-        "interactions": [
-          "inspect"
-        ],
-        "gpuCost": "none",
-        "accessibility": [
-          "aria-label",
-          "reduced-motion"
-        ]
-      },
-      "localModifications": [
-        "Unified status representation across shell, governance, and receipt surfaces."
-      ],
-      "agentropolisVersion": "0.1.0"
-    },
-    {
-      "id": "system.district-badge",
-      "name": "District Badge",
-      "version": "0.1.0",
-      "source": {
-        "provider": "local-adapter",
-        "sourceUrl": null,
-        "retrievedAt": "2026-09-01",
-        "originalAuthor": null,
-        "license": "Apache-2.0"
-      },
-      "classification": {
-        "category": "tool-ui",
-        "maturity": "reviewed",
-        "clientOnly": false,
-        "gpuRequired": false,
-        "mobileSafe": true,
-        "runtime": "DOM"
-      },
-      "dependencies": [
-        "react"
-      ],
-      "agentropolis": {
-        "systemWide": true,
-        "districts": [
-          "all"
-        ],
-        "applications": [
-          "district shells",
-          "ops"
-        ],
-        "reducedMotionFallback": "Static district marker using inherited core tokens plus accent extension."
-      },
-      "registry": {
-        "surfaces": [
-          "badge"
-        ],
-        "interactions": [
-          "inspect"
-        ],
-        "gpuCost": "none",
-        "accessibility": [
-          "aria-label",
-          "reduced-motion"
-        ]
-      },
-      "localModifications": [
-        "District identity constrained to accent extension only."
-      ],
-      "agentropolisVersion": "0.1.0"
-    },
-    {
-      "id": "system.section-title",
-      "name": "Section Title",
-      "version": "0.1.0",
-      "source": {
-        "provider": "local-adapter",
-        "sourceUrl": null,
-        "retrievedAt": "2026-09-01",
-        "originalAuthor": null,
-        "license": "Apache-2.0"
-      },
-      "classification": {
-        "category": "tool-ui",
-        "maturity": "reviewed",
-        "clientOnly": false,
-        "gpuRequired": false,
-        "mobileSafe": true,
-        "runtime": "DOM"
-      },
-      "dependencies": [
-        "react"
-      ],
-      "agentropolis": {
-        "systemWide": true,
-        "districts": [
-          "all"
-        ],
-        "applications": [
-          "district shells",
-          "ops"
-        ],
-        "reducedMotionFallback": "Static title with accent kicker only."
-      },
-      "registry": {
-        "surfaces": [
-          "section-title"
-        ],
-        "interactions": [
-          "inspect"
-        ],
-        "gpuCost": "none",
-        "accessibility": [
-          "aria-label",
-          "reduced-motion"
-        ]
-      },
-      "localModifications": [
-        "Section title inherits the shared shell heading language."
-      ],
-      "agentropolisVersion": "0.1.0"
-    },
-    {
-      "id": "system.hud-divider",
-      "name": "HUD Divider",
-      "version": "0.1.0",
-      "source": {
-        "provider": "local-adapter",
-        "sourceUrl": null,
-        "retrievedAt": "2026-09-01",
-        "originalAuthor": null,
-        "license": "Apache-2.0"
-      },
-      "classification": {
-        "category": "tool-ui",
-        "maturity": "reviewed",
-        "clientOnly": false,
-        "gpuRequired": false,
-        "mobileSafe": true,
-        "runtime": "DOM"
-      },
-      "dependencies": [
-        "react"
-      ],
-      "agentropolis": {
-        "systemWide": true,
-        "districts": [
-          "all"
-        ],
-        "applications": [
-          "district shells",
-          "ops"
-        ],
-        "reducedMotionFallback": "Static divider line with no animation."
-      },
-      "registry": {
-        "surfaces": [
-          "divider"
-        ],
-        "interactions": [
-          "static"
-        ],
-        "gpuCost": "none",
-        "accessibility": [
-          "reduced-motion"
-        ]
-      },
-      "localModifications": [
-        "Environmental HUD separator for shell subdivisions."
-      ],
-      "agentropolisVersion": "0.1.0"
-    },
-    {
-      "id": "system.system-footer",
-      "name": "System Footer",
-      "version": "0.1.0",
-      "source": {
-        "provider": "local-adapter",
-        "sourceUrl": null,
-        "retrievedAt": "2026-09-01",
-        "originalAuthor": null,
-        "license": "Apache-2.0"
-      },
-      "classification": {
-        "category": "navigation",
-        "maturity": "reviewed",
-        "clientOnly": false,
-        "gpuRequired": false,
-        "mobileSafe": true,
-        "runtime": "DOM"
-      },
-      "dependencies": [
-        "react"
-      ],
-      "agentropolis": {
-        "systemWide": true,
-        "districts": [
-          "all"
-        ],
-        "applications": [
-          "district shells",
-          "ops"
-        ],
-        "reducedMotionFallback": "Static footer metadata cluster."
-      },
-      "registry": {
-        "surfaces": [
-          "footer"
-        ],
-        "interactions": [
-          "inspect"
-        ],
-        "gpuCost": "none",
-        "accessibility": [
-          "aria-label",
-          "reduced-motion"
-        ]
-      },
-      "localModifications": [
-        "Footer pattern aligned to shell and receipt boundaries."
       ],
       "agentropolisVersion": "0.1.0"
     }
@@ -1208,11 +520,9 @@
       "name": "Hermes City Construction Mode",
       "description": "Construction surface for Hermes City with governed integration visibility.",
       "recommendedComponents": [
-        "system.universal-district-shell",
-        "system.command-header",
-        "navigation.system-nav",
-        "integration.constellation",
+        "orbit.integrations",
         "agent.credential",
+        "integration.constellation",
         "receipt.execution-receipt"
       ]
     },
@@ -1221,10 +531,8 @@
       "name": "ASBE Production Surfaces",
       "description": "Production-ready operator surfaces for ASBE applications.",
       "recommendedComponents": [
-        "system.universal-district-shell",
-        "system.signal-card",
-        "system.operation-card",
         "action.energy-cta",
+        "agent.credential",
         "receipt.execution-receipt"
       ]
     },
@@ -1233,9 +541,6 @@
       "name": "Mission Control",
       "description": "Operational audit and system state composition.",
       "recommendedComponents": [
-        "system.command-header",
-        "system.status-chip",
-        "system.signal-card",
         "receipt.execution-receipt",
         "receipt.tool-calls",
         "integration.constellation"
@@ -1246,50 +551,10 @@
       "name": "Universal District Shell",
       "description": "Base shell for future districts consuming UI Vault primitives.",
       "recommendedComponents": [
-        "system.universal-district-shell",
-        "navigation.system-nav",
-        "system.section-title",
-        "system.hud-divider",
-        "system.system-footer"
+        "orbit.integrations",
+        "action.energy-cta",
+        "agent.credential"
       ]
     }
-  ],
-  "districtThemes": {
-    "hermes-city": {
-      "accent": "#b7ff45",
-      "inheritsCore": true
-    },
-    "asbe": {
-      "accent": "#ff58a8",
-      "inheritsCore": true
-    },
-    "webmcp": {
-      "accent": "#00e5ff",
-      "inheritsCore": true
-    },
-    "mission-control": {
-      "accent": "#ff3131",
-      "inheritsCore": true
-    },
-    "fiscal-command": {
-      "accent": "#855dff",
-      "inheritsCore": true
-    },
-    "789-studios": {
-      "accent": "#ff58a8",
-      "inheritsCore": true
-    },
-    "ntru": {
-      "accent": "#b7ff45",
-      "inheritsCore": true
-    },
-    "agentropolis-uni": {
-      "accent": "#855dff",
-      "inheritsCore": true
-    },
-    "social-systems": {
-      "accent": "#ff58a8",
-      "inheritsCore": true
-    }
-  }
+  ]
 }

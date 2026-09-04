@@ -134,3 +134,12 @@ npm run validate:design-harness
 ```
 
 Use [the Design Harness runbook](docs/DESIGN-HARNESS.md) for the deadline-bound candidate pass and evidence receipt.
+# Third-Party Assets
+
+PARALLAX presentation models are used as visual geometry only; the scene graph and governed protocol remain authoritative.
+
+- “GAME READY MICROPHONE” by Oxygen3D — https://skfb.ly/pABIA — Creative Commons Attribution 4.0: https://creativecommons.org/licenses/by/4.0/
+- “Softbox Light” by Drake — https://skfb.ly/6vStJ — Creative Commons Attribution 4.0: https://creativecommons.org/licenses/by/4.0/
+- “Chair” by brucassol — https://skfb.ly/R78x — Creative Commons Attribution 4.0: https://creativecommons.org/licenses/by/4.0/
+- “CC0 - Camera” by plaggy — https://skfb.ly/oUXwF — Creative Commons Attribution 4.0: http://creativecommons.org/licenses/by/4.0/
+- “Camera” by t.uribe98 — https://skfb.ly/oJyuG — Creative Commons Attribution 4.0: http://creativecommons.org/licenses/by/4.0/

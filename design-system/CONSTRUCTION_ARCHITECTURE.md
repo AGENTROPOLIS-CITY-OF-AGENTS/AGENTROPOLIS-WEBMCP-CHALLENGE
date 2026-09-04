@@ -17,7 +17,6 @@ Creator / Construction governs how UI primitives enter AGENTROPOLIS, who owns th
 
 - Upstream component libraries are sources, not authority.
 - GitHub-tracked tokens, manifests, templates, and adapters are authority.
-- Creator Core Obsidian Signal is the shared foundation; district themes may extend it but may not replace the core Obsidian + Cyan + Red system.
 - Figma variables, if ever generated, must mirror GitHub tokens rather than define them.
 
 ## Component entry rules
