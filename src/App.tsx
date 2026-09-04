@@ -158,6 +158,7 @@ export function App() {
     document.getElementById('interactive-demo')?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth' })
   }
   const openEnvironmentEntry = () => {
+    setSpatialDemoOpen(true)
     document.getElementById('environment')?.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth' })
   }
 
