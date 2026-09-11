@@ -1,0 +1,19 @@
+{
+  "id": "ui.interactive-list-preview",
+  "candidateSource": "21st-dev-user-supplied",
+  "sourceUrl": "https://21st.dev/r/hyperiux/interactive-list-preview",
+  "retrievedAt": "2026-09-11",
+  "originalAuthor": "hyperiux",
+  "license": null,
+  "status": "quarantine",
+  "dedupeKey": "interactive-list-preview",
+  "runtime": "React/shadcn-compatible",
+  "gpuHeavy": false,
+  "codePath": null,
+  "intendedConsumers": ["AGENTROPOLIS-HOLOFOIL2", "AGENTROPOLIS-CREATOR"],
+  "notes": [
+    "Candidate use: official leaderboard shell, match history, battle log, roster, deck list and creator asset lists.",
+    "Competitive views must expose only legally observable state.",
+    "Do not export until source, license, keyboard behavior, reduced motion, and mobile fit are reviewed."
+  ]
+}

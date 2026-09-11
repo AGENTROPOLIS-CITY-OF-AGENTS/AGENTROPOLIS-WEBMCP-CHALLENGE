@@ -1,0 +1,19 @@
+{
+  "id": "spatial.animated-feature-spotlight3d",
+  "candidateSource": "21st-dev-user-supplied",
+  "sourceUrl": "https://21st.dev/r/ruixen.ui/animated-feature-spotlight3d",
+  "retrievedAt": "2026-09-11",
+  "originalAuthor": "ruixen.ui",
+  "license": null,
+  "status": "quarantine",
+  "dedupeKey": "animated-feature-spotlight3d",
+  "runtime": "React/3D candidate",
+  "gpuHeavy": true,
+  "codePath": null,
+  "intendedConsumers": ["AGENTROPOLIS-HOLOFOIL2", "AGENTROPOLIS-CREATOR"],
+  "notes": [
+    "Candidate use: featured TCG card/player/champion spotlight, product reveal and Creator hero storytelling.",
+    "Presentation follows truth: animation may emphasize committed state but may not create state.",
+    "GPU/mobile, reduced-motion, keyboard, source and license review required before promotion."
+  ]
+}

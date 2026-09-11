@@ -1,0 +1,20 @@
+{
+  "id": "motion.scroll-expansion-hero",
+  "candidateSource": "21st-dev-user-supplied",
+  "sourceUrl": "https://21st.dev/r/arunachalam/scroll-expansion-hero",
+  "retrievedAt": "2026-09-11",
+  "originalAuthor": "arunachalam",
+  "license": null,
+  "status": "quarantine",
+  "dedupeKey": "scroll-expansion-hero",
+  "runtime": "React/shadcn-compatible",
+  "gpuHeavy": false,
+  "codePath": null,
+  "intendedConsumers": ["AGENTROPOLIS-HOLOFOIL2", "AGENTROPOLIS-CREATOR"],
+  "notes": [
+    "Duplicate user install command was deduplicated to one candidate record.",
+    "Candidate use: season intros, finals, champion reveals, cinematic recaps and creator launch storytelling.",
+    "Must not sit in deterministic gameplay resolution paths.",
+    "Reduced-motion and performance review required before promotion."
+  ]
+}

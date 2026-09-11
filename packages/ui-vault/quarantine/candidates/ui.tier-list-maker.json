@@ -1,0 +1,20 @@
+{
+  "id": "ui.tier-list-maker",
+  "candidateSource": "21st-dev-user-supplied",
+  "sourceUrl": "https://21st.dev/r/laziekiki/tier-list-maker",
+  "retrievedAt": "2026-09-11",
+  "originalAuthor": "laziekiki",
+  "license": null,
+  "status": "quarantine",
+  "dedupeKey": "tier-list-maker",
+  "runtime": "React/shadcn-compatible",
+  "gpuHeavy": false,
+  "codePath": null,
+  "intendedConsumers": ["AGENTROPOLIS-HOLOFOIL2", "AGENTROPOLIS-CREATOR"],
+  "notes": [
+    "User-supplied 21st.dev install recipe captured for governed review.",
+    "Candidate use: TCG meta boards, editorial/community rankings, creator comparison surfaces.",
+    "Do not use as authoritative competitive standings unless backed by committed ranking data.",
+    "Do not export from the default UI Vault entrypoint until source, license, accessibility, and API fit are reviewed."
+  ]
+}

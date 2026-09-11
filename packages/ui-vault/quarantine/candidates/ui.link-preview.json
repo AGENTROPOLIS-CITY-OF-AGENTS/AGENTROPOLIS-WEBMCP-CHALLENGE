@@ -1,0 +1,19 @@
+{
+  "id": "ui.link-preview",
+  "candidateSource": "21st-dev-user-supplied",
+  "sourceUrl": "https://21st.dev/r/aghasisahakyan1/link-preview",
+  "retrievedAt": "2026-09-11",
+  "originalAuthor": "aghasisahakyan1",
+  "license": null,
+  "status": "quarantine",
+  "dedupeKey": "link-preview",
+  "runtime": "React/shadcn-compatible",
+  "gpuHeavy": false,
+  "codePath": null,
+  "intendedConsumers": ["AGENTROPOLIS-HOLOFOIL2", "AGENTROPOLIS-CREATOR"],
+  "notes": [
+    "Candidate use: match replay links, rules/manual references, verified artifacts, project references and creator source previews.",
+    "External metadata fetching must be sanitized and must not become an unrestricted server-side fetch path.",
+    "Do not export until source, license, URL sanitization and accessibility review are complete."
+  ]
+}
