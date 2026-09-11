@@ -1,6 +1,6 @@
 # AGENTROPOLIS UI Vault Source Log
 
-Updated: 2026-09-01
+Updated: 2026-09-11
 
 This vault currently ships reviewed local implementations with adapter boundaries for future upstream replacement. Live 21st.dev authentication is optional; when unavailable, user-supplied recipes can be captured in `quarantine/` with unresolved provenance explicitly recorded.
 
@@ -26,6 +26,16 @@ This vault currently ships reviewed local implementations with adapter boundarie
 | receipt.execution-receipt | local adapter-backed | none required | 2026-08-29 | Apache-2.0 | none |
 | agent.credential | local adapter-backed | none required | 2026-08-29 | Apache-2.0 | none |
 | integration.constellation | local adapter-backed | none required | 2026-08-29 | Apache-2.0 | none |
+| ui.tier-list-maker | quarantined source manifest | https://21st.dev/r/laziekiki/tier-list-maker | 2026-09-11 | unknown | license, source review, accessibility, API fit |
+| ui.interactive-list-preview | quarantined source manifest | https://21st.dev/r/hyperiux/interactive-list-preview | 2026-09-11 | unknown | license, source review, keyboard/mobile behavior |
+| ui.link-preview | quarantined source manifest | https://21st.dev/r/aghasisahakyan1/link-preview | 2026-09-11 | unknown | license, source review, URL sanitization |
+| ui.hover-preview | quarantined source manifest | https://21st.dev/r/minhxthanh/hover-preview | 2026-09-11 | unknown | license, source review, touch/keyboard/reduced-motion fallback |
+| motion.scroll-expansion-hero | quarantined source manifest | https://21st.dev/r/arunachalam/scroll-expansion-hero | 2026-09-11 | unknown | license, source review, reduced-motion/performance |
+| spatial.splite | quarantined source manifest | https://21st.dev/r/serafimcloud/splite | 2026-09-11 | unknown | license, source review, hosted-dependency audit, GPU/mobile/reduced-motion |
+| ui.spotlight-card | quarantined source manifest | https://21st.dev/r/jahed/spotlight-card | 2026-09-11 | unknown | license, source review, touch/reduced-motion |
+| spatial.animated-feature-spotlight3d | quarantined source manifest | https://21st.dev/r/ruixen.ui/animated-feature-spotlight3d | 2026-09-11 | unknown | license, source review, GPU/mobile/reduced-motion/accessibility |
+| ui.feature-card-1 | quarantined source manifest | https://21st.dev/r/ravikatiyar162/feature-card-1 | 2026-09-11 | unknown | license, source review, responsive/accessibility/API fit |
+| ui.feature | quarantined source manifest | https://21st.dev/r/moazamtrade/feature | 2026-09-11 | unknown | license, source review, responsive/accessibility/API fit |
 
 ## Policy
 
@@ -33,3 +43,5 @@ This vault currently ships reviewed local implementations with adapter boundarie
 - Put unreconciled imports into `quarantine/` before review.
 - Promote components to `stable` only after provenance, accessibility, and runtime classification are confirmed.
 - Successful quarantine review advances to `reviewed`, not directly to `stable`.
+- A user-supplied `npx shadcn ... add` recipe is a provenance pointer, not production approval.
+- Components consumed by HOLOFOIL or CREATOR must preserve the owning application's truth, authority, accessibility, and performance contracts.

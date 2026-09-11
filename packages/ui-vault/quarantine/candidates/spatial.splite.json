@@ -1,0 +1,20 @@
+{
+  "id": "spatial.splite",
+  "candidateSource": "21st-dev-user-supplied",
+  "sourceUrl": "https://21st.dev/r/serafimcloud/splite",
+  "retrievedAt": "2026-09-11",
+  "originalAuthor": "serafimcloud",
+  "license": null,
+  "status": "quarantine",
+  "dedupeKey": "splite",
+  "runtime": "React/3D candidate",
+  "gpuHeavy": true,
+  "codePath": null,
+  "intendedConsumers": ["AGENTROPOLIS-HOLOFOIL2", "AGENTROPOLIS-CREATOR"],
+  "notes": [
+    "Candidate use: battle-table shell, exhibition room, card stage or trophy/leaderboard podium presentation.",
+    "Prefer existing HOLOFOIL Three.js/React Three Fiber stack for production when equivalent.",
+    "Must not create a mandatory hosted Spline or third-party runtime dependency.",
+    "GPU, mobile, reduced-motion, provenance and license review required before promotion."
+  ]
+}
