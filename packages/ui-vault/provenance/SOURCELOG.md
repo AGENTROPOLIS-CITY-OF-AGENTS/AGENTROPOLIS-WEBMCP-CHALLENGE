@@ -25,7 +25,7 @@ This vault currently ships reviewed local implementations with adapter boundarie
 | gallery.sphere | local fallback | upstream candidate unknown | not retrieved | unknown | source URL, author, license |
 | receipt.execution-receipt | local adapter-backed | none required | 2026-08-29 | Apache-2.0 | none |
 | agent.credential | local adapter-backed | none required | 2026-08-29 | Apache-2.0 | none |
-| integration.constellation | local adapter-backed | none required | 2026-08-29 | Apache-2.0 | none |
+| integration.constellation | local adapter-backed | none required | 2026-08-29 | Apache-2.0 | none |\n| effect.choso-ascii | quarantined Canvas2D reimplementation | 21st.dev CHOSO ASCII recipe | 2026-09-19 | unknown | original author, license |
 
 ## Policy
 
