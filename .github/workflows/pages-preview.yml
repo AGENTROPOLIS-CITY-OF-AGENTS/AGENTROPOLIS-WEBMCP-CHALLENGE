@@ -37,8 +37,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build preview artifact
-        run: npm run build
+      - name: Build and verify vendored loop baseline
+        run: npm run verify:loop-baseline
 
       - name: Upload preview artifact
         uses: actions/upload-artifact@v4

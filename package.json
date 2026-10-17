@@ -11,6 +11,7 @@
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "lint:ui-vault": "node scripts/ui-vault/lint.mjs",
     "test": "vitest run",
+    "verify:loop-baseline": "node scripts/verify-loop-baseline.mjs",
     "test:ui-vault": "vitest run --config packages/ui-vault/vitest.config.ts",
     "test:watch": "vitest",
     "typecheck": "tsc -b",
