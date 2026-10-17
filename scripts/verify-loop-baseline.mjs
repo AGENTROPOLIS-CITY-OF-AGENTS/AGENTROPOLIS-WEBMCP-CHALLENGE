@@ -337,11 +337,13 @@ async function browserSmoke() {
     `--user-data-dir=${userDataDir}`,
     '--host-resolver-rules=MAP * ~NOTFOUND, EXCLUDE 127.0.0.1, EXCLUDE localhost',
     'about:blank',
-  ], { stdio: ['ignore', 'ignore', 'pipe'] })
+  ], { stdio: ['ignore', 'ignore', 'pipe'], detached: true })
   chrome.stderr.on('data', (chunk) => {
     stderr.push(chunk.toString())
     if (stderr.join('').length > 12000) stderr.shift()
   })
+  chrome.stderr.on('error', () => {})
+  chrome.on('error', () => {})
 
   let browser
   let page
@@ -444,11 +446,46 @@ async function browserSmoke() {
     fail(`headless smoke failed: ${error.message}`)
     if (stderr.length) console.error(stderr.join('').slice(-4000))
   } finally {
-    page?.close()
-    browser?.close()
-    chrome.kill('SIGKILL')
+    try { page?.close() } catch { /* The DevTools socket may already be closed. */ }
+    try { browser?.close() } catch { /* The DevTools socket may already be closed. */ }
+    await stopChrome(chrome)
     await new Promise((resolve) => server.close(resolve))
-    await rm(userDataDir, { recursive: true, force: true })
+    await removeProfile(userDataDir)
+  }
+}
+
+async function stopChrome(chrome) {
+  if (!chrome || chrome.exitCode !== null) return
+  try {
+    process.kill(-chrome.pid, 'SIGKILL')
+  } catch {
+    try { chrome.kill('SIGKILL') } catch { /* Chrome has already exited. */ }
+  }
+  await new Promise((resolve) => {
+    if (chrome.exitCode !== null) {
+      resolve()
+      return
+    }
+    const timer = setTimeout(resolve, 2000)
+    chrome.once('exit', () => {
+      clearTimeout(timer)
+      resolve()
+    })
+  })
+}
+
+async function removeProfile(dir) {
+  for (let attempt = 0; attempt < 5; attempt += 1) {
+    try {
+      await rm(dir, { recursive: true, force: true, maxRetries: 2, retryDelay: 50 })
+      return
+    } catch (error) {
+      if (attempt === 4) {
+        console.error(`chrome profile cleanup skipped: ${error.message}`)
+        return
+      }
+      await sleep(200)
+    }
   }
 }
 
