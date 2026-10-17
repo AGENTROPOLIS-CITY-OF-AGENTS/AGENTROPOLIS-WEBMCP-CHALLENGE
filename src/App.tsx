@@ -10,6 +10,7 @@ import {
   ToolCallsSection,
   UniversalDistrictShell,
 } from '../packages/ui-vault/src'
+import { GestureControlLab } from './demo/chaos/GestureControlLab'
 import { SceneBoundary } from './SceneBoundary'
 import { StaticWorldFallback } from './StaticWorldFallback'
 import { governanceEngine } from './core/engine'
@@ -186,6 +187,7 @@ export function App() {
           {[['OBSERVE', 'Scan environment'], ['ACT', 'Make authorized changes'], ['SEE AGAIN', 'Re-observe results'], ['VERIFY', 'Check against objective'], ['RECEIPT', 'Immutable audit trail']].map(([title, copy], index) => <div className={`hero-capability hero-capability-${index % 2 ? 'red' : 'cyan'}`} key={title}><strong>{title}</strong><span>{copy}</span></div>)}
         </div>
       </section>
+      <GestureControlLab />
       <section id="technical-architecture" className="technical-corridor-shell" aria-label="Technical architecture">
       <UniversalDistrictShell
         layout="standard"
