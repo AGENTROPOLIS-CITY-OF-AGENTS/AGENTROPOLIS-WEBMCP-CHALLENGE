@@ -180,10 +180,11 @@ export function App() {
           <div className="parallax-hero-actions">
             <button className="parallax-primary-cta" type="button" onClick={openEnvironmentEntry}>START INTERACTIVE DEMO</button>
             <a className="parallax-secondary-cta" href="#the-loop">HOW IT WORKS</a>
+            <a className="parallax-secondary-cta" href="https://github.com/AGENTROPOLIS-CITY-OF-AGENTS/AGENTROPOLIS-PARALLAX-SPATIAL-MCP" target="_blank" rel="noopener noreferrer">RUNTIME SOURCE ↗</a>
           </div>
         </div>
         <div className="hero-capability-stack" aria-label="PARALLAX capabilities">
-          {[['OBSERVE', 'Scan environment'], ['ACT', 'Make authorized changes'], ['SEE AGAIN', 'Re-observe results'], ['VERIFY', 'Check against objective'], ['RECEIPT', 'Immutable audit trail']].map(([title, copy], index) => <div className={`hero-capability hero-capability-${index % 2 ? 'red' : 'cyan'}`} key={title}><strong>{title}</strong><span>{copy}</span></div>)}
+          {[['OBSERVE', 'Scan environment'], ['ACT', 'Make authorized changes'], ['SEE AGAIN', 'Re-observe results'], ['VERIFY', 'Check against objective'], ['RECEIPT', 'Inspectable execution evidence']].map(([title, copy], index) => <div className={`hero-capability hero-capability-${index % 2 ? 'red' : 'cyan'}`} key={title}><strong>{title}</strong><span>{copy}</span></div>)}
         </div>
       </section>
       <section id="technical-architecture" className="technical-corridor-shell" aria-label="Technical architecture">
