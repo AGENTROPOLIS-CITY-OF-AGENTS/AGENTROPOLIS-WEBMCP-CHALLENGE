@@ -1,0 +1,44 @@
+{
+  "id": "effect.choso-ascii",
+  "candidateSource": "21st.dev/community/ascii",
+  "sourceUrl": "https://21st.dev/community/ascii",
+  "retrievedAt": "2026-09-19",
+  "originalAuthor": null,
+  "license": null,
+  "lifecycle": "quarantine",
+  "implementation": "packages/ui-vault/quarantine/recipes/ChosoAscii.tsx",
+  "runtime": "Canvas2D",
+  "preset": {
+    "renderMode": "dither",
+    "bgMode": "none",
+    "cellSize": 9,
+    "coverage": 100,
+    "brightness": -16,
+    "contrast": 100,
+    "density": 24,
+    "saturation": 0,
+    "grayscale": 100,
+    "chromatic": 15,
+    "animated": true,
+    "animStyle": "pulse",
+    "animSpeed": 64,
+    "animIntensity": 41
+  },
+  "inputs": [
+    "src",
+    "alt",
+    "width",
+    "height",
+    "cellSize",
+    "animated",
+    "pulseSpeed",
+    "pulseIntensity"
+  ],
+  "notes": [
+    "Reimplemented from the user-supplied CHOSO ASCII recipe; no internal 21st.dev code assumed.",
+    "Designed to use caller-owned images through the src prop.",
+    "Remote images require CORS permission; blob/data URLs work locally.",
+    "Mask is not applied because the supplied CHOSO preset has mask.enabled=false.",
+    "Requires provenance/license review before promotion from quarantine."
+  ]
+}
