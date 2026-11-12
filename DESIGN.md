@@ -132,6 +132,12 @@ OpenDesign Design Harness is an optional beta candidate generator and comparator
 
 Harness output cannot override the governance corridor or fabricate proof.
 
+## Visual Construction Gate
+
+Public release candidates also follow `design-system/VISUAL_CONSTRUCTION_HARNESS.md`.
+
+The required sequence is reference-first construction, art-direction lock, section construction, motion/continuity review, responsive verification, production capture, and acceptance receipt. DESIGN LOCK, MOTION LOCK, ANTI-SLOP LOCK, and PRODUCTION PARITY LOCK are submission-blocking. Model output is a candidate, never authority.
+
 ## Definition of Done
 
 - the dominant action is obvious within five seconds;
@@ -140,4 +146,6 @@ Harness output cannot override the governance corridor or fabricate proof.
 - all required repository checks pass;
 - experimental claims are labeled;
 - one human approves the final candidate;
-- the deployed build matches the approved commit.
+- the deployed build matches the approved commit;
+- production parity is verified at desktop, tablet, and mobile viewports;
+- the final acceptance receipt records human approval and any intentional exceptions.

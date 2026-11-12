@@ -1,0 +1,17 @@
+{
+  "commit": "REPLACE_AT_ACCEPTANCE",
+  "surface": "WebMCP Mission Control",
+  "design_lock": "pending",
+  "motion_lock": "pending",
+  "anti_slop_lock": "pending",
+  "production_parity_lock": "pending",
+  "viewports": ["1440x900", "1024x768", "390x844"],
+  "reduced_motion_verified": false,
+  "human_approved": false,
+  "exceptions": [],
+  "evidence": {
+    "local_captures": [],
+    "deployed_captures": [],
+    "diff_artifacts": []
+  }
+}
