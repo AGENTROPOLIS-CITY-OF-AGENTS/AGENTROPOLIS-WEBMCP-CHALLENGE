@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.example/contracts/spatial-composer-capabilities.json",
+  "title": "PARALLAX Spatial Composer Capability Contract",
+  "description": "Experimental bounded capability vocabulary for adapting a 3D shot composer into the governed PARALLAX Spatial WebMCP corridor.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["operation"],
+  "properties": {
+    "operation": {
+      "type": "string",
+      "enum": [
+        "scene.inspect",
+        "scene.get_object",
+        "scene.add_character",
+        "scene.add_object",
+        "transform.translate",
+        "transform.rotate",
+        "transform.scale",
+        "pose.apply",
+        "pose.adjust_joint",
+        "camera.set_shot_size",
+        "camera.set_angle",
+        "camera.set_elevation",
+        "camera.set_composition",
+        "camera.move",
+        "motion.set_duration",
+        "motion.add_keyframe",
+        "motion.preview",
+        "scene.capture",
+        "scene.save",
+        "parallax.verify_scene",
+        "parallax.emit_receipt"
+      ]
+    },
+    "objectId": { "type": "string" },
+    "characterId": { "type": "string" },
+    "cameraId": { "type": "string" },
+    "position": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 },
+    "rotation": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 },
+    "scale": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 },
+    "shotSize": { "enum": ["wide", "full", "medium", "mcu", "close-up"] },
+    "cameraAngle": { "enum": ["front", "three-quarter-left", "three-quarter-right", "profile", "back", "ots"] },
+    "elevation": { "enum": ["eye-level", "high", "low"] },
+    "composition": { "enum": ["center", "left-third", "right-third", "upper-third", "lower-third", "negative-space"] },
+    "durationSeconds": { "type": "number", "exclusiveMinimum": 0 },
+    "objective": { "type": "string" },
+    "captureId": { "type": "string" },
+    "captureHash": { "type": "string" },
+    "captureRef": { "type": "string" }
+  },
+  "x-agentropolis": {
+    "status": "experimental",
+    "authority": "PARALLAX",
+    "requiresCapabilityCheckForMutation": true,
+    "forbiddenCatchAllTools": ["edit_scene", "run_script", "eval", "shell", "arbitrary_command"],
+    "visualAgentStandard": "articulated-3d-humanoid"
+  }
+}
