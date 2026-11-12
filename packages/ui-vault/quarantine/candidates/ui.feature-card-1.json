@@ -1,0 +1,19 @@
+{
+  "id": "ui.feature-card-1",
+  "candidateSource": "21st-dev-user-supplied",
+  "sourceUrl": "https://21st.dev/r/ravikatiyar162/feature-card-1",
+  "retrievedAt": "2026-09-11",
+  "originalAuthor": "ravikatiyar162",
+  "license": null,
+  "status": "quarantine",
+  "dedupeKey": "feature-card-1",
+  "runtime": "React/shadcn-compatible",
+  "gpuHeavy": false,
+  "codePath": null,
+  "intendedConsumers": ["AGENTROPOLIS-CREATOR", "AGENTROPOLIS-HOLOFOIL2"],
+  "notes": [
+    "Candidate use: Creator capability cards, Holofoil service/features, TCG mode or format callouts.",
+    "Avoid generic card-grid substitution for information architecture.",
+    "Source, license, responsive and accessibility review required before promotion."
+  ]
+}

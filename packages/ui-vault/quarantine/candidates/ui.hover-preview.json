@@ -1,0 +1,20 @@
+{
+  "id": "ui.hover-preview",
+  "candidateSource": "21st-dev-user-supplied",
+  "sourceUrl": "https://21st.dev/r/minhxthanh/hover-preview",
+  "retrievedAt": "2026-09-11",
+  "originalAuthor": "minhxthanh",
+  "license": null,
+  "status": "quarantine",
+  "dedupeKey": "hover-preview",
+  "runtime": "React/shadcn-compatible",
+  "gpuHeavy": false,
+  "codePath": null,
+  "intendedConsumers": ["AGENTROPOLIS-HOLOFOIL2", "AGENTROPOLIS-CREATOR"],
+  "notes": [
+    "Candidate use: card, player, deck, Resident, cultivar, project and asset previews.",
+    "Must provide touch, keyboard and reduced-motion equivalents.",
+    "Competitive use must never reveal hidden opponent state.",
+    "Do not export until source and license are reviewed."
+  ]
+}

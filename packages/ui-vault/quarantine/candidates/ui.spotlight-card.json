@@ -1,0 +1,19 @@
+{
+  "id": "ui.spotlight-card",
+  "candidateSource": "21st-dev-user-supplied",
+  "sourceUrl": "https://21st.dev/r/jahed/spotlight-card",
+  "retrievedAt": "2026-09-11",
+  "originalAuthor": "jahed",
+  "license": null,
+  "status": "quarantine",
+  "dedupeKey": "spotlight-card",
+  "runtime": "React/shadcn-compatible",
+  "gpuHeavy": false,
+  "codePath": null,
+  "intendedConsumers": ["AGENTROPOLIS-HOLOFOIL2", "AGENTROPOLIS-CREATOR"],
+  "notes": [
+    "Candidate use: leaderboard leaders, champion/MVP, featured deck, active card, rare reveal and creator featured asset.",
+    "Effect must not encode authority, win state or approval by visual treatment alone.",
+    "Touch and reduced-motion fallbacks required before promotion."
+  ]
+}

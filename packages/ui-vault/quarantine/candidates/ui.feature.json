@@ -1,0 +1,19 @@
+{
+  "id": "ui.feature",
+  "candidateSource": "21st-dev-user-supplied",
+  "sourceUrl": "https://21st.dev/r/moazamtrade/feature",
+  "retrievedAt": "2026-09-11",
+  "originalAuthor": "moazamtrade",
+  "license": null,
+  "status": "quarantine",
+  "dedupeKey": "feature-moazamtrade",
+  "runtime": "React/shadcn-compatible",
+  "gpuHeavy": false,
+  "codePath": null,
+  "intendedConsumers": ["AGENTROPOLIS-CREATOR", "AGENTROPOLIS-HOLOFOIL2"],
+  "notes": [
+    "Candidate use: Creator feature explanation, Holofoil service selection and progressive disclosure surfaces.",
+    "Must preserve one dominant action per view and avoid exposing all system complexity at once.",
+    "Source, license, responsive and accessibility review required before promotion."
+  ]
+}
